@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rovay Tech Solutions - Contato</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f2f2f2; padding: 20px; }
+    .container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 8px; }
+    h2 { text-align: center; color: #333; }
+    input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
+    button { background: #007BFF; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Receba uma consultoria gratuita</h2>
+  <form id="leadForm">
+    <input type="text" name="nome" placeholder="Seu nome" required />
+    <input type="email" name="email" placeholder="Seu e-mail" required />
+    <textarea name="mensagem" placeholder="Como podemos te ajudar?" rows="4"></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="statusMsg" style="text-align:center;"></p>
+</div>
+
+<script>
+  document.getElementById("leadForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    document.getElementById("statusMsg").innerText = "Enviando dados...";
+    
+    // Simulação de envio - substitua com fetch/axios para backend real
+    setTimeout(() => {
+      document.getElementById("statusMsg").innerText = "Obrigado! Entraremos em contato.";
+      this.reset();
+    }, 1000);
+  });
+</script>
+
+</body>
+</html>
