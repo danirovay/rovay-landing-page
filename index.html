@@ -2,144 +2,306 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rovay Tech Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    /* Reset básico */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
+      margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #f8f9fa;
+      background-color: #f8f9fa;
       color: #333;
-      padding-top: 120px;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      padding-top: 120px; /* Espaço para cabeçalho fixo */
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
 
+    /* Header */
     header {
-      background: #0d6efd;
-      color: white;
-      padding: 20px;
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: 1000;
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     header .logo {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 12px;
       margin-bottom: 10px;
     }
     header .logo img {
       width: 36px;
+      height: 36px;
+      object-fit: contain;
     }
-    header nav {
+    header .logo h1 {
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+    nav {
       display: flex;
-      justify-content: center;
       gap: 30px;
       flex-wrap: wrap;
-      margin-top: 10px;
+      justify-content: center;
     }
-    header nav a {
-      color: white;
-      text-decoration: none;
+    nav a {
       font-weight: 600;
+      color: white;
+      font-size: 1rem;
+      transition: color 0.3s ease;
     }
-    header nav a:hover {
-      text-decoration: underline;
+    nav a:hover, nav a:focus {
+      color: #ffc107;
+      outline: none;
     }
 
+    /* Seções */
     section {
-      padding: 40px 20px;
       max-width: 900px;
-      margin: auto;
-      scroll-margin-top: 120px; /* Adiciona espaço para compensar o cabeçalho fixo */
-    }
-
-    .services h2, .about h2, .contact h2, .testimonials h2, .faq h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .service-cards { display: flex; flex-wrap: wrap; gap: 20px; }
-    .card {
-      flex: 1 1 250px;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
+      margin: 0 auto 60px auto;
+      padding: 40px 20px;
+      scroll-margin-top: 120px; /* Compensar header fixo */
+      background-color: white;
+      border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #0d6efd;
+      text-align: center;
+    }
+
+    /* Serviços */
+    .service-cards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .card {
+      flex: 1 1 280px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.07);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
     .card img {
-      width: 40px;
+      width: 48px;
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #0d6efd;
+    }
+    .card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Sobre */
+    .about p {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      color: #444;
+    }
+    .about h3 {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #0d6efd;
+      margin-bottom: 12px;
+    }
+    .timeline {
+      list-style: none;
+      padding-left: 0;
+      line-height: 1.8;
+      color: #444;
+      font-size: 1rem;
+    }
+    .timeline li strong {
+      color: #0d6efd;
+    }
+    .guarantee {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .guarantee img {
+      width: 80px;
       margin-bottom: 10px;
     }
-
-    .about p {
-      font-size: 17px;
-      line-height: 1.6;
+    .guarantee p:first-of-type {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+    .guarantee p:last-of-type {
+      font-size: 1rem;
+      color: #555;
     }
 
+    /* Depoimentos */
     .testimonials blockquote {
-      background: white;
-      padding: 20px;
-      margin: 20px 0;
+      background-color: white;
       border-left: 5px solid #0d6efd;
+      padding: 20px;
       font-style: italic;
+      color: #444;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .testimonials blockquote strong {
+      display: block;
+      margin-top: 12px;
+      font-style: normal;
+      font-weight: 600;
+      color: #0d6efd;
     }
 
+    /* FAQ */
     .faq-item {
       margin-bottom: 20px;
     }
     .faq-item h4 {
-      margin-bottom: 5px;
       color: #0d6efd;
+      margin-bottom: 8px;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      padding-right: 20px;
+    }
+    .faq-item h4::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active h4::after {
+      content: "-";
+      transform: rotate(180deg);
+    }
+    .faq-item p {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      color: #444;
+    }
+    .faq-item.active p {
+      max-height: 500px;
+      margin-top: 5px;
     }
 
-    footer {
-      background: #0d6efd;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-
+    /* Contato */
     .contact form {
       display: flex;
       flex-direction: column;
+      max-width: 500px;
+      margin: 0 auto;
     }
     .contact input, .contact textarea {
-      margin: 10px 0;
-      padding: 10px;
-      font-size: 16px;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: border-color 0.3s ease;
+    }
+    .contact input:focus, .contact textarea:focus {
+      border-color: #0d6efd;
+      outline: none;
     }
     .contact button {
-      background: #198754;
+      background-color: #198754;
       color: white;
       border: none;
-      padding: 10px;
-      font-size: 16px;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-    .contact button:hover {
-      background: #157347;
+    .contact button:hover, .contact button:focus {
+      background-color: #157347;
+      outline: none;
     }
 
+    /* Footer */
+    footer {
+      background-color: #0d6efd;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1rem;
+    }
+
+    /* Botão WhatsApp fixo */
     .whatsapp-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: #25D366;
-      padding: 12px;
+      background-color: #25D366;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+      transition: background-color 0.3s ease;
+    }
+    .whatsapp-btn:hover, .whatsapp-btn:focus {
+      background-color: #1ebe57;
+      outline: none;
     }
     .whatsapp-btn img {
-      width: 30px;
+      width: 28px;
+      height: 28px;
+      user-select: none;
+      pointer-events: none;
     }
 
-    @media (max-width: 600px) {
+    /* Responsividade */
+    @media (max-width: 768px) {
       .service-cards {
         flex-direction: column;
+        align-items: center;
+      }
+      section {
+        margin: 0 15px 60px 15px;
+        padding: 30px 15px;
+      }
+      nav {
+        gap: 15px;
       }
     }
   </style>
@@ -147,117 +309,145 @@
 <body>
 
 <header>
-  <div class="logo">
-    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721269.png" alt="Logo" />
+  <div class="logo" aria-label="Logotipo Rovay Tech Solutions">
+    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721269.png" alt="Logo Rovay Tech Solutions" />
     <h1>Rovay Tech Solutions</h1>
   </div>
-  <nav>
-    <a href="#servicos">Serviços</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#depoimentos">Depoimentos</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contato">Contato</a>
+  <nav aria-label="Menu principal">
+    <a href="#servicos" tabindex="0">Serviços</a>
+    <a href="#sobre" tabindex="0">Sobre</a>
+    <a href="#depoimentos" tabindex="0">Depoimentos</a>
+    <a href="#faq" tabindex="0">FAQ</a>
+    <a href="#contato" tabindex="0">Contato</a>
   </nav>
 </header>
-<section id="servicos" class="services">
-  <h2>Nossos Serviços</h2>
-  <div class="service-cards">
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/2920/2920310.png" alt="Rede" />
-      <h3>Infraestrutura de Redes</h3>
-      <p>Instalação e manutenção de redes estruturadas com alta performance e segurança.</p>
+
+<main>
+  <section id="servicos" class="services" tabindex="-1">
+    <h2>Nossos Serviços</h2>
+    <div class="service-cards" role="list">
+      <article class="card" role="listitem">
+        <img src="https://cdn-icons-png.flaticon.com/512/2920/2920310.png" alt="Ícone Rede" />
+        <h3>Infraestrutura de Redes</h3>
+        <p>Instalação e manutenção de redes estruturadas com alta performance e segurança.</p>
+      </article>
+      <article class="card" role="listitem">
+        <img src="https://cdn-icons-png.flaticon.com/512/1148/1148661.png" alt="Ícone Suporte Técnico" />
+        <h3>Suporte Técnico</h3>
+        <p>Atendimento rápido e eficiente para resolver problemas e manter seus sistemas operando.</p>
+      </article>
+      <article class="card" role="listitem">
+        <img src="https://cdn-icons-png.flaticon.com/512/1804/1804912.png" alt="Ícone Backup" />
+        <h3>Backup e Segurança</h3>
+        <p>Proteção dos seus dados com soluções confiáveis de backup e recuperação.</p>
+      </article>
+      <article class="card" role="listitem">
+        <img src="https://cdn-icons-png.flaticon.com/512/126/126486.png" alt="Ícone Consultoria" />
+        <h3>Consultoria em TI</h3>
+        <p>Planejamento estratégico para otimizar a infraestrutura e processos da sua empresa.</p>
+      </article>
     </div>
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1148/1148661.png" alt="Suporte" />
-      <h3>Suporte Técnico</h3>
-      <p>Atendimento rápido e eficiente para resolver problemas de TI, presencial ou remoto.</p>
-    </div>
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/2011/2011604.png" alt="Câmeras" />
-      <h3>Segurança com Câmeras</h3>
-      <p>Projetos completos de monitoramento com câmeras, gravação e acesso remoto.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="sobre" class="about">
-  <h2>Quem Somos</h2>
-  <p>A Rovay Tech Solutions é uma empresa especializada em soluções completas de tecnologia da informação, fundada com o objetivo de oferecer serviços de alta qualidade, confiabilidade e inovação. Com sede em Campinas e atendimento regional, atuamos há mais de 10 anos no mercado, construindo parcerias sólidas com clientes de diversos setores.</p>
-
-  <p>Nosso foco é simplificar a tecnologia para o cliente final. Realizamos projetos personalizados de infraestrutura de redes, suporte técnico proativo, manutenção preventiva e corretiva, além da implementação de sistemas de monitoramento com câmeras de segurança de última geração. Trabalhamos com ferramentas e equipamentos atualizados, sempre prezando pela segurança da informação, eficiência operacional e escalabilidade.</p>
-
-  <p>Contamos com uma equipe capacitada, formada por profissionais experientes e comprometidos com a excelência em cada atendimento. Aqui, você encontra um suporte realmente humano, ágil e acessível — sem burocracia, sem enrolação.</p>
-
-  <p>Nosso maior diferencial é o relacionamento com o cliente: atendemos com empatia, escutamos suas dores e entregamos soluções de verdade. Se você busca um parceiro confiável para cuidar da parte técnica da sua empresa ou residência, conte com a Rovay Tech Solutions. Sua tranquilidade tecnológica é o nosso compromisso.</p>
-
-  <!-- Selo de Garantia -->
-  <div style="text-align:center; margin:40px 0;">
-    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Selo de Garantia" width="80" />
-    <p style="margin-top:10px; font-size:18px; font-weight:600;">Garantia de Qualidade e Confiança</p>
-    <p style="font-size:15px; color:#555;">Compromisso com excelência, segurança e atendimento humanizado.</p>
-  </div>
-
-  <!-- Linha do Tempo -->
-  <div style="margin-top: 40px;">
-    <h3>Linha do Tempo</h3>
-    <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
-      <li><strong>2014:</strong> Início das atividades com foco em suporte técnico residencial.</li>
-      <li><strong>2016:</strong> Expansão para infraestrutura de redes e serviços corporativos.</li>
-      <li><strong>2019:</strong> Inclusão de soluções em segurança e monitoramento com câmeras.</li>
-      <li><strong>2022:</strong> Modernização de processos com atendimento remoto e SLA personalizado.</li>
-      <li><strong>2025:</strong> Lançamento da plataforma digital e expansão para todo o estado de SP.</li>
+  <section id="sobre" class="about" tabindex="-1">
+    <h2>Sobre Nós</h2>
+    <p>A Rovay Tech Solutions é especializada em infraestrutura de redes, suporte técnico e soluções completas de TI para empresas de todos os tamanhos.</p>
+    <p>Com anos de experiência e uma equipe altamente qualificada, oferecemos serviços que garantem a segurança, eficiência e continuidade dos seus negócios.</p>
+    <h3>Histórico da Empresa</h3>
+    <ul class="timeline" aria-label="Linha do tempo da empresa">
+      <li><strong>2017:</strong> Fundação da Rovay Tech Solutions.</li>
+      <li><strong>2019:</strong> Expansão dos serviços para todo o estado.</li>
+      <li><strong>2021:</strong> Introdução de consultoria estratégica em TI.</li>
+      <li><strong>2023:</strong> Reconhecimento como referência local em suporte e infraestrutura.</li>
     </ul>
-  </div>
-</section>
-<section id="depoimentos" class="testimonials">
-  <h2>O que dizem nossos clientes</h2>
-  <blockquote>
-    “Contratar a Rovay Tech Solutions foi a melhor decisão que tomei para meu escritório. Atendimento rápido e soluções práticas.”  
-    <br><strong>– Fernanda Lopes, Advogada</strong>
-  </blockquote>
-  <blockquote>
-    “Eles montaram toda a rede da minha empresa em tempo recorde. Serviço limpo, organizado e com suporte excelente.”  
-    <br><strong>– Marcelo Oliveira, Gerente de TI</strong>
-  </blockquote>
-  <blockquote>
-    “Coloquei câmeras na minha casa e posso acessar do celular de qualquer lugar. Recomendo demais o trabalho deles!”  
-    <br><strong>– Juliana Ribeiro, Cliente Residencial</strong>
-  </blockquote>
-</section>
+    <div class="guarantee" aria-label="Garantia de serviço">
+      <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Ícone de garantia" />
+      <p>Garantia de qualidade</p>
+      <p>Atendimento personalizado para cada cliente, com foco em resultados e satisfação.</p>
+    </div>
+  </section>
 
-<section id="faq" class="faq">
-  <h2>Perguntas Frequentes</h2>
-  <div class="faq-item">
-    <h4>Vocês atendem fora de Campinas?</h4>
-    <p>Sim! Atendemos também toda a região metropolitana e cidades vizinhas com agendamento prévio.</p>
-  </div>
-  <div class="faq-item">
-    <h4>Posso contratar só a instalação das câmeras?</h4>
-    <p>Claro! Fazemos tanto projetos completos quanto serviços pontuais como instalação e configuração.</p>
-  </div>
-  <div class="faq-item">
-    <h4>Atendem empresas e residências?</h4>
-    <p>Sim. Temos soluções sob medida para ambos os tipos de cliente, sempre com foco em custo-benefício.</p>
-  </div>
-</section>
+  <section id="depoimentos" class="testimonials" tabindex="-1" aria-label="Depoimentos de clientes">
+    <h2>Depoimentos</h2>
+    <blockquote>
+      "O suporte da Rovay Tech Solutions fez toda a diferença na estabilidade da nossa rede. Recomendo muito!"
+      <strong>- João Silva, CEO da Empresa X</strong>
+    </blockquote>
+    <blockquote>
+      "Profissionais competentes e sempre disponíveis para ajudar. Excelente custo-benefício."
+      <strong>- Maria Oliveira, Gerente de TI da Empresa Y</strong>
+    </blockquote>
+    <blockquote>
+      "Serviço impecável, rápido e confiável. Nossa empresa cresceu graças à infraestrutura montada pela Rovay."
+      <strong>- Pedro Santos, Diretor da Empresa Z</strong>
+    </blockquote>
+  </section>
 
-<section id="contato" class="contact">
-  <h2>Entre em Contato</h2>
-  <form action="https://formspree.io/f/SEU_CODIGO" method="POST">
-    <input type="text" name="nome" placeholder="Seu nome" required />
-    <input type="email" name="email" placeholder="Seu e-mail" required />
-    <textarea name="mensagem" placeholder="Como podemos te ajudar?" rows="4"></textarea>
-    <button type="submit">Enviar</button>
-  </form>
-</section>
+  <section id="faq" class="faq" tabindex="-1" aria-label="Perguntas frequentes">
+    <h2>Perguntas Frequentes</h2>
+
+    <div class="faq-item" tabindex="0" role="button" aria-expanded="false" aria-controls="faq1" id="faq1-header">
+      <h4>Qual o tempo médio de atendimento do suporte?</h4>
+      <p id="faq1" hidden>Nosso suporte atende chamados em até 4 horas úteis, priorizando emergências.</p>
+    </div>
+
+    <div class="faq-item" tabindex="0" role="button" aria-expanded="false" aria-controls="faq2" id="faq2-header">
+      <h4>Vocês oferecem contratos mensais ou só serviços avulsos?</h4>
+      <p id="faq2" hidden>Oferecemos ambas as opções, conforme a necessidade do cliente.</p>
+    </div>
+
+    <div class="faq-item" tabindex="0" role="button" aria-expanded="false" aria-controls="faq3" id="faq3-header">
+      <h4>Fazem instalação de cabeamento estruturado?</h4>
+      <p id="faq3" hidden>Sim, trabalhamos com cabeamento Cat5e, Cat6 e fibra óptica para redes corporativas.</p>
+    </div>
+  </section>
+
+  <section id="contato" class="contact" tabindex="-1">
+    <h2>Contato</h2>
+    <form action="https://formspree.io/f/mzbwgjza" method="POST" aria-label="Formulário de contato">
+      <input type="text" name="nome" placeholder="Seu nome" required aria-required="true" />
+      <input type="email" name="email" placeholder="Seu e-mail" required aria-required="true" />
+      <input type="text" name="assunto" placeholder="Assunto" required aria-required="true" />
+      <textarea name="mensagem" rows="5" placeholder="Mensagem" required aria-required="true"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+</main>
 
 <footer>
-  <p>&copy; 2025 Rovay Tech Solutions. Todos os direitos reservados.</p>
+  <p>© 2025 Rovay Tech Solutions - Todos os direitos reservados</p>
 </footer>
 
-<a href="https://wa.me/5519998194874?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20Rovay%20Tech%20Solutions" class="whatsapp-btn" target="_blank">
-  <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
+<a href="https://api.whatsapp.com/send?phone=5591991234855" class="whatsapp-btn" aria-label="Contato via WhatsApp" target="_blank" rel="noopener">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Ícone WhatsApp" />
 </a>
+
+<script>
+  // FAQ Toggle
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      // fechar todos
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        i.setAttribute('aria-expanded', 'false');
+        i.querySelector('p').hidden = true;
+      });
+      if(!isActive) {
+        item.classList.add('active');
+        item.setAttribute('aria-expanded', 'true');
+        item.querySelector('p').hidden = false;
+      }
+    });
+    // Permitir toggle com tecla Enter e Espaço
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        item.click();
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
