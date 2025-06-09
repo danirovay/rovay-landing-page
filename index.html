@@ -56,7 +56,10 @@
       margin: auto;
     }
 
-    .services h2, .about h2, .contact h2 { font-size: 28px; margin-bottom: 20px; }
+    .services h2, .about h2, .contact h2, .testimonials h2, .faq h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
 
     .service-cards { display: flex; flex-wrap: wrap; gap: 20px; }
     .card {
@@ -74,6 +77,22 @@
     .about p {
       font-size: 17px;
       line-height: 1.6;
+    }
+
+    .testimonials blockquote {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 5px solid #0d6efd;
+      font-style: italic;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+    }
+    .faq-item h4 {
+      margin-bottom: 5px;
+      color: #0d6efd;
     }
 
     footer {
@@ -134,34 +153,91 @@
   <nav>
     <a href="#servicos">Serviços</a>
     <a href="#sobre">Sobre</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#faq">FAQ</a>
     <a href="#contato">Contato</a>
   </nav>
 </header>
-
 <section id="servicos" class="services">
   <h2>Nossos Serviços</h2>
   <div class="service-cards">
     <div class="card">
       <img src="https://cdn-icons-png.flaticon.com/512/2920/2920310.png" alt="Rede" />
       <h3>Infraestrutura de Redes</h3>
-      <p>Instalação e manutenção de redes estruturadas com alta performance.</p>
+      <p>Instalação e manutenção de redes estruturadas com alta performance e segurança.</p>
     </div>
     <div class="card">
       <img src="https://cdn-icons-png.flaticon.com/512/1148/1148661.png" alt="Suporte" />
       <h3>Suporte Técnico</h3>
-      <p>Atendimento rápido e eficiente para resolver problemas de TI.</p>
+      <p>Atendimento rápido e eficiente para resolver problemas de TI, presencial ou remoto.</p>
     </div>
     <div class="card">
       <img src="https://cdn-icons-png.flaticon.com/512/2011/2011604.png" alt="Câmeras" />
       <h3>Segurança com Câmeras</h3>
-      <p>Projetos de vigilância e monitoramento para empresas e residências.</p>
+      <p>Projetos completos de monitoramento com câmeras, gravação e acesso remoto.</p>
     </div>
   </div>
 </section>
 
 <section id="sobre" class="about">
   <h2>Quem Somos</h2>
-  <p>Com mais de 10 anos de experiência, a Rovay Tech Solutions é referência em soluções tecnológicas. Atendemos empresas e residências com serviços sob medida, buscando sempre excelência e confiança.</p>
+  <p>A Rovay Tech Solutions é uma empresa especializada em soluções completas de tecnologia da informação, fundada com o objetivo de oferecer serviços de alta qualidade, confiabilidade e inovação. Com sede em Campinas e atendimento regional, atuamos há mais de 10 anos no mercado, construindo parcerias sólidas com clientes de diversos setores.</p>
+
+  <p>Nosso foco é simplificar a tecnologia para o cliente final. Realizamos projetos personalizados de infraestrutura de redes, suporte técnico proativo, manutenção preventiva e corretiva, além da implementação de sistemas de monitoramento com câmeras de segurança de última geração. Trabalhamos com ferramentas e equipamentos atualizados, sempre prezando pela segurança da informação, eficiência operacional e escalabilidade.</p>
+
+  <p>Contamos com uma equipe capacitada, formada por profissionais experientes e comprometidos com a excelência em cada atendimento. Aqui, você encontra um suporte realmente humano, ágil e acessível — sem burocracia, sem enrolação.</p>
+
+  <p>Nosso maior diferencial é o relacionamento com o cliente: atendemos com empatia, escutamos suas dores e entregamos soluções de verdade. Se você busca um parceiro confiável para cuidar da parte técnica da sua empresa ou residência, conte com a Rovay Tech Solutions. Sua tranquilidade tecnológica é o nosso compromisso.</p>
+
+  <!-- Selo de Garantia -->
+  <div style="text-align:center; margin:40px 0;">
+    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Selo de Garantia" width="80" />
+    <p style="margin-top:10px; font-size:18px; font-weight:600;">Garantia de Qualidade e Confiança</p>
+    <p style="font-size:15px; color:#555;">Compromisso com excelência, segurança e atendimento humanizado.</p>
+  </div>
+
+  <!-- Linha do Tempo -->
+  <div style="margin-top: 40px;">
+    <h3>Linha do Tempo</h3>
+    <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+      <li><strong>2014:</strong> Início das atividades com foco em suporte técnico residencial.</li>
+      <li><strong>2016:</strong> Expansão para infraestrutura de redes e serviços corporativos.</li>
+      <li><strong>2019:</strong> Inclusão de soluções em segurança e monitoramento com câmeras.</li>
+      <li><strong>2022:</strong> Modernização de processos com atendimento remoto e SLA personalizado.</li>
+      <li><strong>2025:</strong> Lançamento da plataforma digital e expansão para todo o estado de SP.</li>
+    </ul>
+  </div>
+</section>
+<section id="depoimentos" class="testimonials">
+  <h2>O que dizem nossos clientes</h2>
+  <blockquote>
+    “Contratar a Rovay Tech Solutions foi a melhor decisão que tomei para meu escritório. Atendimento rápido e soluções práticas.”  
+    <br><strong>– Fernanda Lopes, Advogada</strong>
+  </blockquote>
+  <blockquote>
+    “Eles montaram toda a rede da minha empresa em tempo recorde. Serviço limpo, organizado e com suporte excelente.”  
+    <br><strong>– Marcelo Oliveira, Gerente de TI</strong>
+  </blockquote>
+  <blockquote>
+    “Coloquei câmeras na minha casa e posso acessar do celular de qualquer lugar. Recomendo demais o trabalho deles!”  
+    <br><strong>– Juliana Ribeiro, Cliente Residencial</strong>
+  </blockquote>
+</section>
+
+<section id="faq" class="faq">
+  <h2>Perguntas Frequentes</h2>
+  <div class="faq-item">
+    <h4>Vocês atendem fora de Campinas?</h4>
+    <p>Sim! Atendemos também toda a região metropolitana e cidades vizinhas com agendamento prévio.</p>
+  </div>
+  <div class="faq-item">
+    <h4>Posso contratar só a instalação das câmeras?</h4>
+    <p>Claro! Fazemos tanto projetos completos quanto serviços pontuais como instalação e configuração.</p>
+  </div>
+  <div class="faq-item">
+    <h4>Atendem empresas e residências?</h4>
+    <p>Sim. Temos soluções sob medida para ambos os tipos de cliente, sempre com foco em custo-benefício.</p>
+  </div>
 </section>
 
 <section id="contato" class="contact">
