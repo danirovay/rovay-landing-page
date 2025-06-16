@@ -1,453 +1,356 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rovay Tech Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    /* Reset básico */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-      padding-top: 120px; /* Espaço para cabeçalho fixo */
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #0d6efd;
-      color: white;
-      padding: 20px 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    header .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-    header .logo img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-    }
-    header .logo h1 {
-      font-weight: 600;
-      font-size: 1.5rem;
-    }
-    nav {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    nav a {
-      font-weight: 600;
-      color: white;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
-    nav a:hover, nav a:focus {
-      color: #ffc107;
-      outline: none;
-    }
-
-    /* Seções */
-    section {
-      max-width: 900px;
-      margin: 0 auto 60px auto;
-      padding: 40px 20px;
-      scroll-margin-top: 120px; /* Compensar header fixo */
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #0d6efd;
-      text-align: center;
-    }
-
-    /* Serviços */
-    .service-cards {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .card {
-      flex: 1 1 280px;
-      background-color: #ffffff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.07);
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-    .card img {
-      width: 48px;
-      margin-bottom: 12px;
-    }
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color: #0d6efd;
-    }
-    .card p {
-      font-size: 1rem;
-      color: #555;
-    }
-
-    /* Sobre */
-    .about p {
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-      color: #444;
-    }
-    .about h3 {
-      margin-top: 40px;
-      font-size: 1.5rem;
-      color: #0d6efd;
-      margin-bottom: 12px;
-    }
-    .timeline {
-      list-style: none;
-      padding-left: 0;
-      line-height: 1.8;
-      color: #444;
-      font-size: 1rem;
-    }
-    .timeline li strong {
-      color: #0d6efd;
-    }
-    .guarantee {
-      text-align: center;
-      margin: 40px 0;
-    }
-    .guarantee img {
-      width: 80px;
-      margin-bottom: 10px;
-    }
-    .guarantee p:first-of-type {
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin-bottom: 5px;
-    }
-    .guarantee p:last-of-type {
-      font-size: 1rem;
-      color: #555;
-    }
-
-    /* Depoimentos */
-    .testimonials blockquote {
-      background-color: white;
-      border-left: 5px solid #0d6efd;
-      padding: 20px;
-      font-style: italic;
-      color: #444;
-      margin-bottom: 20px;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .testimonials blockquote strong {
-      display: block;
-      margin-top: 12px;
-      font-style: normal;
-      font-weight: 600;
-      color: #0d6efd;
-    }
-
-    /* FAQ */
-    .faq-item {
-      margin-bottom: 20px;
-    }
-    .faq-item h4 {
-      color: #0d6efd;
-      margin-bottom: 8px;
-      cursor: pointer;
-      user-select: none;
-      position: relative;
-      padding-right: 20px;
-    }
-    .faq-item h4::after {
-      content: "+";
-      position: absolute;
-      right: 0;
-      top: 0;
-      font-size: 1.4rem;
-      line-height: 1;
-      transition: transform 0.3s ease;
-    }
-    .faq-item.active h4::after {
-      content: "-";
-      transform: rotate(180deg);
-    }
-    .faq-item p {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      color: #444;
-    }
-    .faq-item.active p {
-      max-height: 500px;
-      margin-top: 5px;
-    }
-
-    /* Contato */
-    .contact form {
-      display: flex;
-      flex-direction: column;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .contact input, .contact textarea {
-      padding: 12px 15px;
-      margin-bottom: 15px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      transition: border-color 0.3s ease;
-    }
-    .contact input:focus, .contact textarea:focus {
-      border-color: #0d6efd;
-      outline: none;
-    }
-    .contact button {
-      background-color: #198754;
-      color: white;
-      border: none;
-      padding: 15px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .contact button:hover, .contact button:focus {
-      background-color: #157347;
-      outline: none;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #0d6efd;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 1rem;
-    }
-
-    /* Botão WhatsApp fixo */
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1001;
-      transition: background-color 0.3s ease;
-    }
-    .whatsapp-btn:hover, .whatsapp-btn:focus {
-      background-color: #1ebe57;
-      outline: none;
-    }
-    .whatsapp-btn img {
-      width: 28px;
-      height: 28px;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .service-cards {
-        flex-direction: column;
-        align-items: center;
-      }
-      section {
-        margin: 0 15px 60px 15px;
-        padding: 30px 15px;
-      }
-      nav {
-        gap: 15px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSolutions - Soluções em TI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #F3F4F6;
+        }
+        .navbar {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #2563EB;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .section-title::after {
+            content: '';
+            position: 50%;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #2563EB;
+            border-radius: 2px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .service-icon {
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+        .cta-button {
+            background: linear-gradient(90deg, #1D4ED8, #3B82F6);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background: linear-gradient(90deg, #3B82F6, #1D4ED8);
+            transform: scale(1.05);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-delay-1 { animation-delay: 0.2s; }
+        .fade-in-delay-2 { animation-delay: 0.4s; }
+        .fade-in-delay-3 { animation-delay: 0.6s; }
+        .hero {
+            background: url('https://via.placeholder.com/1920x600?text=Hero+Image+TI') center/cover no-repeat;
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header class="navbar fixed top-0 left-0 w-full z-50 bg-white">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-900">TechSolutions</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-blue-600">Início</a>
+                <a href="#sobre" class="nav-link text-gray-700 hover:text-blue-600">Sobre</a>
+                <a href="#servicos" class="nav-link text-gray-700 hover:text-blue-600">Serviços</a>
+                <a href="#contato" class="nav-link text-gray-700 hover:text-blue-600">Contato</a>
+            </div>
+            <a href="https://wa.me/123456789" target="_blank" class="cta-button hidden md:block px-6 py-2 text-white font-semibold rounded-full">Fale Conosco</a>
+            <button class="md:hidden text-gray-700 focus:outline-none" id="menu-toggle">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden bg-white shadow-lg">
+            <a href="#home" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Início</a>
+            <a href="#sobre" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Sobre</a>
+            <a href="#servicos" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Serviços</a>
+            <a href="#contato" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Contato</a>
+            <a href="https://wa.me/123456789" target="_blank" class="block px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 text-center">Fale Conosco</a>
+        </div>
+    </header>
 
-<header>
-  <div class="logo" aria-label="Logotipo Rovay Tech Solutions">
-    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721269.png" alt="Logo Rovay Tech Solutions" />
-    <h1>Rovay Tech Solutions</h1>
-  </div>
-  <nav aria-label="Menu principalllll">
-    <a href="#servicos" tabindex="0">Serviços</a>
-    <a href="#sobre" tabindex="0">Sobre</a>
-    <a href="#depoimentos" tabindex="0">Depoimentos</a>
-    <a href="#faq" tabindex="0">FAQ</a>
-    <a href="#contato" tabindex="0">Contato</a>
-  </nav>
-</header>
+    <!-- Hero Section -->
+    <section id="home" class="hero h-screen flex items-center justify-center text-center text-white">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">Soluções em TI para o Seu Negócio</h1>
+            <p class="text-xl md:text-2xl mb-8 fade-in fade-in-delay-1 max-w-3xl mx-auto">
+                Oferecemos suporte técnico especializado e soluções estratégicas para garantir a segurança e eficiência da sua infraestrutura de TI.
+            </p>
+            <a href="#servicos" class="cta-button inline-block px-10 py-4 text-lg font-semibold rounded-full fade-in fade-in-delay-2">Conheça Nossos Serviços</a>
+        </div>
+    </section>
 
-<main>
-  <section id="servicos" class="services" tabindex="-1">
-    <h2>Nossos Serviços</h2>
-    <div class="service-cards" role="list">
-      <article class="card" role="listitem">
-        <img src="https://cdn-icons-png.flaticon.com/512/2920/2920310.png" alt="Ícone Rede" />
-        <h3>Infraestrutura de Redes</h3>
-        <p>Instalação e manutenção de redes estruturadas com alta performance e segurança.</p>
-      </article>
-      <article class="card" role="listitem">
-        <img src="https://cdn-icons-png.flaticon.com/512/1148/1148661.png" alt="Ícone Suporte Técnico" />
-        <h3>Suporte Técnico</h3>
-        <p>Atendimento rápido e eficiente para resolver problemas e manter seus sistemas operando.</p>
-      </article>
-      <article class="card" role="listitem">
-        <img src="https://cdn-icons-png.flaticon.com/512/1804/1804912.png" alt="Ícone Backup" />
-        <h3>Backup e Segurança</h3>
-        <p>Proteção dos seus dados com soluções confiáveis de backup e recuperação.</p>
-      </article>
-      <article class="card" role="listitem">
-        <img src="https://cdn-icons-png.flaticon.com/512/126/126486.png" alt="Ícone Consultoria" />
-        <h3>Consultoria em TI</h3>
-        <p>Planejamento estratégico para otimizar a infraestrutura e processos da sua empresa.</p>
-      </article>
-    </div>
-  </section>
+    <!-- Sobre Section -->
+    <section id="sobre" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl font-bold text-gray-900">Sobre a TechSolutions</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto mt-6">
+                    Somos uma empresa especializada em soluções de TI, comprometida em otimizar a infraestrutura tecnológica de nossos clientes com segurança e inovação.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Nossa Missão</h3>
+                    <p class="text-gray-600">
+                        Proporcionar suporte técnico confiável e estratégias de TI que impulsionem a produtividade e a segurança das empresas.
+                    </p>
+                </div>
+                <div class="fade-in fade-in-delay-1">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Nossa Experiência</h3>
+                    <p class="text-gray-600">
+                        Com uma equipe de especialistas em tecnologia, entregamos soluções personalizadas para atender às necessidades específicas de cada cliente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="sobre" class="about" tabindex="-1">
-    <h2>Sobre Nós</h2>
-    <p>A Rovay Tech Solutions é especializada em infraestrutura de redes, suporte técnico e soluções completas de TI para empresas de todos os tamanhos.</p>
-    <p>Com anos de experiência e uma equipe altamente qualificada, oferecemos serviços que garantem a segurança, eficiência e continuidade dos seus negócios.</p>
-    <h3>Histórico da Empresa</h3>
-    <ul class="timeline" aria-label="Linha do tempo da empresa">
-      <li><strong>2017:</strong> Fundação da Rovay Tech Solutions.</li>
-      <li><strong>2019:</strong> Expansão dos serviços para todo o estado.</li>
-      <li><strong>2021:</strong> Introdução de consultoria estratégica em TI.</li>
-      <li><strong>2023:</strong> Reconhecimento como referência local em suporte e infraestrutura.</li>
-    </ul>
-    <div class="guarantee" aria-label="Garantia de serviço">
-      <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Ícone de garantia" />
-      <p>Garantia de qualidade</p>
-      <p>Atendimento personalizado para cada cliente, com foco em resultados e satisfação.</p>
-    </div>
-  </section>
+    <!-- Serviços Section -->
+    <section id="servicos" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl font-bold text-gray-900">Nossos Serviços</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto mt-6">
+                    Oferecemos uma gama completa de serviços de TI para garantir a segurança, eficiência e inovação da sua infraestrutura tecnológica.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Serviço 1: Helpdesk -->
+                <div class="service-card fade-in fade-in-delay-1">
+                    <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=🖥️" alt="Ícone Helpdesk" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Helpdesk</h3>
+                        <p class="text-gray-600">
+                            Manutenção de computadores, suporte remoto e presencial sob demanda para resolver problemas rapidamente.
+                        </p>
+                    </div>
+                </div>
+                <!-- Serviço 2: Service Desk -->
+                <div class="service-card fade-in fade-in-delay-2">
+                    <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=📊" alt="Ícone Service Desk" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Service Desk</h3>
+                        <p class="text-gray-600">
+                            Suporte técnico especializado, gestão estratégica de TI, atualização tecnológica, monitoramento e gerenciamento contínuo.
+                        </p>
+                    </div>
+                </div>
+                <!-- Serviço 3: Inventário de Hardware -->
+                <div class="service-card fade-in fade-in-delay-3">
+                    <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=📋" alt="Ícone Inventário" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Inventário de Hardware</h3>
+                        <p class="text-gray-600">
+                            Documentação completa da infraestrutura de TI: servidores, redes, estações, softwares, sistemas e periféricos.
+                        </p>
+                    </div>
+                </div>
+                <!-- Serviço 4: Licenciamento de Software -->
+                <div class="service-card fade-in fade-in-delay-1">
+                    <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=📜" alt="Ícone Licenciamento" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Licenciamento de Software</h3>
+                        <p class="text-gray-600">
+                            Gerenciamento de licenças e assessoria na legalização de softwares corporativos, minimizando riscos de fiscalizações.
+                        </p>
+                    </div>
+                </div>
+                <!-- Serviço 5: Automatização de Backup -->
+                <div class="service-card fade-in fade-in-delay-2 <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=☁️" alt="Ícone Backup" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Automatização de Backup</h3>
+                        <p class="text-gray-600">
+                            Soluções de Backup Cloud gerenciado para segurança de arquivos, eliminando falhas humanas ou esquecimentos.
+                        </p>
+                        </div>
+                    </div>
+                <!-- Serviço 6: Segurança -->
+                <div class="service-card fade-in fade-in-delay-3 <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=🔒" alt="Ícone Segurança" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Segurança</h3>
+                        <p class="text-gray-600">
+                            Políticas de segurança de rede (anti-ransomware), antivírus gerenciado e anti-spam para proteção contra ameaças.
+                        </p>
+                        </div>
+                    </div>
+                <!-- Serviço de 7: Ferramentas -->
+                <div class="service-card fade-in fade-in-delay-1">
+                    <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=🛡️" alt="Ícone Firewall" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Firewall</h3>
+                        <p class="text-gray-600">
+                            Controle de acesso, filtro de conteúdo, balanceamento de links e VPN para produtividade e segurança contra invasões.
+                        </p>
+                    </div>
+                </div>
+                <!-- Serviço de 8: Infraestrutura de Redes -->
+                <div class="service-card fade-in fade-in-delay-2">
+                    <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=🌐" alt="Ícone Redes" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Infraestrutura de Redes</h3>
+                        <p class="text-gray-600">
+                            Projetos de redes cabeadas e wireless para aumentar disponibilidade e produtividade empresarial.
+                        </p>
+                    </div>
+                </div>
+                <!-- Serviço de 9: Implantação de Servidores -->
+                <div class="service-card fade-in fade-in-delay-3">
+                    <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=🖥️" alt="Ícone Servidores" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Implantação de Servidores</h3>
+                        <p class="text-gray-600">
+                            Dimensionamento, otimização e virtualização de servidores para maior eficiência e disponibilidade.
+                        </p>
+                    </div>
+                </div>
+                <!-- Serviço de 10: Cabeamento e Certificação -->
+                <div class="service-card fade-in fade-in-delay-1">
+                    <div class="p-8">
+                        <img src="https://via.placeholder.com/80?text=🔌" alt="Ícone Cabeamento" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Cabeamento e Certificação</h3>
+                        <p class="text-gray-600">
+                            Cabeamento estrutural, reorganização de racks e certificação para conformidade com normas técnicas.
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-16">
+                    <a href="https://wa.me/123456789" target="_blank" class="cta-button inline-block px-12 py-4 text-white font-semibold rounded-full text-lg shadow-lg">
+                        Comece Agora com Segurança</a>
+                    </div>
+                </div>
+    </section>
 
-  <section id="depoimentos" class="testimonials" tabindex="-1" aria-label="Depoimentos de clientes">
-    <h2>Depoimentos</h2>
-    <blockquote>
-      "O suporte da Rovay Tech Solutions fez toda a diferença na estabilidade da nossa rede. Recomendo muito!"
-      <strong>- João Silva, CEO da Empresa X</strong>
-    </blockquote>
-    <blockquote>
-      "Profissionais competentes e sempre disponíveis para ajudar. Excelente custo-benefício."
-      <strong>- Maria Oliveira, Gerente de TI da Empresa Y</strong>
-    </blockquote>
-    <blockquote>
-      "Serviço impecável, rápido e confiável. Nossa empresa cresceu graças à infraestrutura montada pela Rovay."
-      <strong>- Pedro Santos, Diretor da Empresa Z</strong>
-    </blockquote>
-  </section>
+    <!-- Contato Section -->
+    <section id="contato" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-4xl font-bold text-gray-900">Entre em Contato</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto mt-6">
+                    Pronto para otimizar sua infraestrutura de TI? Fale com nossa equipe agora mesmo!</p>
+                </p>
+            </div>
+            <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg fade-in">
+                <form class="contact-form" class="space-y-6">
+                    <div>
+                        <label for="nome" class="block text-gray-700 font-semibold mb-2">Nome</label>
+                        <input type="text" id="nome" name="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Seu nome">
+                    </div>
+                    <div>
+                        <div>
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">E-mail</label>
+                        <input type="email" id="email" name="email" w-full="w-full" px="4" py-3 border="border rounded-lg" focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Seu e-mail">
+                    </div>
+                    <div>
+                        <div>
+                        <label for="mensagem" class="block text-gray-700 font-semibold mb-2">Mensagem</label>
+                        <textarea id="mensagem" name="message" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" rows="5" placeholder="Sua mensagem"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button w-full px-6 py-4 text-white font-semibold rounded-lg">Enviar Mensagem</button>
+                    </form>
+                </div>
+                </div>
+    </section>
 
-  <section id="faq" class="faq" tabindex="-1" aria-label="Perguntas frequentes">
-    <h2>Perguntas Frequentes</h2>
+    <!-- Footer -->
+    <footer class="py-6 bg-gray-800 text-gray-200">
+        <div class="container mx-auto px-4 sm:px-px lg:px-6">
+            <div class="text-center">
+                <p class="text-sm">©</p> 2025 TechSolutions. Todos os direitos reservados.</p>
+                <div p class="mt-4 space-x-4">
+                    <div>
+                    <a href="https://wa.me/123456789" target="_blank" class="hover:text-blue-600">WhatsApp</a>
+                    <a href="mailto:contato@techsolutions.com" class="hover:underline">Email</a>
+                    </div>
+                </div>
+            </div>
+    </footer>
 
-    <div class="faq-item" tabindex="0" role="button" aria-expanded="false" aria-controls="faq1" id="faq1-header">
-      <h4>Qual o tempo médio de atendimento do suporte?</h4>
-      <p id="faq1" hidden>Nosso suporte atende chamados em até 4 horas úteis, priorizando emergências.</p>
-    </div>
+    <script>
+        // Toggle mobile menu button
+        const menuToggle = document.querySelector('#menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-    <div class="faq-item" tabindex="0" role="button" aria-expanded="false" aria-controls="faq2" id="faq2-header">
-      <h4>Vocês oferecem contratos mensais ou só serviços avulsos?</h4>
-      <p id="faq2" hidden>Oferecemos ambas as opções, conforme a necessidade do cliente.</p>
-    </div>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                mobileMenu.classList.add('hidden');
+            });
+        });
 
-    <div class="faq-item" tabindex="0" role="button" aria-expanded="false" aria-controls="faq3" id="faq3-header">
-      <h4>Fazem instalação de cabeamento estruturado?</h4>
-      <p id="faq3" hidden>Sim, trabalhamos com cabeamento Cat5e, Cat6 e fibra óptica para redes corporativas.</p>
-    </div>
-  </section>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-  <section id="contato" class="contact" tabindex="-1">
-    <h2>Contato</h2>
-    <form action="https://formspree.io/f/mzbwgjza" method="POST" aria-label="Formulário de contato">
-      <input type="text" name="nome" placeholder="Seu nome" required aria-required="true" />
-      <input type="email" name="email" placeholder="Seu e-mail" required aria-required="true" />
-      <input type="text" name="assunto" placeholder="Assunto" required aria-required="true" />
-      <textarea name="mensagem" rows="5" placeholder="Mensagem" required aria-required="true"></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
-</main>
-
-<footer>
-  <p>© 2025 Rovay Tech Solutions - Todos os direitos reservados</p>
-</footer>
-
-<a href="https://api.whatsapp.com/send?phone=5519998194874" class="whatsapp-btn" aria-label="Contato via WhatsApp" target="_blank" rel="noopener">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Ícone WhatsApp" />
-</a>
-
-<script>
-  // FAQ Toggle
-  document.querySelectorAll('.faq-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-      // fechar todos
-      document.querySelectorAll('.faq-item').forEach(i => {
-        i.classList.remove('active');
-        i.setAttribute('aria-expanded', 'false');
-        i.querySelector('p').hidden = true;
-      });
-      if(!isActive) {
-        item.classList.add('active');
-        item.setAttribute('aria-expanded', 'true');
-        item.querySelector('p').hidden = false;
-      }
-    });
-    // Permitir toggle com tecla Enter e Espaço
-    item.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        item.click();
-      }
-    });
-  });
-</script>
-
+        // Basic form submission alert (replace with actual backend logic)
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Formulário enviado com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
