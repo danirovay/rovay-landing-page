@@ -3,19 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Soluções de TI especializadas em backup, segurança, redes e suporte técnico para empresas.">
+    <meta name="keywords" content="TI, backup Veeam, segurança de rede, suporte técnico, infraestrutura de TI, helpdesk">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="TechSolutions - Soluções em TI">
+    <meta property="og:description" content="Oferecemos suporte técnico especializado e soluções estratégicas para garantir a segurança e eficiência da sua infraestrutura de TI.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=TechSolutions+TI">
+    <meta property="og:url" content="https://www.techsolutions.com">
     <title>TechSolutions - Soluções em TI</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+        // Nota: Substitua G-XXXXXXXXXX pelo seu ID de rastreamento do Google Analytics.
+        // Considere adicionar um banner de consentimento de cookies para conformidade com GDPR/LGPD.
+    </script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #1F2937; /* Cinza escuro */
+            background: #1F2937;
         }
         .navbar {
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .navbar.scrolled {
-            background: rgba(17, 24, 39, 0.95); /* Cinza escuro quase preto */
+            background: rgba(17, 24, 39, 0.95);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         .nav-link {
@@ -29,7 +46,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: #3B82F6; /* Azul vibrante */
+            background: #3B82F6;
         }
         .section-title {
             position: relative;
@@ -47,14 +64,14 @@
             background: #3B82F6;
             border-radius: 2px;
         }
-        .service-card {
-            background: #1F2937; /* Cinza escuro */
-            border: 1px solid #374151; /* Borda sutil cinza */
+        .service-card, .testimonial-card {
+            background: #1F2937;
+            border: 1px solid #374151;
             border-radius: 1rem;
             overflow: hidden;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        .service-card:hover {
+        .service-card:hover, .testimonial-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
@@ -65,7 +82,7 @@
             transform: scale(1.1);
         }
         .cta-button {
-            background: linear-gradient(90deg, #1D4ED8, #3B82F6); /* Gradiente azul escuro */
+            background: linear-gradient(90deg, #1D4ED8, #3B82F6);
             transition: background 0.3s ease, transform 0.3s ease;
         }
         .cta-button:hover {
@@ -89,6 +106,40 @@
         .hero {
             background: url('https://via.placeholder.com/1920x600?text=Hero+Image+TI') center/cover no-repeat;
         }
+        .faq-item {
+            background: #1F2937;
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .faq-question:hover {
+            background: #374151;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1rem;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        .faq-answer.active {
+            max-height: 200px;
+            padding: 1rem;
+        }
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
@@ -100,10 +151,12 @@
                 <a href="#home" class="nav-link text-gray-300 hover:text-blue-500">Início</a>
                 <a href="#sobre" class="nav-link text-gray-300 hover:text-blue-500">Sobre</a>
                 <a href="#servicos" class="nav-link text-gray-300 hover:text-blue-500">Serviços</a>
+                <a href="#depoimentos" class="nav-link text-gray-300 hover:text-blue-500">Depoimentos</a>
+                <a href="#faqs" class="nav-link text-gray-300 hover:text-blue-500">FAQs</a>
                 <a href="#contato" class="nav-link text-gray-300 hover:text-blue-500">Contato</a>
             </div>
-            <a href="https://wa.me/19998194874" target="_blank" class="cta-button hidden md:block px-6 py-2 text-white font-semibold rounded-full">Fale Conosco</a>
-            <button class="md:hidden text-gray-300 focus:outline-none" id="menu-toggle">
+            <a href="https://wa.me/123456789" target="_blank" class="cta-button hidden md:block px-6 py-2 text-white font-semibold rounded-full">Fale Conosco</a>
+            <button class="md:hidden text-gray-300 focus:outline-none" id="menu-toggle" aria-label="Abrir menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -114,6 +167,8 @@
             <a href="#home" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Início</a>
             <a href="#sobre" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Sobre</a>
             <a href="#servicos" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Serviços</a>
+            <a href="#depoimentos" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Depoimentos</a>
+            <a href="#faqs" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">FAQs</a>
             <a href="#contato" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Contato</a>
             <a href="https://wa.me/123456789" target="_blank" class="block px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 text-center">Fale Conosco</a>
         </div>
@@ -122,7 +177,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero h-screen flex items-center justify-center text-center text-white">
         <div class="container mx-auto px-4">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">Soluções em TI para o Seu Negócio</h1>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">Soluções de TI para o Seu Negócio</h1>
             <p class="text-xl md:text-2xl mb-8 fade-in fade-in-delay-1 max-w-3xl mx-auto">
                 Oferecemos suporte técnico especializado e soluções estratégicas para garantir a segurança e eficiência da sua infraestrutura de TI.
             </p>
@@ -169,7 +224,7 @@
                 <!-- Serviço 1: Helpdesk -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/technical-support.png" alt="Ícone Helpdesk" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/technical-support.png" alt="Ícone de suporte técnico para Helpdesk" class="service-icon mx-auto mb-6 w-20 h-20">
                         <h3 class="text-2xl font-semibold text-white mb-4 text-center">Helpdesk</h3>
                         <p class="text-gray-300">
                             Manutenção de computadores, suporte remoto e presencial sob demanda para resolver problemas rapidamente.
@@ -179,7 +234,7 @@
                 <!-- Serviço 2: Service Desk -->
                 <div class="service-card fade-in fade-in-delay-2">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/service.png" alt="Ícone Service Desk" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/service.png" alt="Ícone de gestão de serviços para Service Desk" class="service-icon mx-auto mb-6 w-20 h-20">
                         <h3 class="text-2xl font-semibold text-white mb-4 text-center">Service Desk</h3>
                         <p class="text-gray-300">
                             Suporte técnico especializado, gestão estratégica de TI, atualização tecnológica, monitoramento e gerenciamento contínuo.
@@ -189,7 +244,7 @@
                 <!-- Serviço 3: Inventário de Hardware -->
                 <div class="service-card fade-in fade-in-delay-3">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/checklist.png" alt="Ícone Inventário" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/checklist.png" alt="Ícone de checklist para Inventário de Hardware" class="service-icon mx-auto mb-6 w-20 h-20">
                         <h3 class="text-2xl font-semibold text-white mb-4 text-center">Inventário de Hardware</h3>
                         <p class="text-gray-300">
                             Documentação completa da infraestrutura de TI: servidores, redes, estações, softwares, sistemas e periféricos.
@@ -199,27 +254,27 @@
                 <!-- Serviço 4: Licenciamento de Software -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/certificate.png" alt="Ícone Licenciamento" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/certificate.png" alt="Ícone de certificado para Licenciamento de Software" class="service-icon mx-auto mb-6 w-20 h-20">
                         <h3 class="text-2xl font-semibold text-white mb-4 text-center">Licenciamento de Software</h3>
                         <p class="text-gray-300">
                             Gerenciamento de licenças e assessoria na legalização de softwares corporativos, minimizando riscos de fiscalizações.
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 5: Automatização de Backup -->
+                <!-- Serviço 5: Backup com Veeam Backup & Replication -->
                 <div class="service-card fade-in fade-in-delay-2">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/cloud-backup-restore.png" alt="Ícone Backup" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Automatização de Backup</h3>
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/data-backup.png" alt="Ícone de backup de dados para Veeam Backup & Replication" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Backup com Veeam Backup & Replication</h3>
                         <p class="text-gray-300">
-                            Soluções de Backup Cloud gerenciado para segurança de arquivos, eliminando falhas humanas ou esquecimentos.
+                            Soluções avançadas de backup e recuperação de desastres com Veeam, oferecendo backups rápidos, restauração instantânea e replicação segura para ambientes virtuais, físicos e em nuvem.
                         </p>
                     </div>
                 </div>
                 <!-- Serviço 6: Segurança -->
                 <div class="service-card fade-in fade-in-delay-3">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/security-checked.png" alt="Ícone Segurança" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/security-checked.png" alt="Ícone de segurança verificada para Segurança de Rede" class="service-icon mx-auto mb-6 w-20 h-20">
                         <h3 class="text-2xl font-semibold text-white mb-4 text-center">Segurança</h3>
                         <p class="text-gray-300">
                             Políticas de segurança de rede (anti-ransomware), antivírus gerenciado e anti-spam para proteção contra ameaças.
@@ -229,7 +284,7 @@
                 <!-- Serviço 7: Firewall -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/firewall.png" alt="Ícone Firewall" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/firewall.png" alt="Ícone de firewall para Segurança de Rede" class="service-icon mx-auto mb-6 w-20 h-20">
                         <h3 class="text-2xl font-semibold text-white mb-4 text-center">Firewall</h3>
                         <p class="text-gray-300">
                             Controle de acesso, filtro de conteúdo, balanceamento de links e VPN para produtividade e segurança contra invasões.
@@ -239,7 +294,7 @@
                 <!-- Serviço 8: Infraestrutura de Redes -->
                 <div class="service-card fade-in fade-in-delay-2">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/network.png" alt="Ícone Redes" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/network.png" alt="Ícone de rede para Infraestrutura de Redes" class="service-icon mx-auto mb-6 w-20 h-20">
                         <h3 class="text-2xl font-semibold text-white mb-4 text-center">Infraestrutura de Redes</h3>
                         <p class="text-gray-300">
                             Projetos de redes cabeadas e wireless para aumentar disponibilidade e produtividade empresarial.
@@ -249,7 +304,7 @@
                 <!-- Serviço 9: Implantação de Servidores -->
                 <div class="service-card fade-in fade-in-delay-3">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/server.png" alt="Ícone Servidores" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/server.png" alt="Ícone de servidor para Implantação de Servidores" class="service-icon mx-auto mb-6 w-20 h-20">
                         <h3 class="text-2xl font-semibold text-white mb-4 text-center">Implantação de Servidores</h3>
                         <p class="text-gray-300">
                             Dimensionamento, otimização e virtualização de servidores para maior eficiência e disponibilidade.
@@ -259,7 +314,7 @@
                 <!-- Serviço 10: Cabeamento e Certificação -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/networking-manager.png" alt="Ícone Cabeamento" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/networking-manager.png" alt="Ícone de cabeamento para Cabeamento e Certificação" class="service-icon mx-auto mb-6 w-20 h-20">
                         <h3 class="text-2xl font-semibold text-white mb-4 text-center">Cabeamento e Certificação</h3>
                         <p class="text-gray-300">
                             Cabeamento estruturado, reorganização de racks e certificação para conformidade com normas técnicas.
@@ -268,9 +323,110 @@
                 </div>
             </div>
             <div class="text-center mt-16">
-                <a href="https://wa.me/19998194874" target="_blank" class="cta-button inline-block px-10 py-4 text-white font-semibold rounded-full text-lg shadow-lg">
-                    Comece Agora com Segurança
-                </a>
+                <a href="https://wa.me/123456789" target="_blank" class="cta-button inline-block px-10 py-4 text-white font-semibold rounded-full text-lg shadow-lg">Comece Agora com Segurança</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos Section -->
+    <section id="depoimentos" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl font-bold text-white">O que Nossos Clientes Dizem</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6">
+                    Veja como a TechSolutions tem ajudado empresas a otimizar sua infraestrutura de TI.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Depoimento 1 -->
+                <div class="testimonial-card fade-in fade-in-delay-1">
+                    <div class="p-8">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Foto de João Silva" class="w-16 h-16 rounded-full mx-auto mb-4">
+                        <p class="text-gray-300 italic text-center mb-4">"A TechSolutions transformou nossa infraestrutura de TI com suporte rápido e eficiente."</p>
+                        <h3 class="text-xl font-semibold text-white text-center">João Silva</h3>
+                        <p class="text-gray-400 text-center">CEO, Empresa XYZ</p>
+                    </div>
+                </div>
+                <!-- Depoimento 2 -->
+                <div class="testimonial-card fade-in fade-in-delay-2">
+                    <div class="p-8">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Foto de Maria Oliveira" class="w-16 h-16 rounded-full mx-auto mb-4">
+                        <p class="text-gray-300 italic text-center mb-4">"O backup com Veeam implementado pela equipe foi um divisor de águas para nossa segurança."</p>
+                        <h3 class="text-xl font-semibold text-white text-center">Maria Oliveira</h3>
+                        <p class="text-gray-400 text-center">Gerente de TI, Empresa ABC</p>
+                    </div>
+                </div>
+                <!-- Depoimento 3 -->
+                <div class="testimonial-card fade-in fade-in-delay-3">
+                    <div class="p-8">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Foto de Carlos Mendes" class="w-16 h-16 rounded-full mx-auto mb-4">
+                        <p class="text-gray-300 italic text-center mb-4">"Serviço excepcional, sempre disponíveis para resolver nossos problemas."</p>
+                        <h3 class="text-xl font-semibold text-white text-center">Carlos Mendes</h3>
+                        <p class="text-gray-400 text-center">Diretor Operacional, Empresa DEF</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl font-bold text-white">Perguntas Frequentes</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6">
+                    Tire suas dúvidas sobre nossos serviços de TI e como podemos ajudar sua empresa.
+                </p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ 1 -->
+                <div class="faq-item fade-in fade-in-delay-1">
+                    <div class="faq-question">
+                        <h3 class="text-xl font-semibold text-white">Quais são os benefícios do backup com Veeam Backup & Replication?</h3>
+                        <img src="https://img.icons8.com/ios-filled/24/ffffff/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-300">
+                            O Veeam oferece backups rápidos com deduplicação, restauração instantânea de VMs, e replicação segura para recuperação de desastres, protegendo ambientes virtuais, físicos e em nuvem.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="faq-item fade-in fade-in-delay-2">
+                    <div class="faq-question">
+                        <h3 class="text-xl font-semibold text-white">Como funciona o suporte do Helpdesk?</h3>
+                        <img src="https://img.icons8.com/ios-filled/24/ffffff/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-300">
+                            Nosso Helpdesk oferece suporte remoto e presencial sob demanda, com atendimento rápido para resolver problemas em computadores, redes e softwares.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="faq-item fade-in fade-in-delay-3">
+                    <div class="faq-question">
+                        <h3 class="text-xl font-semibold text-white">Quanto tempo leva para implementar uma infraestrutura de rede?</h3>
+                        <img src="https://img.icons8.com/ios-filled/24/ffffff/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-300">
+                            O tempo depende do porte do projeto, mas geralmente varia de 1 a 4 semanas, incluindo planejamento, instalação e testes.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ 4 -->
+                <div class="faq-item fade-in fade-in-delay-1">
+                    <div class="faq-question">
+                        <h3 class="text-xl font-semibold text-white">Vocês oferecem suporte para pequenas empresas?</h3>
+                        <img src="https://img.icons8.com/ios-filled/24/ffffff/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-300">
+                            Sim, oferecemos soluções personalizadas para empresas de todos os tamanhos, incluindo suporte técnico acessível e escalável para pequenas empresas.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -309,7 +465,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-400">© 2025 TechSolutions. Todos os direitos reservados.</p>
             <div class="mt-4 space-x-4">
-                <a href="https://wa.me/19998194874" target="_blank" class="text-gray-400 hover:text-blue-600">WhatsApp</a>
+                <a href="https://wa.me/123456789" target="_blank" class="text-gray-400 hover:text-blue-600">WhatsApp</a>
                 <a href="mailto:contato@techsolutions.com" class="text-gray-400 hover:text-blue-600">Email</a>
             </div>
         </div>
@@ -342,6 +498,16 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const toggle = question.querySelector('.faq-toggle');
+                answer.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
         });
     </script>
 </body>
