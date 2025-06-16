@@ -168,6 +168,60 @@
             cursor: pointer;
             color: #ffffff;
         }
+        /* Estilos para o botão flutuante de WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-button img {
+            width: 30px;
+            height: 30px;
+        }
+        .whatsapp-button::after {
+            content: 'Fale conosco no WhatsApp!';
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: #1F2937;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+        .whatsapp-button:hover::after {
+            opacity: 1;
+        }
+        @media (max-width: 640px) {
+            .whatsapp-button {
+                width: 50px;
+                height: 50px;
+            }
+            .whatsapp-button img {
+                width: 25px;
+                height: 25px;
+            }
+            .whatsapp-button::after {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -519,6 +573,11 @@
             </form>
         </div>
     </div>
+
+    <!-- Botão Flutuante de WhatsApp -->
+    <a href="https://wa.me/+5519998194874" target="_blank" class="whatsapp-button" aria-label="Fale conosco no WhatsApp">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="Ícone do WhatsApp">
+    </a>
 
     <script>
         // Toggle mobile menu
