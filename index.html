@@ -9,14 +9,14 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #F3F4F6;
+            background: #1F2937; /* Cinza escuro */
         }
         .navbar {
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: rgba(17, 24, 39, 0.95); /* Cinza escuro quase preto */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         .nav-link {
             position: relative;
@@ -29,7 +29,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: #2563EB;
+            background: #3B82F6; /* Azul vibrante */
         }
         .section-title {
             position: relative;
@@ -38,24 +38,25 @@
         }
         .section-title::after {
             content: '';
-            position: 50%;
+            position: absolute;
             bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
             height: 4px;
-            background: #2563EB;
+            background: #3B82F6;
             border-radius: 2px;
         }
         .service-card {
-            background: white;
+            background: #1F2937; /* Cinza escuro */
+            border: 1px solid #374151; /* Borda sutil cinza */
             border-radius: 1rem;
             overflow: hidden;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
         .service-icon {
             transition: transform 0.3s ease;
@@ -64,7 +65,7 @@
             transform: scale(1.1);
         }
         .cta-button {
-            background: linear-gradient(90deg, #1D4ED8, #3B82F6);
+            background: linear-gradient(90deg, #1D4ED8, #3B82F6); /* Gradiente azul escuro */
             transition: background 0.3s ease, transform 0.3s ease;
         }
         .cta-button:hover {
@@ -92,28 +93,28 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="navbar fixed top-0 left-0 w-full z-50 bg-white">
+    <header class="navbar fixed top-0 left-0 w-full z-50 bg-gray-900">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gray-900">TechSolutions</a>
+            <a href="#" class="text-2xl font-bold text-white">TechSolutions</a>
             <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-gray-700 hover:text-blue-600">Início</a>
-                <a href="#sobre" class="nav-link text-gray-700 hover:text-blue-600">Sobre</a>
-                <a href="#servicos" class="nav-link text-gray-700 hover:text-blue-600">Serviços</a>
-                <a href="#contato" class="nav-link text-gray-700 hover:text-blue-600">Contato</a>
+                <a href="#home" class="nav-link text-gray-300 hover:text-blue-500">Início</a>
+                <a href="#sobre" class="nav-link text-gray-300 hover:text-blue-500">Sobre</a>
+                <a href="#servicos" class="nav-link text-gray-300 hover:text-blue-500">Serviços</a>
+                <a href="#contato" class="nav-link text-gray-300 hover:text-blue-500">Contato</a>
             </div>
             <a href="https://wa.me/123456789" target="_blank" class="cta-button hidden md:block px-6 py-2 text-white font-semibold rounded-full">Fale Conosco</a>
-            <button class="md:hidden text-gray-700 focus:outline-none" id="menu-toggle">
+            <button class="md:hidden text-gray-300 focus:outline-none" id="menu-toggle">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </nav>
         <!-- Mobile Menu -->
-        <div class="mobile-menu hidden md:hidden bg-white shadow-lg">
-            <a href="#home" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Início</a>
-            <a href="#sobre" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Sobre</a>
-            <a href="#servicos" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Serviços</a>
-            <a href="#contato" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Contato</a>
+        <div class="mobile-menu hidden md:hidden bg-gray-900 shadow-lg">
+            <a href="#home" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Início</a>
+            <a href="#sobre" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Sobre</a>
+            <a href="#servicos" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Serviços</a>
+            <a href="#contato" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Contato</a>
             <a href="https://wa.me/123456789" target="_blank" class="block px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 text-center">Fale Conosco</a>
         </div>
     </header>
@@ -130,24 +131,24 @@
     </section>
 
     <!-- Sobre Section -->
-    <section id="sobre" class="py-20 bg-gray-100">
+    <section id="sobre" class="py-20 bg-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="section-title text-4xl font-bold text-gray-900">Sobre a TechSolutions</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto mt-6">
+                <h2 class="section-title text-4xl font-bold text-white">Sobre a TechSolutions</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6">
                     Somos uma empresa especializada em soluções de TI, comprometida em otimizar a infraestrutura tecnológica de nossos clientes com segurança e inovação.
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="fade-in">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Nossa Missão</h3>
-                    <p class="text-gray-600">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Nossa Missão</h3>
+                    <p class="text-gray-300">
                         Proporcionar suporte técnico confiável e estratégias de TI que impulsionem a produtividade e a segurança das empresas.
                     </p>
                 </div>
                 <div class="fade-in fade-in-delay-1">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Nossa Experiência</h3>
-                    <p class="text-gray-600">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Nossa Experiência</h3>
+                    <p class="text-gray-300">
                         Com uma equipe de especialistas em tecnologia, entregamos soluções personalizadas para atender às necessidades específicas de cada cliente.
                     </p>
                 </div>
@@ -156,11 +157,11 @@
     </section>
 
     <!-- Serviços Section -->
-    <section id="servicos" class="py-20 bg-white">
+    <section id="servicos" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="section-title text-4xl font-bold text-gray-900">Nossos Serviços</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto mt-6">
+                <h2 class="section-title text-4xl font-bold text-white">Nossos Serviços</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6">
                     Oferecemos uma gama completa de serviços de TI para garantir a segurança, eficiência e inovação da sua infraestrutura tecnológica.
                 </p>
             </div>
@@ -168,9 +169,9 @@
                 <!-- Serviço 1: Helpdesk -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=🖥️" alt="Ícone Helpdesk" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Helpdesk</h3>
-                        <p class="text-gray-600">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/technical-support.png" alt="Ícone Helpdesk" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Helpdesk</h3>
+                        <p class="text-gray-300">
                             Manutenção de computadores, suporte remoto e presencial sob demanda para resolver problemas rapidamente.
                         </p>
                     </div>
@@ -178,9 +179,9 @@
                 <!-- Serviço 2: Service Desk -->
                 <div class="service-card fade-in fade-in-delay-2">
                     <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=📊" alt="Ícone Service Desk" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Service Desk</h3>
-                        <p class="text-gray-600">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/service.png" alt="Ícone Service Desk" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Service Desk</h3>
+                        <p class="text-gray-300">
                             Suporte técnico especializado, gestão estratégica de TI, atualização tecnológica, monitoramento e gerenciamento contínuo.
                         </p>
                     </div>
@@ -188,9 +189,9 @@
                 <!-- Serviço 3: Inventário de Hardware -->
                 <div class="service-card fade-in fade-in-delay-3">
                     <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=📋" alt="Ícone Inventário" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Inventário de Hardware</h3>
-                        <p class="text-gray-600">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/checklist.png" alt="Ícone Inventário" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Inventário de Hardware</h3>
+                        <p class="text-gray-300">
                             Documentação completa da infraestrutura de TI: servidores, redes, estações, softwares, sistemas e periféricos.
                         </p>
                     </div>
@@ -198,127 +199,125 @@
                 <!-- Serviço 4: Licenciamento de Software -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=📜" alt="Ícone Licenciamento" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Licenciamento de Software</h3>
-                        <p class="text-gray-600">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/certificate.png" alt="Ícone Licenciamento" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Licenciamento de Software</h3>
+                        <p class="text-gray-300">
                             Gerenciamento de licenças e assessoria na legalização de softwares corporativos, minimizando riscos de fiscalizações.
                         </p>
                     </div>
                 </div>
                 <!-- Serviço 5: Automatização de Backup -->
-                <div class="service-card fade-in fade-in-delay-2 <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=☁️" alt="Ícone Backup" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Automatização de Backup</h3>
-                        <p class="text-gray-600">
+                <div class="service-card fade-in fade-in-delay-2">
+                    <div class="p-8">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/cloud-backup-restore.png" alt="Ícone Backup" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Automatização de Backup</h3>
+                        <p class="text-gray-300">
                             Soluções de Backup Cloud gerenciado para segurança de arquivos, eliminando falhas humanas ou esquecimentos.
                         </p>
-                        </div>
                     </div>
+                </div>
                 <!-- Serviço 6: Segurança -->
-                <div class="service-card fade-in fade-in-delay-3 <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=🔒" alt="Ícone Segurança" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Segurança</h3>
-                        <p class="text-gray-600">
+                <div class="service-card fade-in fade-in-delay-3">
+                    <div class="p-8">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/security-checked.png" alt="Ícone Segurança" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Segurança</h3>
+                        <p class="text-gray-300">
                             Políticas de segurança de rede (anti-ransomware), antivírus gerenciado e anti-spam para proteção contra ameaças.
                         </p>
-                        </div>
                     </div>
-                <!-- Serviço de 7: Ferramentas -->
+                </div>
+                <!-- Serviço 7: Firewall -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=🛡️" alt="Ícone Firewall" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Firewall</h3>
-                        <p class="text-gray-600">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/firewall.png" alt="Ícone Firewall" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Firewall</h3>
+                        <p class="text-gray-300">
                             Controle de acesso, filtro de conteúdo, balanceamento de links e VPN para produtividade e segurança contra invasões.
                         </p>
                     </div>
                 </div>
-                <!-- Serviço de 8: Infraestrutura de Redes -->
+                <!-- Serviço 8: Infraestrutura de Redes -->
                 <div class="service-card fade-in fade-in-delay-2">
                     <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=🌐" alt="Ícone Redes" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Infraestrutura de Redes</h3>
-                        <p class="text-gray-600">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/network.png" alt="Ícone Redes" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Infraestrutura de Redes</h3>
+                        <p class="text-gray-300">
                             Projetos de redes cabeadas e wireless para aumentar disponibilidade e produtividade empresarial.
                         </p>
                     </div>
                 </div>
-                <!-- Serviço de 9: Implantação de Servidores -->
+                <!-- Serviço 9: Implantação de Servidores -->
                 <div class="service-card fade-in fade-in-delay-3">
                     <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=🖥️" alt="Ícone Servidores" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Implantação de Servidores</h3>
-                        <p class="text-gray-600">
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/server.png" alt="Ícone Servidores" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Implantação de Servidores</h3>
+                        <p class="text-gray-300">
                             Dimensionamento, otimização e virtualização de servidores para maior eficiência e disponibilidade.
                         </p>
                     </div>
                 </div>
-                <!-- Serviço de 10: Cabeamento e Certificação -->
+                <!-- Serviço 10: Cabeamento e Certificação -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
-                        <img src="https://via.placeholder.com/80?text=🔌" alt="Ícone Cabeamento" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Cabeamento e Certificação</h3>
-                        <p class="text-gray-600">
-                            Cabeamento estrutural, reorganização de racks e certificação para conformidade com normas técnicas.
+                        <img src="https://img.icons8.com/ios-filled/80/ffffff/networking-manager.png" alt="Ícone Cabeamento" class="service-icon mx-auto mb-6 w-20 h-20">
+                        <h3 class="text-2xl font-semibold text-white mb-4 text-center">Cabeamento e Certificação</h3>
+                        <p class="text-gray-300">
+                            Cabeamento estruturado, reorganização de racks e certificação para conformidade com normas técnicas.
                         </p>
-                        </div>
                     </div>
                 </div>
-                <div class="text-center mt-16">
-                    <a href="https://wa.me/123456789" target="_blank" class="cta-button inline-block px-12 py-4 text-white font-semibold rounded-full text-lg shadow-lg">
-                        Comece Agora com Segurança</a>
-                    </div>
-                </div>
+            </div>
+            <div class="text-center mt-16">
+                <a href="https://wa.me/123456789" target="_blank" class="cta-button inline-block px-10 py-4 text-white font-semibold rounded-full text-lg shadow-lg">
+                    Comece Agora com Segurança
+                </a>
+            </div>
+        </div>
     </section>
 
     <!-- Contato Section -->
-    <section id="contato" class="py-20 bg-gray-100">
+    <section id="contato" class="py-20 bg-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="section-title text-4xl font-bold text-gray-900">Entre em Contato</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto mt-6">
-                    Pronto para otimizar sua infraestrutura de TI? Fale com nossa equipe agora mesmo!</p>
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl font-bold text-white">Entre em Contato</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6">
+                    Pronto para otimizar sua infraestrutura de TI? Fale com nossa equipe agora mesmo!
                 </p>
             </div>
-            <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg fade-in">
-                <form class="contact-form" class="space-y-6">
+            <div class="max-w-lg mx-auto bg-gray-900 p-8 rounded-lg shadow-lg fade-in">
+                <div class="space-y-6">
                     <div>
-                        <label for="nome" class="block text-gray-700 font-semibold mb-2">Nome</label>
-                        <input type="text" id="nome" name="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Seu nome">
+                        <label for="nome" class="block text-gray-300 font-semibold mb-2">Nome</label>
+                        <input type="text" id="nome" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Seu nome">
                     </div>
                     <div>
-                        <div>
-                        <label for="email" class="block text-gray-700 font-semibold mb-2">E-mail</label>
-                        <input type="email" id="email" name="email" w-full="w-full" px="4" py-3 border="border rounded-lg" focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Seu e-mail">
+                        <label for="email" class="block text-gray-300 font-semibold mb-2">E-mail</label>
+                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Seu e-mail">
                     </div>
                     <div>
-                        <div>
-                        <label for="mensagem" class="block text-gray-700 font-semibold mb-2">Mensagem</label>
-                        <textarea id="mensagem" name="message" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" rows="5" placeholder="Sua mensagem"></textarea>
+                        <label for="mensagem" class="block text-gray-300 font-semibold mb-2">Mensagem</label>
+                        <textarea id="mensagem" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" rows="5" placeholder="Sua mensagem"></textarea>
                     </div>
-                    <button type="submit" class="cta-button w-full px-6 py-4 text-white font-semibold rounded-lg">Enviar Mensagem</button>
-                    </form>
+                    <button class="cta-button w-full px-6 py-3 text-white font-semibold rounded-lg">Enviar Mensagem</button>
                 </div>
-                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-6 bg-gray-800 text-gray-200">
-        <div class="container mx-auto px-4 sm:px-px lg:px-6">
-            <div class="text-center">
-                <p class="text-sm">©</p> 2025 TechSolutions. Todos os direitos reservados.</p>
-                <div p class="mt-4 space-x-4">
-                    <div>
-                    <a href="https://wa.me/123456789" target="_blank" class="hover:text-blue-600">WhatsApp</a>
-                    <a href="mailto:contato@techsolutions.com" class="hover:underline">Email</a>
-                    </div>
-                </div>
+    <footer class="py-8 bg-gray-900 text-gray-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">© 2025 TechSolutions. Todos os direitos reservados.</p>
+            <div class="mt-4 space-x-4">
+                <a href="https://wa.me/123456789" target="_blank" class="text-gray-400 hover:text-blue-600">WhatsApp</a>
+                <a href="mailto:contato@techsolutions.com" class="text-gray-400 hover:text-blue-600">Email</a>
             </div>
+        </div>
     </footer>
 
     <script>
-        // Toggle mobile menu button
-        const menuToggle = document.querySelector('#menu-toggle');
+        // Toggle mobile menu
+        const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.querySelector('.mobile-menu');
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
@@ -343,13 +342,6 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
-
-        // Basic form submission alert (replace with actual backend logic)
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Formulário enviado com sucesso! Entraremos em contato em breve.');
-            this.reset();
         });
     </script>
 </body>
