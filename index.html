@@ -208,6 +208,15 @@
         .whatsapp-button:hover::after {
             opacity: 1;
         }
+        /* Estilos para o logotipo */
+        .logo {
+            max-height: 40px;
+            padding: 5px 0;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
         @media (max-width: 640px) {
             .whatsapp-button {
                 width: 50px;
@@ -221,6 +230,9 @@
                 font-size: 12px;
                 padding: 6px 10px;
             }
+            .logo {
+                max-height: 35px;
+            }
         }
     </style>
 </head>
@@ -229,7 +241,20 @@
     <header class="navbar fixed top-0 left-0 w-full z-50 bg-gray-900">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center">
-                <img src="https://via.placeholder.com/150x50?text=TechSolutions+Logo" alt="Logotipo da TechSolutions" class="h-10">
+                <svg class="logo" width="150" height="50" viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg" aria-label="Logotipo da TechSolutions">
+                    <defs>
+                        <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3B82F6" />
+                            <stop offset="100%" style="stop-color:#1D4ED8" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Ícone "T" estilizado como circuito -->
+                    <path d="M10 15 L10 35 L20 35 L20 25 L30 25 L30 35 L40 35 L40 15 L30 15 L30 5 L20 5 L20 15 Z" fill="url(#iconGradient)" />
+                    <!-- Texto "TECH" -->
+                    <text x="50" y="35" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" fill="#3B82F6" letter-spacing="1">TECH</text>
+                    <!-- Texto "SOLUTIONS" -->
+                    <text x="90" y="35" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF" letter-spacing="1">SOLUTIONS</text>
+                </svg>
             </a>
             <div class="hidden md:flex space-x-8">
                 <a href="#home" class="nav-link text-gray-300 hover:text-blue-500">Início</a>
