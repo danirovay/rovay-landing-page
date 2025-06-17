@@ -23,6 +23,8 @@
         // Nota: Substitua G-XXXXXXXXXX pelo seu ID de rastreamento do Google Analytics.
         // Considere adicionar um banner de consentimento de cookies para conformidade com GDPR/LGPD.
     </script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -115,16 +117,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Sobreposição leve para contraste */
+            background: rgba(0, 0, 0, 0.4);
             z-index: 1;
         }
         .hero > div {
             position: relative;
             z-index: 2;
         }
-        /* Estilo para texto com borda fina */
         .hero-text-large {
-            -webkit-text-stroke: 0.5px #FFFFFF; /* Borda fina para o título */
+            -webkit-text-stroke: 0.5px #FFFFFF;
             text-shadow: 0 0 1px #FFFFFF, 0 0 1px #FFFFFF;
         }
         .faq-item {
@@ -188,7 +189,6 @@
             cursor: pointer;
             color: #ffffff;
         }
-        /* Estilos para o botão flutuante de WhatsApp */
         .whatsapp-button {
             position: fixed;
             bottom: 20px;
@@ -228,7 +228,6 @@
         .whatsapp-button:hover::after {
             opacity: 1;
         }
-        /* Estilos para o logotipo SVG */
         .logo {
             width: 150px;
             height: 50px;
@@ -255,6 +254,19 @@
                 height: 40px;
             }
         }
+        /* Estilo para mensagens de status dos formulários */
+        .form-status {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #9CA3AF;
+        }
+        .form-status.success {
+            color: #10B981;
+        }
+        .form-status.error {
+            color: #EF4444;
+        }
     </style>
 </head>
 <body>
@@ -263,7 +275,6 @@
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center">
                 <svg class="logo" viewBox="0 0 225 50" xmlns="http://www.w3.org/2000/svg" aria-label="Logotipo da TechSolutions">
-                    <!-- Ícone: T estilizado como circuito -->
                     <defs>
                         <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
                             <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
@@ -275,7 +286,6 @@
                         <rect x="20" y="15" width="5" height="25" rx="1" />
                         <rect x="15" y="35" width="10" height="5" rx="1" transform="rotate(-45 20 37.5)" />
                     </g>
-                    <!-- Texto: TECHSOLUTIONS -->
                     <text x="40" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" letter-spacing="0.05em" fill="#3B82F6">TECH</text>
                     <text x="100" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" letter-spacing="0.05em" fill="#FFFFFF">SOLUTIONS</text>
                 </svg>
@@ -354,7 +364,6 @@
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Serviço 1: Helpdesk -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/technical-support.png" alt="Ícone de suporte técnico para Helpdesk" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -364,7 +373,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 2: Service Desk -->
                 <div class="service-card fade-in fade-in-delay-2">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/service.png" alt="Ícone de gestão de serviços para Service Desk" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -374,7 +382,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 3: Inventário de Hardware -->
                 <div class="service-card fade-in fade-in-delay-3">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/checklist.png" alt="Ícone de checklist para Inventário de Hardware" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -384,7 +391,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 4: Licenciamento de Software -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/certificate.png" alt="Ícone de certificado para Licenciamento de Software" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -394,7 +400,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 5: Backup com Veeam Backup & Replication -->
                 <div class="service-card fade-in fade-in-delay-2">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/data-backup.png" alt="Ícone de backup de dados para Veeam Backup & Replication" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -404,7 +409,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 6: Segurança -->
                 <div class="service-card fade-in fade-in-delay-3">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/security-checked.png" alt="Ícone de segurança verificada para Segurança de Rede" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -414,7 +418,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 7: Firewall -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/firewall.png" alt="Ícone de firewall para Segurança de Rede" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -424,7 +427,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 8: Infraestrutura de Redes -->
                 <div class="service-card fade-in fade-in-delay-2">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/network.png" alt="Ícone de rede para Infraestrutura de Redes" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -434,7 +436,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 9: Implantação de Servidores -->
                 <div class="service-card fade-in fade-in-delay-3">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/server.png" alt="Ícone de servidor para Implantação de Servidores" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -444,7 +445,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- Serviço 10: Cabeamento e Certificação -->
                 <div class="service-card fade-in fade-in-delay-1">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/80/ffffff/networking-manager.png" alt="Ícone de cabeamento para Cabeamento e Certificação" class="service-icon mx-auto mb-6 w-20 h-20">
@@ -471,7 +471,6 @@
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Depoimento 1 -->
                 <div class="testimonial-card fade-in fade-in-delay-1">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/64/ffffff/user-male-circle.png" alt="Ícone de perfil de João Silva" class="w-16 h-16 mx-auto mb-4">
@@ -480,7 +479,6 @@
                         <p class="text-gray-400 text-center" lang="pt-BR">CEO, Empresa XYZ</p>
                     </div>
                 </div>
-                <!-- Depoimento 2 -->
                 <div class="testimonial-card fade-in fade-in-delay-2">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/64/ffffff/user-female-circle.png" alt="Ícone de perfil de Maria Oliveira" class="w-16 h-16 mx-auto mb-4">
@@ -489,7 +487,6 @@
                         <p class="text-gray-400 text-center" lang="pt-BR">Gerente de TI, Empresa ABC</p>
                     </div>
                 </div>
-                <!-- Depoimento 3 -->
                 <div class="testimonial-card fade-in fade-in-delay-3">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/64/ffffff/user.png" alt="Ícone de perfil de Carlos Mendes" class="w-16 h-16 mx-auto mb-4">
@@ -512,7 +509,6 @@
                 </p>
             </div>
             <div class="max-w-3xl mx-auto">
-                <!-- FAQ 1 -->
                 <div class="faq-item fade-in fade-in-delay-1">
                     <div class="faq-question">
                         <h3 class="text-xl font-semibold text-white" lang="pt-BR">Quais são os benefícios do backup com Veeam Backup & Replication?</h3>
@@ -524,7 +520,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- FAQ 2 -->
                 <div class="faq-item fade-in fade-in-delay-2">
                     <div class="faq-question">
                         <h3 class="text-xl font-semibold text-white" lang="pt-BR">Como funciona o suporte do Helpdesk?</h3>
@@ -536,7 +531,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- FAQ 3 -->
                 <div class="faq-item fade-in fade-in-delay-3">
                     <div class="faq-question">
                         <h3 class="text-xl font-semibold text-white" lang="pt-BR">Quanto tempo leva para implementar uma infraestrutura de rede?</h3>
@@ -548,7 +542,6 @@
                         </p>
                     </div>
                 </div>
-                <!-- FAQ 4 -->
                 <div class="faq-item fade-in fade-in-delay-1">
                     <div class="faq-question">
                         <h3 class="text-xl font-semibold text-white" lang="pt-BR">Vocês oferecem suporte para pequenas empresas?</h3>
@@ -574,7 +567,7 @@
                 </p>
             </div>
             <div class="max-w-lg mx-auto bg-gray-900 p-8 rounded-lg shadow-lg fade-in">
-                <form action="https://formspree.io/f/your-endpoint" method="POST">
+                <form id="contact-form">
                     <div class="space-y-6">
                         <div>
                             <label for="nome" class="block text-gray-300 font-semibold mb-2" lang="pt-BR">Nome</label>
@@ -591,6 +584,7 @@
                         <button type="submit" class="cta-button w-full px-6 py-3 text-white font-semibold rounded-lg" aria-label="Baixe o Checklist Grátis">Baixe Agora</button>
                     </div>
                     <p class="text-gray-400 text-sm text-center mt-4" lang="pt-BR">Seus dados estão seguros e serão usados apenas para enviar o material solicitado.</p>
+                    <div id="contact-status" class="form-status"></div>
                 </form>
             </div>
         </div>
@@ -613,12 +607,13 @@
             <span class="popup-close" aria-label="Fechar pop-up">×</span>
             <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Não Saia Sem Nosso Checklist Gratuito!</h3>
             <p class="text-gray-300 text-center mb-6" lang="pt-BR">Baixe os 10 passos para avaliar a segurança da sua infraestrutura de TI.</p>
-            <form action="https://formspree.io/f/your-endpoint" method="POST">
+            <form id="popup-form">
                 <div class="space-y-4">
                     <input type="text" name="nome" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white" placeholder="Seu nome" required>
                     <input type="email" name="email" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white" placeholder="Seu e-mail" required>
                     <button type="submit" class="cta-button w-full px-4 py-2 text-white font-semibold rounded-lg" aria-label="Baixe Agora">Baixe Agora</button>
                 </div>
+                <div id="popup-status" class="form-status"></div>
             </form>
         </div>
     </div>
@@ -629,14 +624,55 @@
     </a>
 
     <script>
-        // Toggle mobile menu
+        // Inicializa EmailJS
+        (function(){
+            emailjs.init("S-msjiRkJwljtqrvW"); // Substitua pela sua Public Key do EmailJS
+        })();
+
+        // Função para enviar e-mail via EmailJS
+        function sendEmail(form, statusElement) {
+            statusElement.textContent = "Enviando...";
+            statusElement.classList.remove("success", "error");
+
+            const formData = new FormData(form);
+            const params = {
+                nome: formData.get("nome"),
+                email: formData.get("email"),
+                empresa: formData.get("empresa") || "Não informado"
+            };
+
+            emailjs.send("service_bndv2vt", "template_9i31skl", params)
+                .then(() => {
+                    statusElement.textContent = "Mensagem enviada com sucesso! Verifique seu e-mail.";
+                    statusElement.classList.add("success");
+                    form.reset();
+                }, (error) => {
+                    statusElement.textContent = `Erro ao enviar: ${error.text}`;
+                    statusElement.classList.add("error");
+                });
+        }
+
+        // Formulário de contato
+        document.getElementById("contact-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const status = document.getElementById("contact-status");
+            sendEmail(e.target, status);
+        });
+
+        // Formulário do popup
+        document.getElementById("popup-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const status = document.getElementById("popup-status");
+            sendEmail(e.target, status);
+        });
+
+        // JavaScript original
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.querySelector('.mobile-menu');
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -647,7 +683,6 @@
             });
         });
 
-        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -657,7 +692,6 @@
             }
         });
 
-        // FAQ accordion
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const answer = question.nextElementSibling;
@@ -667,7 +701,6 @@
             });
         });
 
-        // Exit-intent popup
         const popup = document.getElementById('exit-popup');
         const closePopup = document.querySelector('.popup-close');
         let popupShown = false;
