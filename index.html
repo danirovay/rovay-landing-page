@@ -106,6 +106,30 @@
         .fade-in-delay-3 { animation-delay: 0.6s; }
         .hero {
             background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Sobreposição leve para um estilo moderno */
+            z-index: 1;
+        }
+        .hero > div {
+            position: relative;
+            z-index: 2;
+        }
+        /* Estilo para texto com borda fina */
+        .hero-text {
+            -webkit-text-stroke: 0.3px #FFFFFF; /* Borda branca muito fina */
+            text-shadow: 0 0 1px #FFFFFF; /* Fallback sutil */
+        }
+        .hero-text-large {
+            -webkit-text-stroke: 0.5px #FFFFFF; /* Borda ligeiramente mais visível para o título */
+            text-shadow: 0 0 1px #FFFFFF, 0 0 1px #FFFFFF;
         }
         .faq-item {
             background: #1F2937;
@@ -208,10 +232,10 @@
         .whatsapp-button:hover::after {
             opacity: 1;
         }
-        /* Estilos para o logotipo */
+        /* Estilos para o logotipo SVG */
         .logo {
-            max-height: 40px;
-            padding: 5px 0;
+            width: 150px;
+            height: 50px;
             transition: transform 0.3s ease;
         }
         .logo:hover {
@@ -231,7 +255,8 @@
                 padding: 6px 10px;
             }
             .logo {
-                max-height: 35px;
+                width: 120px;
+                height: 40px;
             }
         }
     </style>
@@ -241,19 +266,22 @@
     <header class="navbar fixed top-0 left-0 w-full z-50 bg-gray-900">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center">
-                <svg class="logo" width="150" height="50" viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg" aria-label="Logotipo da TechSolutions">
+                <svg class="logo" viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg" aria-label="Logotipo da TechSolutions">
+                    <!-- Ícone: T estilizado como circuito -->
                     <defs>
-                        <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#3B82F6" />
-                            <stop offset="100%" style="stop-color:#1D4ED8" />
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" />
                         </linearGradient>
                     </defs>
-                    <!-- Ícone "T" estilizado como circuito -->
-                    <path d="M10 15 L10 35 L20 35 L20 25 L30 25 L30 35 L40 35 L40 15 L30 15 L30 5 L20 5 L20 15 Z" fill="url(#iconGradient)" />
-                    <!-- Texto "TECH" -->
-                    <text x="50" y="35" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" fill="#3B82F6" letter-spacing="1">TECH</text>
-                    <!-- Texto "SOLUTIONS" -->
-                    <text x="90" y="35" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF" letter-spacing="1">SOLUTIONS</text>
+                    <g fill="url(#grad1)">
+                        <rect x="10" y="10" width="20" height="5" rx="1" />
+                        <rect x="20" y="15" width="5" height="25" rx="1" />
+                        <rect x="15" y="35" width="10" height="5" rx="1" transform="rotate(-45 20 37.5)" />
+                    </g>
+                    <!-- Texto: TECHSOLUTIONS -->
+                    <text x="40" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" letter-spacing="0.05em" fill="#3B82F6">TECH</text>
+                    <text x="80" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" letter-spacing="0.05em" fill="#FFFFFF">SOLUTIONS</text>
                 </svg>
             </a>
             <div class="hidden md:flex space-x-8">
@@ -284,10 +312,10 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero h-screen flex items-center justify-center text-center text-white" role="region" aria-label="Seção principal">
+    <section id="home" class="hero h-screen flex items-center justify-center text-center" role="region" aria-label="Seção principal">
         <div class="container mx-auto px-4">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in" lang="pt-BR">Soluções de TI para o Seu Negócio</h1>
-            <p class="text-xl md:text-2xl mb-8 fade-in fade-in-delay-1 max-w-3xl mx-auto" lang="pt-BR">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in text-black hero-text-large" lang="pt-BR">Soluções de TI para o Seu Negócio</h1>
+            <p class="text-xl md:text-2xl mb-8 fade-in fade-in-delay-1 max-w-3xl mx-auto text-black hero-text" lang="pt-BR">
                 Oferecemos suporte técnico especializado e soluções estratégicas para garantir a segurança e eficiência da sua infraestrutura de TI.
             </p>
             <a href="#contato" class="cta-button inline-block px-10 py-4 text-lg font-semibold rounded-full fade-in fade-in-delay-2" aria-label="Baixe o Checklist Grátis">Baixe o Checklist Grátis</a>
@@ -451,7 +479,7 @@
                 <div class="testimonial-card fade-in fade-in-delay-1">
                     <div class="p-8">
                         <img src="https://img.icons8.com/ios-filled/64/ffffff/user-male-circle.png" alt="Ícone de perfil de João Silva" class="w-16 h-16 mx-auto mb-4">
-                        <p class="text-gray-300 italic text-center mb-4" lang="pt-BR">"O backup com Veeam implementado pela TechSolutions garantiu nossa recuperação rápida após um incidente."</p>
+                        <p class="text-gray-300 italic text-center mb-4" lang="pt-BR">"O backup com Veeam implementado pela TechSolutions garantiu nossa recuperação rápida."</p>
                         <h3 class="text-xl font-semibold text-white text-center" lang="pt-BR">João Silva</h3>
                         <p class="text-gray-400 text-center" lang="pt-BR">CEO, Empresa XYZ</p>
                     </div>
