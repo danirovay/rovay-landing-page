@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Soluções de TI especializadas em backup, segurança, redes e suporte técnico para empresas.">
-    <meta name="keywords" content="TI, backup Veeam, segurança de rede, suporte técnico, infraestrutura de TI, helpdesk">
+    <meta name="description" content="Soluções de TI especializadas em backup, segurança, redes, suporte técnico e multi-atendimento pelo WhatsApp para empresas.">
+    <meta name="keywords" content="TI, backup Veeam, segurança de rede, suporte técnico, infraestrutura de TI, helpdesk, multi-atendimento WhatsApp">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="TechSolutions - Soluções em TI">
-    <meta property="og:description" content="Oferecemos suporte técnico especializado e soluções estratégicas para garantir a segurança e eficiência da sua infraestrutura de TI.">
+    <meta property="og:description" content="Oferecemos suporte técnico especializado, multi-atendimento pelo WhatsApp e soluções estratégicas para garantir a segurança e eficiência da sua infraestrutura de TI.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
     <meta property="og:url" content="https://www.techsolutions.com">
     <title>TechSolutions - Soluções em TI</title>
@@ -20,8 +20,6 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-XXXXXXXXXX');
-        // Nota: Substitua G-XXXXXXXXXX pelo seu ID de rastreamento do Google Analytics.
-        // Considere adicionar um banner de consentimento de cookies para conformidade com GDPR/LGPD.
     </script>
     <!-- EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
@@ -182,12 +180,47 @@
             width: 90%;
             position: relative;
         }
+        .colorful-popup-content {
+            background: linear-gradient(135deg, #F3F4F6 0%, #FFFFFF 100%);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            max-width: 500px;
+            width: 95%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: popupZoom 0.5s ease-out;
+        }
+        @keyframes popupZoom {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
         .popup-close {
             position: absolute;
             top: 1rem;
             right: 1rem;
             cursor: pointer;
-            color: #ffffff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .popup-content .popup-close {
+            color: #FFFFFF;
+        }
+        .popup-content .popup-close:hover {
+            color: #EF4444;
+            transform: scale(1.2);
+        }
+        .colorful-popup-content .popup-close {
+            color: #1F2937;
+        }
+        .colorful-popup-content .popup-close:hover {
+            color: #EF4444;
+            transform: scale(1.2);
         }
         .whatsapp-button {
             position: fixed;
@@ -253,12 +286,18 @@
                 width: 120px;
                 height: 40px;
             }
+            .colorful-popup-content {
+                padding: 1.5rem;
+                max-width: 90%;
+            }
         }
-        /* Estilo para mensagens de status dos formulários */
         .form-status {
             margin-top: 1rem;
             text-align: center;
             font-size: 0.875rem;
+            color: #1F2937;
+        }
+        .popup-content .form-status {
             color: #9CA3AF;
         }
         .form-status.success {
@@ -266,6 +305,10 @@
         }
         .form-status.error {
             color: #EF4444;
+        }
+        .multi-benefit {
+            border-left: 4px solid #25D366;
+            padding-left: 1rem;
         }
     </style>
 </head>
@@ -291,25 +334,26 @@
                 </svg>
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-gray-300 hover:text-blue-500">Início</a>
-                <a href="#sobre" class="nav-link text-gray-300 hover:text-blue-500">Sobre</a>
-                <a href="#servicos" class="nav-link text-gray-300 hover:text-blue-500">Serviços</a>
-                <a href="#depoimentos" class="nav-link text-gray-300 hover:text-blue-500">Depoimentos</a>
-                <a href="#faqs" class="nav-link text-gray-300 hover:text-blue-500">FAQs</a>
-                <a href="#contato" class="nav-link text-gray-300 hover:text-blue-500">Contato</a>
+                <a href="#home" class="nav-link text-gray-300 hover:text-blue-600">Início</a>
+                <a href="#sobre" class="nav-link text-gray-300 hover:text-blue-600">Sobre</a>
+                <a href="#servicos" class="nav-link text-gray-300 hover:text-blue-600">Serviços</a>
+                <a href="#multi_atendimento" class="nav-link text-gray-300 hover:text-blue-600">Multi-Atendimento</a>
+                <a href="#depoimentos" class="nav-link text-gray-300 hover:text-blue-600">Depoimentos</a>
+                <a href="#faqs" class="nav-link text-gray-300 hover:text-blue-600">FAQs</a>
+                <a href="#contato" class="nav-link text-gray-300 hover:text-blue-600">Contato</a>
             </div>
-            <a href="https://wa.me/+5519998194874" target="_blank" class="cta-button hidden md:block px-6 py-2 text-white font-semibold rounded-full" aria-label="Baixe o Checklist Grátis">Baixe o Checklist Grátis</a>
+            <a href="https://wa.me/+5519998194874" target="_blank" class="cta-button hidden md:block px-6 py-2 text-white font-semibold rounded-lg" aria-label="Baixe o Checklist Grátis">Baixe o Checklist Grátis</a>
             <button class="md:hidden text-gray-300 focus:outline-none" id="menu-toggle" aria-label="Abrir menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </nav>
-        <!-- Mobile Menu -->
         <div class="mobile-menu hidden md:hidden bg-gray-900 shadow-lg">
             <a href="#home" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Início</a>
             <a href="#sobre" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Sobre</a>
             <a href="#servicos" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Serviços</a>
+            <a href="#multi_atendimento" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Multi-Atendimento</a>
             <a href="#depoimentos" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Depoimentos</a>
             <a href="#faqs" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">FAQs</a>
             <a href="#contato" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Contato</a>
@@ -324,7 +368,7 @@
             <p class="text-xl md:text-2xl mb-8 fade-in fade-in-delay-1 max-w-3xl mx-auto text-white" lang="pt-BR">
                 Oferecemos suporte técnico especializado e soluções estratégicas para garantir a segurança e eficiência da sua infraestrutura de TI.
             </p>
-            <a href="#contato" class="cta-button inline-block px-10 py-4 text-lg font-semibold rounded-full fade-in fade-in-delay-2" aria-label="Baixe o Checklist Grátis">Baixe o Checklist Grátis</a>
+            <a href="#contato" class="cta-button inline-block px-10 py-4 text-lg font-semibold rounded-lg fade-in fade-in-delay-2" aria-label="Baixe o Checklist Grátis">Baixe o Checklist Grátis</a>
         </div>
     </section>
 
@@ -456,7 +500,47 @@
                 </div>
             </div>
             <div class="text-center mt-16">
-                <a href="https://wa.me/+5519998194874" target="_blank" class="cta-button inline-block px-10 py-4 text-white font-semibold rounded-full text-lg shadow-lg" aria-label="Solicite Sua Análise Gratuita">Solicite Sua Análise Gratuita</a>
+                <a href="https://wa.me/+5519998194874" target="_blank" class="cta-button inline-block px-10 py-4 text-white font-semibold rounded-lg text-lg shadow-lg" aria-label="Solicite Sua Análise Gratuita">Solicite Sua Análise Gratuita</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multi-Atendimento Section -->
+    <section id="multi_atendimento" class="py-20 bg-gray-900" role="region" aria-label="Serviço de Multi-Atendimento pelo WhatsApp">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl font-bold text-white" lang="pt-BR">Multi-Atendimento pelo WhatsApp</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6 fade-in" lang="pt-BR">
+                    Transforme o atendimento da sua empresa com nossa solução de multi-atendimento pelo WhatsApp. Responda clientes em tempo real, escale o suporte com automação e integre com sua infraestrutura de TI.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Benefícios -->
+                <div class="fade-in fade-in-delay-1">
+                    <ul class="space-y-6">
+                        <li class="multi-benefit">
+                            <p class="text-gray-300" lang="pt-BR"><span class="font-semibold text-white">Atendimento simultâneo:</span> Gerencie múltiplos clientes ao mesmo tempo com eficiência.</p>
+                        </li>
+                        <li class="multi-benefit">
+                            <p class="text-gray-300" lang="pt-BR"><span class="font-semibold text-white">Automação inteligente:</span> Use chatbots para respostas rápidas e libere sua equipe para casos complexos.</p>
+                        </li>
+                        <li class="multi-benefit">
+                            <p class="text-gray-300" lang="pt-BR"><span class="font-semibold text-white">Integração com TI:</span> Conecte o WhatsApp ao seu CRM ou helpdesk para maior controle.</p>
+                        </li>
+                    </ul>
+                    <div class="text-center md:text-left mt-8">
+                        <a href="https://wa.me/+5519998194874?text=Quero saber mais sobre o Multi-Atendimento pelo WhatsApp!" class="cta-button inline-block px-10 py-4 text-white font-semibold rounded-lg" aria-label="Saiba mais sobre Multi-Atendimento">Saiba Mais</a>
+                    </div>
+                </div>
+                <!-- Depoimento e ícone -->
+                <div class="fade-in fade-in-delay-2 text-center">
+                    <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="Ícone do WhatsApp" class="mx-auto mb-6 w-20 h-20">
+                    <div class="testimonial-card p-6 border-l-4 border-blue-600">
+                        <p class="text-gray-300 italic text-center mb-4" lang="pt-BR">"O Multi-Atendimento pelo WhatsApp da TechSolutions reduziu nosso tempo de resposta em 20% e encantou nossos clientes!"</p>
+                        <h3 class="text-xl font-semibold text-white text-center" lang="pt-BR">Ana Ribeiro</h3>
+                        <p class="text-gray-400 text-center" lang="pt-BR">Gerente de Suporte, Empresa 456</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -511,12 +595,12 @@
             <div class="max-w-3xl mx-auto">
                 <div class="faq-item fade-in fade-in-delay-1">
                     <div class="faq-question">
-                        <h3 class="text-xl font-semibold text-white" lang="pt-BR">Quais são os benefícios do backup com Veeam Backup & Replication?</h3>
+                        <h3 class="text-xl font-semibold text-white" lang="pt-BR">Quais são os benefícios do backup com Veeam?</h3>
                         <img src="https://img.icons8.com/ios-filled/24/ffffff/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
                     </div>
                     <div class="faq-answer">
                         <p class="text-gray-300" lang="pt-BR">
-                            O Veeam oferece backups rápidos com deduplicação, restauração instantânea de VMs, e replicação segura para recuperação de desastres, protegendo ambientes virtuais, físicos e em nuvem.
+                            O Veeam oferece backups rápidos com deduplicação, restauração instantânea de VMs e replicação segura para recuperação de desastres, protegendo ambientes virtuais, físicos e em nuvem.
                         </p>
                     </div>
                 </div>
@@ -527,7 +611,7 @@
                     </div>
                     <div class="faq-answer">
                         <p class="text-gray-300" lang="pt-BR">
-                            Nosso Helpdesk oferece suporte remoto e presencial sob demanda, com atendimento rápido para resolver problemas em computadores, redes e softwares.
+                            Nosso suporte oferece atendimento remoto e presencial sob demanda, com resolução rápida para problemas em computadores e redes.
                         </p>
                     </div>
                 </div>
@@ -538,7 +622,7 @@
                     </div>
                     <div class="faq-answer">
                         <p class="text-gray-300" lang="pt-BR">
-                            O tempo depende do porte do projeto, mas geralmente varia de 1 a 4 semanas, incluindo planejamento, instalação e testes.
+                            O tempo varia de 1 a 4 semanas, dependendo do porte do projeto, incluindo planejamento, instalação e testes.
                         </p>
                     </div>
                 </div>
@@ -549,7 +633,7 @@
                     </div>
                     <div class="faq-answer">
                         <p class="text-gray-300" lang="pt-BR">
-                            Sim, oferecemos soluções personalizadas para empresas de todos os tamanhos, incluindo suporte técnico acessível e escalável para pequenas empresas.
+                            Sim! Oferecemos soluções personalizadas para empresas de todos os tamanhos, incluindo suporte técnico acessível e escalável para pequenas empresas.
                         </p>
                     </div>
                 </div>
@@ -571,15 +655,15 @@
                     <div class="space-y-6">
                         <div>
                             <label for="nome" class="block text-gray-300 font-semibold mb-2" lang="pt-BR">Nome</label>
-                            <input type="text" id="nome" name="nome" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Seu nome" required>
+                            <input type="text" id="nome" name="nome" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Seu Nome" required>
                         </div>
                         <div>
                             <label for="email" class="block text-gray-300 font-semibold mb-2" lang="pt-BR">E-mail</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Seu e-mail" required>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Seu E-mail" required>
                         </div>
                         <div>
                             <label for="empresa" class="block text-gray-300 font-semibold mb-2" lang="pt-BR">Empresa (opcional)</label>
-                            <input type="text" id="empresa" name="empresa" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Nome da empresa">
+                            <input type="text" id="empresa" name="empresa" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Nome da Empresa">
                         </div>
                         <button type="submit" class="cta-button w-full px-6 py-3 text-white font-semibold rounded-lg" aria-label="Baixe o Checklist Grátis">Baixe Agora</button>
                     </div>
@@ -609,12 +693,35 @@
             <p class="text-gray-300 text-center mb-6" lang="pt-BR">Baixe os 10 passos para avaliar a segurança da sua infraestrutura de TI.</p>
             <form id="popup-form">
                 <div class="space-y-4">
-                    <input type="text" name="nome" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white" placeholder="Seu nome" required>
-                    <input type="email" name="email" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white" placeholder="Seu e-mail" required>
+                    <input type="text" name="nome" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white" placeholder="Seu Nome" required>
+                    <input type="email" name="email" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white" placeholder="Seu E-mail" required>
                     <button type="submit" class="cta-button w-full px-4 py-2 text-white font-semibold rounded-lg" aria-label="Baixe Agora">Baixe Agora</button>
                 </div>
                 <div id="popup-status" class="form-status"></div>
             </form>
+        </div>
+    </div>
+
+    <!-- Colorful Multi-Atendimento Popup -->
+    <div id="colorful-popup" class="popup">
+        <div class="colorful-popup-content">
+            <span class="popup-close" aria-label="Fechar pop-up de multi-atendimento">×</span>
+            <div class="text-center">
+                <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="Ícone do WhatsApp" class="mx-auto mb-4 w-16 h-16">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4" lang="pt-BR">Atenda 10x Mais Rápido com WhatsApp!</h3>
+                <p class="text-lg text-gray-700 mb-6" lang="pt-BR">Escale seu atendimento com nossa solução multi-atendimento e receba nosso checklist gratuito!</p>
+            </div>
+            <form id="colorful-form">
+                <div class="space-y-4">
+                    <input type="text" name="nome" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-600" placeholder="Seu Nome" required>
+                    <input type="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-600" placeholder="Seu E-mail" required>
+                    <button type="submit" class="cta-button w-full px-4 py-2 text-white font-semibold rounded-lg" aria-label="Quero o Checklist">Quero o Checklist</button>
+                </div>
+                <div id="colorful-status" class="form-status"></div>
+            </form>
+            <div class="mt-4 text-center">
+                <a href="https://wa.me/+5519998194874?text=Quero saber mais sobre o Multi-Atendimento pelo WhatsApp!" class="text-blue-600 hover:text-blue-800 font-semibold" aria-label="Fale pelo WhatsApp">Ou fale pelo WhatsApp agora!</a>
+            </div>
         </div>
     </div>
 
@@ -626,11 +733,11 @@
     <script>
         // Inicializa EmailJS
         (function(){
-            emailjs.init("S-msjiRkJwljtqrvW"); // Substitua pela sua Public Key do EmailJS
+            emailjs.init("S-msjiRkJwljtqrvW");
         })();
 
         // Função para enviar e-mail via EmailJS
-        function sendEmail(form, statusElement) {
+        function sendEmail(form, statusElement, formId) {
             statusElement.textContent = "Enviando...";
             statusElement.classList.remove("success", "error");
 
@@ -638,7 +745,8 @@
             const params = {
                 nome: formData.get("nome"),
                 email: formData.get("email"),
-                empresa: formData.get("empresa") || "Não informado"
+                empresa: formData.get("empresa") || "Não informado",
+                origem: formId === "colorful-form" ? "Popup Colorido" : formId === "popup-form" ? "Popup Exit" : "Formulário de Contato"
             };
 
             emailjs.send("service_bndv2vt", "template_9i31skl", params)
@@ -646,6 +754,9 @@
                     statusElement.textContent = "Checklist enviado com sucesso! Verifique seu e-mail para baixar.";
                     statusElement.classList.add("success");
                     form.reset();
+                    if (formId === "colorful-form" || formId === "popup-form") {
+                        form.closest('.popup').style.display = 'none';
+                    }
                 }, (error) => {
                     statusElement.textContent = `Erro ao enviar: ${error.text}`;
                     statusElement.classList.add("error");
@@ -656,23 +767,31 @@
         document.getElementById("contact-form").addEventListener("submit", (e) => {
             e.preventDefault();
             const status = document.getElementById("contact-status");
-            sendEmail(e.target, status);
+            sendEmail(e.target, status, "contact-form");
         });
 
-        // Formulário do popup
+        // Formulário do popup de saída
         document.getElementById("popup-form").addEventListener("submit", (e) => {
             e.preventDefault();
             const status = document.getElementById("popup-status");
-            sendEmail(e.target, status);
+            sendEmail(e.target, status, "popup-form");
         });
 
-        // JavaScript original
+        // Formulário do popup colorido
+        document.getElementById("colorful-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const status = document.getElementById("colorful-status");
+            sendEmail(e.target, status, "colorful-form");
+        });
+
+        // Menu toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.querySelector('.mobile-menu');
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -683,6 +802,7 @@
             });
         });
 
+        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -692,6 +812,7 @@
             }
         });
 
+        // FAQ toggle
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const answer = question.nextElementSibling;
@@ -701,19 +822,35 @@
             });
         });
 
-        const popup = document.getElementById('exit-popup');
-        const closePopup = document.querySelector('.popup-close');
-        let popupShown = false;
+        // Exit-intent popup
+        const exitPopup = document.getElementById('exit-popup');
+        const closeExitPopup = exitPopup.querySelector('.popup-close');
+        let exitPopupShown = false;
 
         document.addEventListener('mouseout', (e) => {
-            if (!popupShown && !e.relatedTarget && e.clientY < 10) {
-                popup.style.display = 'flex';
-                popupShown = true;
+            if (!exitPopupShown && !e.relatedTarget && e.clientY < 10) {
+                exitPopup.style.display = 'flex';
+                exitPopupShown = true;
             }
         });
 
-        closePopup.addEventListener('click', () => {
-            popup.style.display = 'none';
+        closeExitPopup.addEventListener('click', () => {
+            exitPopup.style.display = 'none';
+        });
+
+        // Colorful popup on load
+        const colorfulPopup = document.getElementById('colorful-popup');
+        const closeColorfulPopup = colorfulPopup.querySelector('.popup-close');
+
+        window.addEventListener('load', () => {
+            if (!sessionStorage.getItem('colorfulPopupShown')) {
+                colorfulPopup.style.display = 'flex';
+                sessionStorage.setItem('colorfulPopupShown', 'true');
+            }
+        });
+
+        closeColorfulPopup.addEventListener('click', () => {
+            colorfulPopup.style.display = 'none';
         });
     </script>
 </body>
