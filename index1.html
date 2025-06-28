@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Clínica veterinária especializada em consultas, vacinas, cirurgias, banho e tosa, e atendimento emergencial para seu pet.">
+    <meta name="keywords" content="clínica veterinária, cuidados pet, consultas veterinárias, vacinas para pets, banho e tosa, atendimento 24h">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="PetCare - Clínica Veterinária">
+    <meta property="og:description" content="Cuidamos do seu pet com amor e profissionalismo. Oferecemos consultas, vacinas, cirurgias, banho e tosa, e atendimento emergencial 24h.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1455526050980-d3e7b9b789a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:url" content="https://www.petcareclinica.com">
+    <title>PetCare - Clínica Veterinária</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.6.2/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #F3F4F6;
+        }
+        .navbar {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            background: #FFFFFF;
+        }
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            color: #1F2937;
+        }
+        .nav-link:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #10B981;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #10B981;
+            border-radius: 2px;
+        }
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            background: #FFFFFF;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-button {
+            background: #E5E7EB;
+            color: #1F2937;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .tab-button.active, .tab-button:hover {
+            background: #10B981;
+            color: #FFFFFF;
+        }
+        .carousel {
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel-item {
+            display: none;
+            width: 100%;
+            height: 70vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .carousel-item.active {
+            display: block;
+        }
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .carousel-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 2rem;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            padding: 1rem;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.3s ease;
+        }
+        .carousel-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .carousel-prev {
+            left: 1rem;
+        }
+        .carousel-next {
+            right: 1rem;
+        }
+        .service-card, .testimonial-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .service-card:hover, .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .service-icon {
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+        .cta-button {
+            background: linear-gradient(90deg, #059669, #10B981);
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .cta-button:hover {
+            background: linear-gradient(90deg, #10B981, #059669);
+            transform: scale(1.05);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-delay-1 { animation-delay: 0.2s; }
+        .fade-in-delay-2 { animation-delay: 0.4s; }
+        .fade-in-delay-3 { animation-delay: 0.6s; }
+        .faq-item {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .faq-question:hover {
+            background: #E6F0FA;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1rem;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        .faq-answer.active {
+            max-height: 200px;
+            padding: 1rem;
+        }
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+        .colorful-popup-content {
+            background: linear-gradient(135deg, #F3F4F6 0%, #FFFFFF 100%);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            max-width: 500px;
+            width: 95%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: popupZoom 0.5s ease-out;
+        }
+        @keyframes popupZoom {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .popup-content .popup-close {
+            color: #1F2937;
+        }
+        .popup-content .popup-close:hover {
+            color: #EF4444;
+            transform: scale(1.2);
+        }
+        .colorful-popup-content .popup-close {
+            color: #1F2937;
+        }
+        .colorful-popup-content .popup-close:hover {
+            color: #EF4444;
+            transform: scale(1.2);
+        }
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-button img {
+            width: 30px;
+            height: 30px;
+        }
+        .whatsapp-button::after {
+            content: 'Fale conosco no WhatsApp!';
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: #10B981;
+            color: #FFFFFF;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+        .whatsapp-button:hover::after {
+            opacity: 1;
+        }
+        .logo {
+            width: 150px;
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        @media (max-width: 640px) {
+            .whatsapp-button {
+                width: 50px;
+                height: 50px;
+            }
+            .whatsapp-button img {
+                width: 25px;
+                height: 25px;
+            }
+            .whatsapp-button::after {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+            .logo {
+                width: 120px;
+                height: 40px;
+            }
+            .colorful-popup-content {
+                padding: 1.5rem;
+                max-width: 90%;
+            }
+            .carousel-item {
+                height: 50vh;
+            }
+            .tab-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+        .form-status {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #1F2937;
+        }
+        .popup-content .form-status {
+            color: #6B7280;
+        }
+        .form-status.success {
+            color: #10B981;
+        }
+        .form-status.error {
+            color: #EF4444;
+        }
+        .pet-benefit {
+            border-left: 4px solid #34D399;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar fixed top-0 left-0 w-full z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <svg class="logo" viewBox="0 0 225 50" xmlns="http://www.w3.org/2000/svg" aria-label="Logotipo da PetCare">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <g fill="url(#grad1)">
+                        <path d="M10 25 C10 15 20 15 20 25 C20 35 10 35 10 25 Z" />
+                        <path d="M25 20 L30 25 L25 30" />
+                    </g>
+                    <text x="40" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" letter-spacing="0.05em" fill="#10B981">PET</text>
+                    <text x="90" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" letter-spacing="0.05em" fill="#1F2937">CARE</text>
+                </svg>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link hover:text-green-500">Início</a>
+                <a href="#sobre" class="nav-link hover:text-green-500">Sobre</a>
+                <a href="#servicos" class="nav-link hover:text-green-500">Serviços</a>
+                <a href="#cuidar_pet" class="nav-link hover:text-green-500">Cuidados Pet</a>
+                <a href="#depoimentos" class="nav-link hover:text-green-500">Depoimentos</a>
+                <a href="#faqs" class="nav-link hover:text-green-500">FAQs</a>
+                <a href="#contato" class="nav-link hover:text-green-500">Contato</a>
+            </div>
+            <a href="https://wa.me/+5519998194874" target="_blank" class="cta-button hidden md:block px-6 py-2 text-white font-semibold rounded-lg" aria-label="Baixe o Guia Grátis">Baixe o Guia Grátis</a>
+            <button class="md:hidden text-gray-700 focus:outline-none" id="menu-toggle" aria-label="Abrir menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+        <div class="mobile-menu hidden md:hidden bg-white shadow-lg">
+            <a href="#home" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Início</a>
+            <a href="#sobre" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Sobre</a>
+            <a href="#servicos" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Serviços</a>
+            <a href="#cuidar_pet" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Cuidados Pet</a>
+            <a href="#depoimentos" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Depoimentos</a>
+            <a href="#faqs" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">FAQs</a>
+            <a href="#contato" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Contato</a>
+            <a href="https://wa.me/+5519998194874" target="_blank" class="block px-4 py-3 text-white bg-green-600 hover:bg-green-700 text-center">Baixe o Guia Grátis</a>
+        </div>
+    </header>
+
+    <!-- Carousel Section -->
+    <section id="home" class="carousel" role="region" aria-label="Carrossel inicial">
+        <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1455526050980-d3e7b9b789a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+            <div class="carousel-content flex items-center justify-center h-full">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white" lang="pt-BR">Cuidamos do Seu Pet com Amor</h1>
+                    <p class="text-lg md:text-xl mb-6 text-white" lang="pt-BR">Consultas, vacinas, cirurgias e atendimento 24h.</p>
+                    <a href="#contato" class="cta-button inline-block px-8 py-3 text-lg font-semibold rounded-lg" aria-label="Baixe o Guia Grátis">Baixe o Guia Grátis</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1560743641-3914f2c45636?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+            <div class="carousel-content flex items-center justify-center h-full">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white" lang="pt-BR">Atendimento 24 Horas</h1>
+                    <p class="text-lg md:text-xl mb-6 text-white" lang="pt-BR">Emergências veterinárias com suporte imediato.</p>
+                    <a href="https://wa.me/+5519998194874" target="_blank" class="cta-button inline-block px-8 py-3 text-lg font-semibold rounded-lg" aria-label="Fale pelo WhatsApp">Fale pelo WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+            <div class="carousel-content flex items-center justify-center h-full">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white" lang="pt-BR">Banho e Tosa com Carinho</h1>
+                    <p class="text-lg md:text-xl mb-6 text-white" lang="pt-BR">Higiene e estética para seu pet.</p>
+                    <a href="#servicos" class="cta-button inline-block px-8 py-3 text-lg font-semibold rounded-lg" aria-label="Conheça Nossos Serviços">Conheça Nossos Serviços</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-button carousel-prev" aria-label="Slide anterior">❮</button>
+        <button class="carousel-button carousel-next" aria-label="Próximo slide">❯</button>
+    </section>
+
+    <!-- Tabs Section -->
+    <section class="py-12 bg-f3f4f6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="tab-button active" data-tab="sobre">Sobre</button>
+                <button class="tab-button" data-tab="servicos">Serviços</button>
+                <button class="tab-button" data-tab="cuidar_pet">Cuidados Pet</button>
+                <button class="tab-button" data-tab="depoimentos">Depoimentos</button>
+                <button class="tab-button" data-tab="faqs">FAQs</button>
+                <button class="tab-button" data-tab="contato">Contato</button>
+            </div>
+            <div id="sobre" class="tab-content active" role="region" aria-label="Sobre a PetCare">
+                <div class="text-center mb-8">
+                    <h2 class="section-title text-3xl font-bold text-gray-900" lang="pt-BR">Sobre a PetCare</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4" lang="pt-BR">
+                        Somos uma clínica veterinária apaixonada por cuidar de pets, oferecendo serviços de alta qualidade com carinho e profissionalismo.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3" lang="pt-BR">Nossa Missão</h3>
+                        <p class="text-gray-600" lang="pt-BR">
+                            Proporcionar saúde e bem-estar aos pets com atendimento humanizado e tecnologia avançada.
+                        </p>
+                    </div>
+                    <div class="fade-in fade-in-delay-1">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3" lang="pt-BR">Nossa Equipe</h3>
+                        <p class="text-gray-600" lang="pt-BR">
+                            Veterinários experientes e uma equipe dedicada para tratar seu pet como parte da família.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="servicos" class="tab-content" role="region" aria-label="Nossos serviços veterinários">
+                <div class="text-center mb-8">
+                    <h2 class="section-title text-3xl font-bold text-gray-900" lang="pt-BR">Nossos Serviços</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4" lang="pt-BR">
+                        Cuidamos de cada detalhe para garantir a saúde e o conforto do seu pet.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="service-card fade-in fade-in-delay-1">
+                        <div class="p-6">
+                            <img src="https://img.icons8.com/color/80/000000/veterinarian.png" alt="Ícone de consultas veterinárias" class="service-icon mx-auto mb-4 w-16 h-16">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center" lang="pt-BR">Consultas</h3>
+                            <p class="text-gray-600" lang="pt-BR">
+                                Avaliações completas para diagnóstico e tratamento preventivo do seu pet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in fade-in-delay-2">
+                        <div class="p-6">
+                            <img src="https://img.icons8.com/color/80/000000/syringe.png" alt="Ícone de vacinas para pets" class="service-icon mx-auto mb-4 w-16 h-16">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center" lang="pt-BR">Vacinas</h3>
+                            <p class="text-gray-600" lang="pt-BR">
+                                Imunização contra doenças comuns, com acompanhamento de carteira de vacinação.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in fade-in-delay-3">
+                        <div class="p-6">
+                            <img src="https://img.icons8.com/color/80/000000/surgery.png" alt="Ícone de cirurgias veterinárias" class="service-icon mx-auto mb-4 w-16 h-16">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center" lang="pt-BR">Cirurgias</h3>
+                            <p class="text-gray-600" lang="pt-BR">
+                                Procedimentos cirúrgicos com equipamentos modernos e cuidados pós-operatórios.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in fade-in-delay-1">
+                        <div class="p-6">
+                            <img src="https://img.icons8.com/color/80/000000/pet.png" alt="Ícone de banho e tosa" class="service-icon mx-auto mb-4 w-16 h-16">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center" lang="pt-BR">Banho e Tosa</h3>
+                            <p class="text-gray-600" lang="pt-BR">
+                                Higiene e estética para seu pet, com produtos seguros e ambiente acolhedor.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in fade-in-delay-2">
+                        <div class="p-6">
+                            <img src="https://img.icons8.com/color/80/000000/emergency.png" alt="Ícone de atendimento emergencial" class="service-icon mx-auto mb-4 w-16 h-16">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center" lang="pt-BR">Emergências 24h</h3>
+                            <p class="text-gray-600" lang="pt-BR">
+                                Atendimento imediato para situações de emergência, disponível 24 horas por dia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://wa.me/+5519998194874" target="_blank" class="cta-button inline-block px-8 py-3 text-white font-semibold rounded-lg text-lg shadow-lg" aria-label="Agende uma Consulta">Agende uma Consulta</a>
+                </div>
+            </div>
+            <div id="cuidar_pet" class="tab-content" role="region" aria-label="Cuidados com seu pet">
+                <div class="text-center mb-8">
+                    <h2 class="section-title text-3xl font-bold text-gray-900" lang="pt-BR">Cuidados Pet com WhatsApp</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4 fade-in" lang="pt-BR">
+                        Agende consultas, tire dúvidas e receba dicas de cuidados em tempo real pelo WhatsApp, com atendimento rápido e personalizado.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="fade-in fade-in-delay-1">
+                        <ul class="space-y-4">
+                            <li class="pet-benefit">
+                                <p class="text-gray-600" lang="pt-BR"><span class="font-semibold text-gray-900">Agendamento fácil:</span> Marque consultas diretamente pelo WhatsApp.</p>
+                            </li>
+                            <li class="pet-benefit">
+                                <p class="text-gray-600" lang="pt-BR"><span class="font-semibold text-gray-900">Suporte rápido:</span> Tire dúvidas sobre a saúde do seu pet em minutos.</p>
+                            </li>
+                            <li class="pet-benefit">
+                                <p class="text-gray-600" lang="pt-BR"><span class="font-semibold text-gray-900">Dicas personalizadas:</span> Receba orientações para cuidar melhor do seu amigo.</p>
+                            </li>
+                        </ul>
+                        <div class="text-center md:text-left mt-6">
+                            <a href="https://wa.me/+5519998194874?text=Quero saber mais sobre os cuidados pet pelo WhatsApp!" class="cta-button inline-block px-8 py-3 text-white font-semibold rounded-lg" aria-label="Saiba mais sobre Cuidados Pet">Saiba Mais</a>
+                        </div>
+                    </div>
+                    <div class="fade-in fade-in-delay-2 text-center">
+                        <img src="https://img.icons8.com/color/96/000000/paw.png" alt="Ícone de pata" class="mx-auto mb-4 w-16 h-16">
+                        <div class="testimonial-card p-6 border-l-4 border-yellow-400">
+                            <p class="text-gray-600 italic text-center mb-3" lang="pt-BR">"O atendimento via WhatsApp da PetCare é incrível! Consegui agendar a consulta do meu cachorro em minutos!"</p>
+                            <h3 class="text-lg font-semibold text-gray-900 text-center" lang="pt-BR">Ana Clara</h3>
+                            <p class="text-gray-500 text-center" lang="pt-BR">Tutor de Pet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="depoimentos" class="tab-content" role="region" aria-label="Depoimentos de clientes">
+                <div class="text-center mb-8">
+                    <h2 class="section-title text-3xl font-bold text-gray-900" lang="pt-BR">O que Nossos Clientes Dizem</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4" lang="pt-BR">
+                        Veja como a PetCare tem cuidado dos pets de nossos clientes com amor e dedicação.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="testimonial-card fade-in fade-in-delay-1">
+                        <div class="p-6">
+                            <img src="https://img.icons8.com/color/64/000000/user-male-circle.png" alt="Ícone de perfil de João Silva" class="w-12 h-12 mx-auto mb-3">
+                            <p class="text-gray-600 italic text-center mb-3" lang="pt-BR">"A PetCare salvou meu gato com um atendimento emergencial rápido e profissional!"</p>
+                            <h3 class="text-lg font-semibold text-gray-900 text-center" lang="pt-BR">João Silva</h3>
+                            <p class="text-gray-500 text-center" lang="pt-BR">Tutor de Pet</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in fade-in-delay-2">
+                        <div class="p-6">
+                            <img src="https://img.icons8.com/color/64/000000/user-female-circle.png" alt="Ícone de perfil de Maria Oliveira" class="w-12 h-12 mx-auto mb-3">
+                            <p class="text-gray-600 italic text-center mb-3" lang="pt-BR">"O banho e tosa deixaram minha cadela linda e super confortável!"</p>
+                            <h3 class="text-lg font-semibold text-gray-900 text-center" lang="pt-BR">Maria Oliveira</h3>
+                            <p class="text-gray-500 text-center" lang="pt-BR">Tutor de Pet</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in fade-in-delay-3">
+                        <div class="p-6">
+                            <img src="https://img.icons8.com/color/64/000000/user.png" alt="Ícone de perfil de Carlos Mendes" class="w-12 h-12 mx-auto mb-3">
+                            <p class="text-gray-600 italic text-center mb-3" lang="pt-BR">"As vacinas foram aplicadas com tanto cuidado, meu pet nem sentiu!"</p>
+                            <h3 class="text-lg font-semibold text-gray-900 text-center" lang="pt-BR">Carlos Mendes</h3>
+                            <p class="text-gray-500 text-center" lang="pt-BR">Tutor de Pet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="faqs" class="tab-content" role="region" aria-label="Perguntas frequentes">
+                <div class="text-center mb-8">
+                    <h2 class="section-title text-3xl font-bold text-gray-900" lang="pt-BR">Perguntas Frequentes</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4" lang="pt-BR">
+                        Tire suas dúvidas sobre nossos serviços veterinários e como cuidamos do seu pet.
+                    </p>
+                </div>
+                <div class="max-w-3xl mx-auto">
+                    <div class="faq-item fade-in fade-in-delay-1">
+                        <div class="faq-question">
+                            <h3 class="text-lg font-semibold text-gray-900" lang="pt-BR">Quais vacinas meu pet precisa?</h3>
+                            <img src="https://img.icons8.com/ios-filled/24/10B981/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
+                        </div>
+                        <div class="faq-answer">
+                            <p class="text-gray-600" lang="pt-BR">
+                                Depende da espécie, idade e estilo de vida do pet. Oferecemos vacinas como V10, antirrábica e contra giárdia, com orientação personalizada.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in fade-in-delay-2">
+                        <div class="faq-question">
+                            <h3 class="text-lg font-semibold text-gray-900" lang="pt-BR">Vocês atendem emergências à noite?</h3>
+                            <img src="https://img.icons8.com/ios-filled/24/10B981/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
+                        </div>
+                        <div class="faq-answer">
+                            <p class="text-gray-600" lang="pt-BR">
+                                Sim! Nossa equipe está disponível 24h para emergências, garantindo atendimento rápido e eficaz.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in fade-in-delay-3">
+                        <div class="faq-question">
+                            <h3 class="text-lg font-semibold text-gray-900" lang="pt-BR">Como funciona o banho e tosa?</h3>
+                            <img src="https://img.icons8.com/ios-filled/24/10B981/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
+                        </div>
+                        <div class="faq-answer">
+                            <p class="text-gray-600" lang="pt-BR">
+                                Usamos produtos hipoalergênicos e técnicas seguras, com opções de tosa higiênica ou estética, conforme a raça e necessidade.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in fade-in-delay-1">
+                        <div class="faq-question">
+                            <h3 class="text-lg font-semibold text-gray-900" lang="pt-BR">Posso agendar consultas pelo WhatsApp?</h3>
+                            <img src="https://img.icons8.com/ios-filled/24/10B981/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
+                        </div>
+                        <div class="faq-answer">
+                            <p class="text-gray-600" lang="pt-BR">
+                                Sim! Nosso atendimento via WhatsApp permite agendar consultas e tirar dúvidas em tempo real.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="contato" class="tab-content" role="region" aria-label="Formulário de contato">
+                <div class="text-center mb-8">
+                    <h2 class="section-title text-3xl font-bold text-gray-900" lang="pt-BR">Baixe Nosso Guia Gratuito de Cuidados Pet</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4" lang="pt-BR">
+                        Receba dicas essenciais para manter seu pet saudável e feliz!
+                    </p>
+                </div>
+                <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg fade-in">
+                    <form id="contact-form">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="nome" class="block text-gray-600 font-semibold mb-2" lang="pt-BR">Nome</label>
+                                <input type="text" id="nome" name="nome" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 bg-white text-gray-900" placeholder="Seu Nome" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-600 font-semibold mb-2" lang="pt-BR">E-mail</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 bg-white text-gray-900" placeholder="Seu E-mail" required>
+                            </div>
+                            <div>
+                                <label for="pet" class="block text-gray-600 font-semibold mb-2" lang="pt-BR">Nome do Pet (opcional)</label>
+                                <input type="text" id="pet" name="pet" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 bg-white text-gray-900" placeholder="Nome do Pet">
+                            </div>
+                            <button type="submit" class="cta-button w-full px-6 py-2 text-white font-semibold rounded-lg" aria-label="Baixe o Guia Grátis">Baixe Agora</button>
+                        </div>
+                        <p class="text-gray-500 text-sm text-center mt-4" lang="pt-BR">Seus dados estão seguros e serão usados apenas para enviar o material solicitado.</p>
+                        <div id="contact-status" class="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-white text-gray-600" role="contentinfo">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-500" lang="pt-BR">© 2025 PetCare. Todos os direitos reservados.</p>
+            <div class="mt-4 space-x-4">
+                <a href="https://wa.me/+5519998194874" target="_blank" class="text-gray-500 hover:text-green-600">WhatsApp</a>
+                <a href="mailto:contato@petcareclinica.com" class="text-gray-500 hover:text-green-600">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Exit-Intent Popup -->
+    <div id="exit-popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close" aria-label="Fechar pop-up">×</span>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center" lang="pt-BR">Não Saia Sem Nosso Guia Gratuito!</h3>
+            <p class="text-gray-600 text-center mb-4" lang="pt-BR">Baixe nosso Guia de Cuidados Pet para manter seu amigo saudável!</p>
+            <form id="popup-form">
+                <div class="space-y-4">
+                    <input type="text" name="nome" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900" placeholder="Seu Nome" required>
+                    <input type="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900" placeholder="Seu E-mail" required>
+                    <button type="submit" class="cta-button w-full px-4 py-2 text-white font-semibold rounded-lg" aria-label="Baixe Agora">Baixe Agora</button>
+                </div>
+                <div id="popup-status" class="form-status"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Colorful Cuidados Pet Popup -->
+    <div id="colorful-popup" class="popup">
+        <div class="colorful-popup-content">
+            <span class="popup-close" aria-label="Fechar pop-up de cuidados pet">×</span>
+            <div class="text-center">
+                <img src="https://img.icons8.com/color/96/000000/paw.png" alt="Ícone de pata" class="mx-auto mb-4 w-16 h-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3" lang="pt-BR">Cuide do Seu Pet com Nosso Guia!</h3>
+                <p class="text-lg text-gray-700 mb-4" lang="pt-BR">Receba dicas exclusivas para manter seu pet saudável e feliz!</p>
+            </div>
+            <form id="colorful-form">
+                <div class="space-y-4">
+                    <input type="text" name="nome" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-green-600" placeholder="Seu Nome" required>
+                    <input type="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-green-600" placeholder="Seu E-mail" required>
+                    <button type="submit" class="cta-button w-full px-4 py-2 text-white font-semibold rounded-lg" aria-label="Quero o Guia">Quero o Guia</button>
+                </div>
+                <div id="colorful-status" class="form-status"></div>
+            </form>
+            <div class="mt-4 text-center">
+                <a href="https://wa.me/+5519998194874?text=Quero saber mais sobre os cuidados pet!" class="text-green-600 hover:text-green-800 font-semibold" aria-label="Fale pelo WhatsApp">Ou fale pelo WhatsApp agora!</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Flutuante de WhatsApp -->
+    <a href="https://wa.me/+5519998194874" target="_blank" class="whatsapp-button" aria-label="Fale conosco no WhatsApp">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="Ícone do WhatsApp">
+    </a>
+
+    <script>
+        // Inicializa EmailJS
+        (function(){
+            emailjs.init("S-msjiRkJwljtqrvW");
+        })();
+
+        // Função para enviar e-mail via EmailJS
+        function sendEmail(form, statusElement, formId) {
+            statusElement.textContent = "Enviando...";
+            statusElement.classList.remove("success", "error");
+
+            const formData = new FormData(form);
+            const params = {
+                nome: formData.get("nome"),
+                email: formData.get("email"),
+                pet: formData.get("pet") || "Não informado",
+                origem: formId === "colorful-form" ? "Popup Colorido" : formId === "popup-form" ? "Popup Exit" : "Formulário de Contato"
+            };
+
+            emailjs.send("service_bndv2vt", "template_9i31skl", params)
+                .then(() => {
+                    statusElement.textContent = "Guia enviado com sucesso! Verifique seu e-mail para baixar.";
+                    statusElement.classList.add("success");
+                    form.reset();
+                    if (formId === "colorful-form" || formId === "popup-form") {
+                        form.closest('.popup').style.display = 'none';
+                    }
+                }, (error) => {
+                    statusElement.textContent = `Erro ao enviar: ${error.text}`;
+                    statusElement.classList.add("error");
+                });
+        }
+
+        // Formulário de contato
+        document.getElementById("contact-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const status = document.getElementById("contact-status");
+            sendEmail(e.target, status, "contact-form");
+        });
+
+        // Formulário do popup de saída
+        document.getElementById("popup-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const status = document.getElementById("popup-status");
+            sendEmail(e.target, status, "popup-form");
+        });
+
+        // Formulário do popup colorido
+        document.getElementById("colorful-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const status = document.getElementById("colorful-status");
+            sendEmail(e.target, status, "colorful-form");
+        });
+
+        // Menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetTab = document.getElementById(targetId);
+                if (targetTab) {
+                    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    targetTab.classList.add('active');
+                    document.querySelector(`.tab-button[data-tab="${targetId}"]`).classList.add('active');
+                    window.scrollTo({ top: targetTab.offsetTop - 100, behavior: 'smooth' });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const toggle = question.querySelector('.faq-toggle');
+                answer.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        });
+
+        // Tab navigation
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                button.classList.add('active');
+                window.scrollTo({ top: document.getElementById(tabId).offsetTop - 100, behavior: 'smooth' });
+            });
+        });
+
+        // Carousel
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const prevButton = document.querySelector('.carousel-prev');
+        const nextButton = document.querySelector('.carousel-next');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            carouselItems.forEach(item => item.classList.remove('active'));
+            carouselItems[index].classList.add('active');
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
+            showSlide(currentSlide);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % carouselItems.length;
+            showSlide(currentSlide);
+        });
+
+        // Auto-play carousel
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % carouselItems.length;
+            showSlide(currentSlide);
+        }, 5000);
+
+        // Exit-intent popup
+        const exitPopup = document.getElementById('exit-popup');
+        const closeExitPopup = exitPopup.querySelector('.popup-close');
+        const colorfulPopup = document.getElementById('colorful-popup');
+        let exitPopupShown = false;
+
+        document.addEventListener('mouseout', (e) => {
+            if (!exitPopupShown && !e.relatedTarget && e.clientY < 10 && colorfulPopup.style.display !== 'flex') {
+                exitPopup.style.display = 'flex';
+                exitPopupShown = true;
+            }
+        });
+
+        closeExitPopup.addEventListener('click', () => {
+            exitPopup.style.display = 'none';
+        });
+
+        // Colorful popup on load with 2-second delay
+        const closeColorfulPopup = colorfulPopup.querySelector('.popup-close');
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                colorfulPopup.style.display = 'flex';
+            }, 2000);
+        });
+
+        closeColorfulPopup.addEventListener('click', () => {
+            colorfulPopup.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
