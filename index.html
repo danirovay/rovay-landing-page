@@ -1,856 +1,172 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Soluções de TI especializadas em backup, segurança, redes, suporte técnico e multi-atendimento pelo WhatsApp para empresas.">
-    <meta name="keywords" content="TI, backup Veeam, segurança de rede, suporte técnico, infraestrutura de TI, helpdesk, multi-atendimento WhatsApp">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="TechSolutions - Soluções em TI">
-    <meta property="og:description" content="Oferecemos suporte técnico especializado, multi-atendimento pelo WhatsApp e soluções estratégicas para garantir a segurança e eficiência da sua infraestrutura de TI.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
-    <meta property="og:url" content="https://www.techsolutions.com">
-    <title>TechSolutions</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    <!-- EmailJS -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.6.2/dist/email.min.js"></script>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #1F2937;
-        }
-        .navbar {
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .navbar.scrolled {
-            background: rgba(17, 24, 39, 0.95);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover::after {
-            content: '';
-            position: block absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #3B82F6;
-        }
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: #3B82F6;
-            border-radius: 2px;
-        }
-        .service-card, .testimonial-card {
-            background: #1F2937;
-            border: 1px solid #374151;
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .service-card:hover, .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        .service-icon {
-            transition: transform 0.3s ease;
-        }
-        .service-card:hover .service-icon {
-            transform: scale(1.1);
-        }
-        .cta-button {
-            background: linear-gradient(90deg, #1D4ED8, #3B82F6);
-            transition: background 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .cta-button:hover {
-            background: linear-gradient(90deg, #3B82F6, #1D4ED8);
-            transform: scale(1.05);
-        }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .fade-in-delay-1 { animation-delay: 0.2s; }
-        .fade-in-delay-2 { animation-delay: 0.4s; }
-        .fade-in-delay-3 { animation-delay: 0.6s; }
-        .hero {
-            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            position: relative;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-        .hero > div {
-            position: relative;
-            z-index: 2;
-        }
-        .hero-text-large {
-            -webkit-text-stroke: 0.5px #FFFFFF;
-            text-shadow: 0 0 1px #FFFFFF, 0 0 1px #FFFFFF;
-        }
-        .faq-item {
-            background: #1F2937;
-            border: 1px solid #374151;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .faq-question:hover {
-            background: #374151;
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 1rem;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-        .faq-answer.active {
-            max-height: 200px;
-            padding: 1rem;
-        }
-        .faq-toggle {
-            transition: transform 0.3s ease;
-        }
-        .faq-toggle.active {
-            transform: rotate(180deg);
-        }
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .popup-content {
-            background: #1F2937;
-            padding: 2rem;
-            border-radius: 1rem;
-            max-width: 400px;
-            width: 90%;
-            position: relative;
-        }
-        .colorful-popup-content {
-            background: linear-gradient(135deg, #F3F4F6 0%, #FFFFFF 100%);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            max-width: 500px;
-            width: 95%;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: popupZoom 0.5s ease-out;
-        }
-        @keyframes popupZoom {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        .popup-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .popup-content .popup-close {
-            color: #FFFFFF;
-        }
-        .popup-content .popup-close:hover {
-            color: #EF4444;
-            transform: scale(1.2);
-        }
-        .colorful-popup-content .popup-close {
-            color: #1F2937;
-        }
-        .colorful-popup-content .popup-close:hover {
-            color: #EF4444;
-            transform: scale(1.2);
-        }
-        .whatsapp-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: #25D366;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-        .whatsapp-button:hover {
-            transform: scale(1.1);
-        }
-        .whatsapp-button img {
-            width: 30px;
-            height: 30px;
-        }
-        .whatsapp-button::after {
-            content: 'Fale conosco no WhatsApp!';
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            background: #1F2937;
-            color: #ffffff;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            white-space: nowrap;
-        }
-        .whatsapp-button:hover::after {
-            opacity: 1;
-        }
-        .logo {
-            width: 150px;
-            height: 50px;
-            transition: transform 0.3s ease;
-        }
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        @media (max-width: 640px) {
-            .whatsapp-button {
-                width: 50px;
-                height: 50px;
-            }
-            .whatsapp-button img {
-                width: 25px;
-                height: 25px;
-            }
-            .whatsapp-button::after {
-                font-size: 12px;
-                padding: 6px 10px;
-            }
-            .logo {
-                width: 120px;
-                height: 40px;
-            }
-            .colorful-popup-content {
-                padding: 1.5rem;
-                max-width: 90%;
-            }
-        }
-        .form-status {
-            margin-top: 1rem;
-            text-align: center;
-            font-size: 0.875rem;
-            color: #1F2937;
-        }
-        .popup-content .form-status {
-            color: #9CA3AF;
-        }
-        .form-status.success {
-            color: #10B981;
-        }
-        .form-status.error {
-            color: #EF4444;
-        }
-        .multi-benefit {
-            border-left: 4px solid #25D366;
-            padding-left: 1rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AtendeJá | Atendimento WhatsApp + Serviços de TI</title>
+
+<meta name="description" content="AtendeJá une atendimento WhatsApp multicanal com serviços completos de TI: suporte, segurança, backup e infraestrutura para empresas.">
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<style>
+body { background:#0b1220; font-family:Arial, Helvetica, sans-serif; }
+.cta { background:#00d4ff; color:#000; font-weight:bold; }
+.section-title::after {
+  content:''; display:block; width:60px; height:4px;
+  background:#00d4ff; margin:12px auto 0; border-radius:3px;
+}
+.whatsapp {
+  position:fixed; bottom:20px; right:20px;
+  width:60px; height:60px; background:#25d366;
+  border-radius:50%; display:flex; align-items:center;
+  justify-content:center; z-index:999;
+}
+</style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="navbar fixed top-0 left-0 w-full z-50 bg-gray-900">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center">
-                <svg class="logo" viewBox="0 0 225 50" xmlns="http://www.w3.org/2000/svg" aria-label="Logotipo da TechSolutions">
-                    <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <g fill="url(#grad1)">
-                        <rect x="10" y="10" width="20" height="5" rx="1" />
-                        <rect x="20" y="15" width="5" height="25" rx="1" />
-                        <rect x="15" y="35" width="10" height="5" rx="1" transform="rotate(-45 20 37.5)" />
-                    </g>
-                    <text x="40" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" letter-spacing="0.05em" fill="#3B82F6">TECH</text>
-                    <text x="100" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" letter-spacing="0.05em" fill="#FFFFFF">SOLUTIONS</text>
-                </svg>
-            </a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-gray-300 hover:text-blue-600">Início</a>
-                <a href="#sobre" class="nav-link text-gray-300 hover:text-blue-600">Sobre</a>
-                <a href="#servicos" class="nav-link text-gray-300 hover:text-blue-600">Serviços</a>
-                <a href="#multi_atendimento" class="nav-link text-gray-300 hover:text-blue-600">Multi-Atendimento</a>
-                <a href="#depoimentos" class="nav-link text-gray-300 hover:text-blue-600">Depoimentos</a>
-                <a href="#faqs" class="nav-link text-gray-300 hover:text-blue-600">FAQs</a>
-                <a href="#contato" class="nav-link text-gray-300 hover:text-blue-600">Contato</a>
-            </div>
-            <a href="https://wa.me/+5519998194874" target="_blank" class="cta-button hidden md:block px-6 py-2 text-white font-semibold rounded-lg" aria-label="Baixe o Checklist Grátis">Baixe o Checklist Grátis</a>
-            <button class="md:hidden text-gray-300 focus:outline-none" id="menu-toggle" aria-label="Abrir menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </nav>
-        <div class="mobile-menu hidden md:hidden bg-gray-900 shadow-lg">
-            <a href="#home" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Início</a>
-            <a href="#sobre" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Sobre</a>
-            <a href="#servicos" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Serviços</a>
-            <a href="#multi_atendimento" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Multi-Atendimento</a>
-            <a href="#depoimentos" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Depoimentos</a>
-            <a href="#faqs" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">FAQs</a>
-            <a href="#contato" class="block px-4 py-3 text-gray-300 hover:bg-gray-800">Contato</a>
-            <a href="https://wa.me/+5519998194874" target="_blank" class="block px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 text-center">Baixe o Checklist Grátis</a>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero h-screen flex items-center justify-center text-center" role="region" aria-label="Seção principal">
-        <div class="container mx-auto px-4">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in text-black hero-text-large" lang="pt-BR">Soluções de TI para o Seu Negócio</h1>
-            <p class="text-xl md:text-2xl mb-8 fade-in fade-in-delay-1 max-w-3xl mx-auto text-white" lang="pt-BR">
-                Oferecemos suporte técnico especializado e soluções estratégicas para garantir a segurança e eficiência da sua infraestrutura de TI.
-            </p>
-            <a href="#contato" class="cta-button inline-block px-10 py-4 text-lg font-semibold rounded-lg fade-in fade-in-delay-2" aria-label="Baixe o Checklist Grátis">Baixe o Checklist Grátis</a>
-        </div>
-    </section>
+<body class="text-white">
 
-    <!-- Sobre Section -->
-    <section id="sobre" class="py-20 bg-gray-800" role="region" aria-label="Sobre a TechSolutions">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-4xl font-bold text-white" lang="pt-BR">Sobre a TechSolutions</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6" lang="pt-BR">
-                    Somos uma empresa especializada em soluções de TI, comprometida em otimizar a infraestrutura tecnológica de nossos clientes com segurança e inovação.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="fade-in">
-                    <h3 class="text-2xl font-semibold text-white mb-4" lang="pt-BR">Nossa Missão</h3>
-                    <p class="text-gray-300" lang="pt-BR">
-                        Proporcionar suporte técnico confiável e estratégias de TI que impulsionem a produtividade e a segurança das empresas.
-                    </p>
-                </div>
-                <div class="fade-in fade-in-delay-1">
-                    <h3 class="text-2xl font-semibold text-white mb-4" lang="pt-BR">Nossa Experiência</h3>
-                    <p class="text-gray-300" lang="pt-BR">
-                        Com uma equipe de especialistas em tecnologia, entregamos soluções personalizadas para atender às necessidades específicas de cada cliente.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Serviços Section -->
-    <section id="servicos" class="py-20 bg-gray-900" role="region" aria-label="Nossos serviços de TI">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-4xl font-bold text-white" lang="pt-BR">Nossos Serviços</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6" lang="pt-BR">
-                    Oferecemos uma gama completa de serviços de TI para garantir a segurança, eficiência e inovação da sua infraestrutura tecnológica.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="service-card fade-in fade-in-delay-1">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/technical-support.png" alt="Ícone de suporte técnico para Helpdesk" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Helpdesk</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Manutenção de computadores, suporte remoto e presencial sob demanda para resolver problemas rapidamente.
-                        </p>
-                    </div>
-                </div>
-                <div class="service-card fade-in fade-in-delay-2">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/service.png" alt="Ícone de gestão de serviços para Service Desk" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Service Desk</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Suporte técnico especializado, gestão estratégica de TI, atualização tecnológica, monitoramento e gerenciamento contínuo.
-                        </p>
-                    </div>
-                </div>
-                <div class="service-card fade-in fade-in-delay-3">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/checklist.png" alt="Ícone de checklist para Inventário de Hardware" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Inventário de Hardware</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Documentação completa da infraestrutura de TI: servidores, redes, estações, softwares, sistemas e periféricos.
-                        </p>
-                    </div>
-                </div>
-                <div class="service-card fade-in fade-in-delay-1">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/certificate.png" alt="Ícone de certificado para Licenciamento de Software" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Licenciamento de Software</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Gerenciamento de licenças e assessoria na legalização de softwares corporativos, minimizando riscos de fiscalizações.
-                        </p>
-                    </div>
-                </div>
-                <div class="service-card fade-in fade-in-delay-2">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/data-backup.png" alt="Ícone de backup de dados para Veeam Backup & Replication" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Backup com Veeam Backup & Replication</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Soluções avançadas de backup e recuperação de desastres com Veeam, oferecendo backups rápidos, restauração instantânea e replicação segura para ambientes virtuais, físicos e em nuvem.
-                        </p>
-                    </div>
-                </div>
-                <div class="service-card fade-in fade-in-delay-3">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/security-checked.png" alt="Ícone de segurança verificada para Segurança de Rede" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Segurança</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Políticas de segurança de rede (anti-ransomware), antivírus gerenciado e anti-spam para proteção contra ameaças.
-                        </p>
-                    </div>
-                </div>
-                <div class="service-card fade-in fade-in-delay-1">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/firewall.png" alt="Ícone de firewall para Segurança de Rede" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Firewall</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Controle de acesso, filtro de conteúdo, balanceamento de links e VPN para produtividade e segurança contra invasões.
-                        </p>
-                    </div>
-                </div>
-                <div class="service-card fade-in fade-in-delay-2">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/network.png" alt="Ícone de rede para Infraestrutura de Redes" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Infraestrutura de Redes</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Projetos de redes cabeadas e wireless para aumentar disponibilidade e produtividade empresarial.
-                        </p>
-                    </div>
-                </div>
-                <div class="service-card fade-in fade-in-delay-3">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/server.png" alt="Ícone de servidor para Implantação de Servidores" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Implantação de Servidores</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Dimensionamento, otimização e virtualização de servidores para maior eficiência e disponibilidade.
-                        </p>
-                    </div>
-                </div>
-                <div class="service-card fade-in fade-in-delay-1">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/80/ffffff/networking-manager.png" alt="Ícone de cabeamento para Cabeamento e Certificação" class="service-icon mx-auto mb-6 w-20 h-20">
-                        <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Cabeamento e Certificação</h3>
-                        <p class="text-gray-300" lang="pt-BR">
-                            Cabeamento estruturado, reorganização de racks e certificação para conformidade com normas técnicas.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-16">
-                <a href="https://wa.me/+5519998194874" target="_blank" class="cta-button inline-block px-10 py-4 text-white font-semibold rounded-lg text-lg shadow-lg" aria-label="Solicite Sua Análise Gratuita">Solicite Sua Análise Gratuita</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Multi-Atendimento Section -->
-    <section id="multi_atendimento" class="py-20 bg-gray-900" role="region" aria-label="Serviço de Multi-Atendimento pelo WhatsApp">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-4xl font-bold text-white" lang="pt-BR">Multi-Atendimento pelo WhatsApp</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6 fade-in" lang="pt-BR">
-                    Transforme o atendimento da sua empresa com nossa solução de multi-atendimento pelo WhatsApp. Responda clientes em tempo real, escale o suporte com automação e integre com sua infraestrutura de TI.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <!-- Benefícios -->
-                <div class="fade-in fade-in-delay-1">
-                    <ul class="space-y-6">
-                        <li class="multi-benefit">
-                            <p class="text-gray-300" lang="pt-BR"><span class="font-semibold text-white">Atendimento simultâneo:</span> Gerencie múltiplos clientes ao mesmo tempo com eficiência.</p>
-                        </li>
-                        <li class="multi-benefit">
-                            <p class="text-gray-300" lang="pt-BR"><span class="font-semibold text-white">Automação inteligente:</span> Use chatbots para respostas rápidas e libere sua equipe para casos complexos.</p>
-                        </li>
-                        <li class="multi-benefit">
-                            <p class="text-gray-300" lang="pt-BR"><span class="font-semibold text-white">Integração com TI:</span> Conecte o WhatsApp ao seu CRM ou helpdesk para maior controle.</p>
-                        </li>
-                    </ul>
-                    <div class="text-center md:text-left mt-8">
-                        <a href="https://wa.me/+5519998194874?text=Quero saber mais sobre o Multi-Atendimento pelo WhatsApp!" class="cta-button inline-block px-10 py-4 text-white font-semibold rounded-lg" aria-label="Saiba mais sobre Multi-Atendimento">Saiba Mais</a>
-                    </div>
-                </div>
-                <!-- Depoimento e ícone -->
-                <div class="fade-in fade-in-delay-2 text-center">
-                    <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="Ícone do WhatsApp" class="mx-auto mb-6 w-20 h-20">
-                    <div class="testimonial-card p-6 border-l-4 border-blue-600">
-                        <p class="text-gray-300 italic text-center mb-4" lang="pt-BR">"O Multi-Atendimento pelo WhatsApp da TechSolutions reduziu nosso tempo de resposta em 20% e encantou nossos clientes!"</p>
-                        <h3 class="text-xl font-semibold text-white text-center" lang="pt-BR">Ana Ribeiro</h3>
-                        <p class="text-gray-400 text-center" lang="pt-BR">Gerente de Suporte, Empresa 456</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Depoimentos Section -->
-    <section id="depoimentos" class="py-20 bg-gray-800" role="region" aria-label="Depoimentos de clientes">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-4xl font-bold text-white" lang="pt-BR">O que Nossos Clientes Dizem</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6" lang="pt-BR">
-                    Veja como a TechSolutions tem ajudado empresas a otimizar sua infraestrutura de TI.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="testimonial-card fade-in fade-in-delay-1">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/64/ffffff/user-male-circle.png" alt="Ícone de perfil de João Silva" class="w-16 h-16 mx-auto mb-4">
-                        <p class="text-gray-300 italic text-center mb-4" lang="pt-BR">"O backup com Veeam implementado pela TechSolutions garantiu nossa recuperação rápida."</p>
-                        <h3 class="text-xl font-semibold text-white text-center" lang="pt-BR">João Silva</h3>
-                        <p class="text-gray-400 text-center" lang="pt-BR">CEO, Empresa XYZ</p>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in fade-in-delay-2">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/64/ffffff/user-female-circle.png" alt="Ícone de perfil de Maria Oliveira" class="w-16 h-16 mx-auto mb-4">
-                        <p class="text-gray-300 italic text-center mb-4" lang="pt-BR">"O suporte do Helpdesk é excepcional, sempre resolvendo nossos problemas em minutos."</p>
-                        <h3 class="text-xl font-semibold text-white text-center" lang="pt-BR">Maria Oliveira</h3>
-                        <p class="text-gray-400 text-center" lang="pt-BR">Gerente de TI, Empresa ABC</p>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in fade-in-delay-3">
-                    <div class="p-8">
-                        <img src="https://img.icons8.com/ios-filled/64/ffffff/user.png" alt="Ícone de perfil de Carlos Mendes" class="w-16 h-16 mx-auto mb-4">
-                        <p class="text-gray-300 italic text-center mb-4" lang="pt-BR">"A infraestrutura de rede projetada pela equipe aumentou nossa produtividade em 30%."</p>
-                        <h3 class="text-xl font-semibold text-white text-center" lang="pt-BR">Carlos Mendes</h3>
-                        <p class="text-gray-400 text-center" lang="pt-BR">Diretor Operacional, Empresa DEF</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQs Section -->
-    <section id="faqs" class="py-20 bg-gray-900" role="region" aria-label="Perguntas frequentes">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-4xl font-bold text-white" lang="pt-BR">Perguntas Frequentes</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6" lang="pt-BR">
-                    Tire suas dúvidas sobre nossos serviços de TI e como podemos ajudar sua empresa.
-                </p>
-            </div>
-            <div class="max-w-3xl mx-auto">
-                <div class="faq-item fade-in fade-in-delay-1">
-                    <div class="faq-question">
-                        <h3 class="text-xl font-semibold text-white" lang="pt-BR">Quais são os benefícios do backup com Veeam?</h3>
-                        <img src="https://img.icons8.com/ios-filled/24/ffffff/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-300" lang="pt-BR">
-                            O Veeam oferece backups rápidos com deduplicação, restauração instantânea de VMs e replicação segura para recuperação de desastres, protegendo ambientes virtuais, físicos e em nuvem.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in fade-in-delay-2">
-                    <div class="faq-question">
-                        <h3 class="text-xl font-semibold text-white" lang="pt-BR">Como funciona o suporte do Helpdesk?</h3>
-                        <img src="https://img.icons8.com/ios-filled/24/ffffff/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-300" lang="pt-BR">
-                            Nosso suporte oferece atendimento remoto e presencial sob demanda, com resolução rápida para problemas em computadores e redes.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in fade-in-delay-3">
-                    <div class="faq-question">
-                        <h3 class="text-xl font-semibold text-white" lang="pt-BR">Quanto tempo leva para implementar uma infraestrutura de rede?</h3>
-                        <img src="https://img.icons8.com/ios-filled/24/ffffff/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-300" lang="pt-BR">
-                            O tempo varia de 1 a 4 semanas, dependendo do porte do projeto, incluindo planejamento, instalação e testes.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in fade-in-delay-1">
-                    <div class="faq-question">
-                        <h3 class="text-xl font-semibold text-white" lang="pt-BR">Vocês oferecem suporte para pequenas empresas?</h3>
-                        <img src="https://img.icons8.com/ios-filled/24/ffffff/chevron-down.png" alt="Ícone de expansão" class="faq-toggle w-6 h-6">
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-300" lang="pt-BR">
-                            Sim! Oferecemos soluções personalizadas para empresas de todos os tamanhos, incluindo suporte técnico acessível e escalável para pequenas empresas.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contato Section -->
-    <section id="contato" class="py-20 bg-gray-800" role="region" aria-label="Formulário de contato">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-4xl font-bold text-white" lang="pt-BR">Baixe Nosso Checklist Gratuito</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-6" lang="pt-BR">
-                    Descubra os 10 passos para avaliar a segurança da sua infraestrutura de TI e proteja sua empresa!
-                </p>
-            </div>
-            <div class="max-w-lg mx-auto bg-gray-900 p-8 rounded-lg shadow-lg fade-in">
-                <form id="contact-form">
-                    <div class="space-y-6">
-                        <div>
-                            <label for="nome" class="block text-gray-300 font-semibold mb-2" lang="pt-BR">Nome</label>
-                            <input type="text" id="nome" name="nome" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Seu Nome" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-300 font-semibold mb-2" lang="pt-BR">E-mail</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Seu E-mail" required>
-                        </div>
-                        <div>
-                            <label for="empresa" class="block text-gray-300 font-semibold mb-2" lang="pt-BR">Empresa (opcional)</label>
-                            <input type="text" id="empresa" name="empresa" class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-800 text-white" placeholder="Nome da Empresa">
-                        </div>
-                        <button type="submit" class="cta-button w-full px-6 py-3 text-white font-semibold rounded-lg" aria-label="Baixe o Checklist Grátis">Baixe Agora</button>
-                    </div>
-                    <p class="text-gray-400 text-sm text-center mt-4" lang="pt-BR">Seus dados estão seguros e serão usados apenas para enviar o material solicitado.</p>
-                    <div id="contact-status" class="form-status"></div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 bg-gray-900 text-gray-300" role="contentinfo">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-400" lang="pt-BR">© 2025 TechSolutions. Todos os direitos reservados.</p>
-            <div class="mt-4 space-x-4">
-                <a href="https://wa.me/+5519998194874" target="_blank" class="text-gray-400 hover:text-blue-600">WhatsApp</a>
-                <a href="mailto:contato@techsolutions.com" class="text-gray-400 hover:text-blue-600">Email</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Exit-Intent Popup -->
-    <div id="exit-popup" class="popup">
-        <div class="popup-content">
-            <span class="popup-close" aria-label="Fechar pop-up">×</span>
-            <h3 class="text-2xl font-semibold text-white mb-4 text-center" lang="pt-BR">Não Saia Sem Nosso Checklist Gratuito!</h3>
-            <p class="text-gray-300 text-center mb-6" lang="pt-BR">Baixe os 10 passos para avaliar a segurança da sua infraestrutura de TI.</p>
-            <form id="popup-form">
-                <div class="space-y-4">
-                    <input type="text" name="nome" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white" placeholder="Seu Nome" required>
-                    <input type="email" name="email" class="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800 text-white" placeholder="Seu E-mail" required>
-                    <button type="submit" class="cta-button w-full px-4 py-2 text-white font-semibold rounded-lg" aria-label="Baixe Agora">Baixe Agora</button>
-                </div>
-                <div id="popup-status" class="form-status"></div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Colorful Multi-Atendimento Popup -->
-    <div id="colorful-popup" class="popup">
-        <div class="colorful-popup-content">
-            <span class="popup-close" aria-label="Fechar pop-up de multi-atendimento">×</span>
-            <div class="text-center">
-                <img src="https://img.icons8.com/color/96/000000/whatsapp.png" alt="Ícone do WhatsApp" class="mx-auto mb-4 w-16 h-16">
-                <h3 class="text-3xl font-bold text-gray-900 mb-4" lang="pt-BR">Atenda 10x Mais Rápido com WhatsApp!</h3>
-                <p class="text-lg text-gray-700 mb-6" lang="pt-BR">Escale seu atendimento com nossa solução multi-atendimento e receba nosso checklist gratuito!</p>
-            </div>
-            <form id="colorful-form">
-                <div class="space-y-4">
-                    <input type="text" name="nome" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-600" placeholder="Seu Nome" required>
-                    <input type="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-600" placeholder="Seu E-mail" required>
-                    <button type="submit" class="cta-button w-full px-4 py-2 text-white font-semibold rounded-lg" aria-label="Quero o Checklist">Quero o Checklist</button>
-                </div>
-                <div id="colorful-status" class="form-status"></div>
-            </form>
-            <div class="mt-4 text-center">
-                <a href="https://wa.me/+5519998194874?text=Quero saber mais sobre o Multi-Atendimento pelo WhatsApp!" class="text-blue-600 hover:text-blue-800 font-semibold" aria-label="Fale pelo WhatsApp">Ou fale pelo WhatsApp agora!</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Botão Flutuante de WhatsApp -->
-    <a href="https://wa.me/+5519998194874" target="_blank" class="whatsapp-button" aria-label="Fale conosco no WhatsApp">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="Ícone do WhatsApp">
+<!-- HERO -->
+<section class="min-h-screen flex items-center justify-center text-center px-6 bg-gradient-to-br from-gray-900 to-blue-900">
+  <div>
+    <h1 class="text-5xl font-bold mb-6">AtendeJá</h1>
+    <p class="text-xl max-w-3xl mx-auto mb-8">
+      Atendimento WhatsApp multicanal integrado a uma estrutura completa de TI.
+      Mais vendas, mais controle e menos problemas tecnológicos.
+    </p>
+    <a href="#contato" class="cta px-10 py-4 rounded-lg text-lg inline-block">
+      Falar com um Especialista
     </a>
+  </div>
+</section>
 
-    <script>
-        // Inicializa EmailJS
-        (function(){
-            emailjs.init("S-msjiRkJwljtqrvW");
-        })();
+<!-- BENEFÍCIOS -->
+<section class="py-20 px-6 max-w-6xl mx-auto">
+  <h2 class="text-4xl font-bold text-center section-title">
+    Por que escolher o AtendeJá?
+  </h2>
 
-        // Função para enviar e-mail via EmailJS
-        function sendEmail(form, statusElement, formId) {
-            statusElement.textContent = "Enviando...";
-            statusElement.classList.remove("success", "error");
+  <div class="grid md:grid-cols-4 gap-6 mt-16">
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Mais Vendas</h3>
+      <p>Atendimento rápido aumenta conversão e fidelização.</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Menos Custos</h3>
+      <p>Automatize até 60% dos atendimentos com bots.</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Organização Total</h3>
+      <p>Filas, setores, histórico e gestão por usuários.</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Base de TI Sólida</h3>
+      <p>Infraestrutura segura garantindo estabilidade.</p>
+    </div>
+  </div>
+</section>
 
-            const formData = new FormData(form);
-            const params = {
-                nome: formData.get("nome"),
-                email: formData.get("email"),
-                empresa: formData.get("empresa") || "Não informado",
-                origem: formId === "colorful-form" ? "Popup Colorido" : formId === "popup-form" ? "Popup Exit" : "Formulário de Contato"
-            };
+<!-- FUNCIONALIDADES ATENDEJÁ -->
+<section class="py-20 px-6 bg-gray-900">
+  <h2 class="text-4xl font-bold text-center section-title">
+    Plataforma AtendeJá
+  </h2>
 
-            emailjs.send("service_bndv2vt", "template_9i31skl", params)
-                .then(() => {
-                    statusElement.textContent = "Checklist enviado com sucesso! Verifique seu e-mail para baixar.";
-                    statusElement.classList.add("success");
-                    form.reset();
-                    if (formId === "colorful-form" || formId === "popup-form") {
-                        form.closest('.popup').style.display = 'none';
-                    }
-                }, (error) => {
-                    statusElement.textContent = `Erro ao enviar: ${error.text}`;
-                    statusElement.classList.add("error");
-                });
-        }
+  <div class="grid md:grid-cols-3 gap-6 mt-16 max-w-6xl mx-auto">
+    <div class="bg-gray-800 p-6 rounded-lg">Multi Atendimento WhatsApp</div>
+    <div class="bg-gray-800 p-6 rounded-lg">Chatbot Inteligente</div>
+    <div class="bg-gray-800 p-6 rounded-lg">Histórico Completo</div>
+    <div class="bg-gray-800 p-6 rounded-lg">Transcrição de Áudios</div>
+    <div class="bg-gray-800 p-6 rounded-lg">Mensagens Agendadas</div>
+    <div class="bg-gray-800 p-6 rounded-lg">Gestão de Usuários</div>
+  </div>
+</section>
 
-        // Formulário de contato
-        document.getElementById("contact-form").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const status = document.getElementById("contact-status");
-            sendEmail(e.target, status, "contact-form");
-        });
+<!-- SERVIÇOS DE TI -->
+<section class="py-20 px-6 bg-gray-800">
+  <h2 class="text-4xl font-bold text-center section-title">
+    Serviços de TI Corporativos
+  </h2>
 
-        // Formulário do popup de saída
-        document.getElementById("popup-form").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const status = document.getElementById("popup-status");
-            sendEmail(e.target, status, "popup-form");
-        });
+  <p class="text-center max-w-3xl mx-auto mt-6 text-gray-300">
+    O AtendeJá funciona sobre uma base sólida de serviços de TI,
+    garantindo segurança, performance e disponibilidade.
+  </p>
 
-        // Formulário do popup colorido
-        document.getElementById("colorful-form").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const status = document.getElementById("colorful-status");
-            sendEmail(e.target, status, "colorful-form");
-        });
+  <div class="grid md:grid-cols-3 gap-6 mt-16 max-w-6xl mx-auto">
+    <div class="bg-gray-900 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Helpdesk & Service Desk</h3>
+      <p>Suporte remoto e presencial com SLA definido.</p>
+    </div>
+    <div class="bg-gray-900 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Backup Corporativo</h3>
+      <p>Backup com Veeam e recuperação de desastres.</p>
+    </div>
+    <div class="bg-gray-900 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Segurança & Firewall</h3>
+      <p>Firewall, VPN, antivírus e proteção contra ransomware.</p>
+    </div>
+    <div class="bg-gray-900 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Infraestrutura de Redes</h3>
+      <p>Redes cabeadas, Wi-Fi corporativo e projetos.</p>
+    </div>
+    <div class="bg-gray-900 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Servidores & Virtualização</h3>
+      <p>Implantação e otimização de servidores.</p>
+    </div>
+    <div class="bg-gray-900 p-6 rounded-lg">
+      <h3 class="text-blue-400 font-bold mb-2">Licenciamento de Software</h3>
+      <p>Gestão de licenças e conformidade legal.</p>
+    </div>
+  </div>
+</section>
 
-        // Menu toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+<!-- RESULTADOS -->
+<section class="py-20 px-6 max-w-6xl mx-auto text-center">
+  <h2 class="text-4xl font-bold section-title">Resultados Reais</h2>
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                mobileMenu.classList.add('hidden');
-            });
-        });
+  <div class="grid md:grid-cols-4 gap-6 mt-16">
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <strong class="text-3xl text-blue-400">+60%</strong><br>Produtividade
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <strong class="text-3xl text-blue-400">-40%</strong><br>Tempo de Resposta
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <strong class="text-3xl text-blue-400">24/7</strong><br>Automação
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <strong class="text-3xl text-blue-400">100%</strong><br>Controle
+    </div>
+  </div>
+</section>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+<!-- CONTATO -->
+<section id="contato" class="py-20 px-6 bg-gray-900">
+  <h2 class="text-4xl font-bold text-center section-title">
+    Fale com um Especialista
+  </h2>
 
-        // FAQ toggle
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const toggle = question.querySelector('.faq-toggle');
-                answer.classList.toggle('active');
-                toggle.classList.toggle('active');
-            });
-        });
+  <form class="max-w-xl mx-auto mt-12 space-y-4">
+    <input class="w-full p-4 rounded bg-gray-800 text-white" placeholder="Nome" required>
+    <input class="w-full p-4 rounded bg-gray-800 text-white" placeholder="E-mail" required>
+    <input class="w-full p-4 rounded bg-gray-800 text-white" placeholder="WhatsApp" required>
+    <button class="cta w-full p-4 rounded-lg">
+      Quero uma Demonstração
+    </button>
+  </form>
+</section>
 
-        // Exit-intent popup
-        const exitPopup = document.getElementById('exit-popup');
-        const closeExitPopup = exitPopup.querySelector('.popup-close');
-        const colorfulPopup = document.getElementById('colorful-popup');
-        let exitPopupShown = false;
+<footer class="py-8 text-center text-gray-400 bg-black">
+  © 2026 AtendeJá • Atendimento Multicanal + Serviços de TI
+</footer>
 
-        document.addEventListener('mouseout', (e) => {
-            if (!exitPopupShown && !e.relatedTarget && e.clientY < 10 && colorfulPopup.style.display !== 'flex') {
-                exitPopup.style.display = 'flex';
-                exitPopupShown = true;
-            }
-        });
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/5519998194874" target="_blank">
+  <img src="https://img.icons8.com/ios-filled/30/ffffff/whatsapp.png">
+</a>
 
-        closeExitPopup.addEventListener('click', () => {
-            exitPopup.style.display = 'none';
-        });
-
-        // Colorful popup on load with 2-second delay
-        const closeColorfulPopup = colorfulPopup.querySelector('.popup-close');
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                colorfulPopup.style.display = 'flex';
-            }, 2000);
-        });
-
-        closeColorfulPopup.addEventListener('click', () => {
-            colorfulPopup.style.display = 'none';
-        });
-    </script>
 </body>
 </html>
