@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AtendePro | Multiatendimento WhatsApp</title>
+<title>AtendePro | Central Profissional de WhatsApp</title>
 
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -11,120 +11,139 @@
 <style>
 body{
   margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#f8f9fa;
-  color:#111;
-}
-
-.hero{
-  background-image:url('https://images.unsplash.com/photo-1556155092-490a1ba16284');
-  background-size:cover;
-  background-position:center;
-  position:relative;
+  font-family: 'Segoe UI', sans-serif;
+  background:#0f0f14;
   color:white;
+  overflow-x:hidden;
 }
 
-.overlay{
-  background:linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.6));
-  padding:120px 20px;
+/* HERO */
+.hero{
+  min-height:100vh;
+  background: radial-gradient(circle at 20% 30%, #00e67622, transparent 40%),
+              radial-gradient(circle at 80% 70%, #00e5ff22, transparent 40%),
+              #0f0f14;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-align:center;
+  padding:40px;
 }
 
 .hero h1{
-  font-size:52px;
+  font-size:64px;
   margin:0;
+  background:linear-gradient(90deg,#00e676,#00e5ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .hero p{
   font-size:22px;
   max-width:750px;
-  margin:20px auto;
+  margin:25px auto;
+  color:#ccc;
 }
 
 .btn{
-  background:#00e676;
-  padding:16px 40px;
-  border-radius:8px;
-  font-weight:bold;
+  padding:18px 45px;
+  border-radius:12px;
+  background:linear-gradient(90deg,#00e676,#00e5ff);
   color:black;
+  font-weight:bold;
   text-decoration:none;
   display:inline-block;
-  margin-top:30px;
   transition:0.3s;
+  box-shadow:0 10px 25px rgba(0,229,255,0.3);
 }
 
 .btn:hover{
-  background:#00c853;
-  transform:scale(1.05);
+  transform:scale(1.08);
 }
 
+/* GLASS CARDS */
 .section{
-  padding:80px 20px;
+  padding:100px 20px;
   text-align:center;
-}
-
-.section h2{
-  font-size:36px;
-  margin-bottom:40px;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:30px;
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
 }
 
 .card{
-  background:white;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  padding:40px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.1);
   transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-8px);
+  transform:translateY(-10px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
 
-.dark-section{
+.stats{
+  font-size:48px;
+  font-weight:bold;
+  color:#00e676;
+}
+
+/* PRICING */
+.pricing{
+  background:linear-gradient(135deg,#00e67622,#00e5ff22);
+  padding:100px 20px;
+  text-align:center;
+}
+
+.price-box{
   background:#111;
-  color:white;
-}
-
-.pricing-card{
-  background:white;
-  padding:40px;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  padding:60px;
+  border-radius:20px;
+  display:inline-block;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
 }
 
 .price{
-  font-size:40px;
+  font-size:52px;
   font-weight:bold;
   margin:20px 0;
 }
 
+/* FOOTER */
 .footer{
   background:#000;
-  color:white;
-  padding:40px;
+  padding:50px;
   text-align:center;
   margin-top:60px;
+  color:#777;
 }
 
-.whatsapp-btn{
+/* WHATSAPP FLOAT */
+.whatsapp{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#25D366;
   color:white;
-  padding:15px 20px;
+  padding:16px 22px;
   border-radius:50px;
-  text-decoration:none;
   font-weight:bold;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  text-decoration:none;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7);}
+  70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
 }
 </style>
 </head>
@@ -136,77 +155,72 @@ body{
 const e = React.createElement;
 
 function App(){
-  return e("div", null,
+  return e("div",null,
 
     // HERO
     e("section",{className:"hero"},
-      e("div",{className:"overlay"},
+      e("div",null,
         e("h1",null,"AtendePro"),
-        e("p",null,"Transforme seu WhatsApp em uma central profissional de atendimento e vendas. Multiatendimento, automação e relatórios em um só lugar."),
-        e("a",{href:"#pricing",className:"btn"},"Começar agora")
+        e("p",null,"Seu WhatsApp pode vender 3x mais. Transforme conversas em vendas com multiatendimento profissional, automação inteligente e métricas em tempo real."),
+        e("a",{href:"#pricing",className:"btn"},"QUERO VENDER MAIS")
       )
     ),
 
     // BENEFÍCIOS
     e("section",{className:"section"},
-      e("h2",null,"Por que escolher o AtendePro?"),
+      e("h2",null,"Recursos Poderosos"),
       e("div",{className:"grid"},
 
         e("div",{className:"card"},
-          e("h3",null,"Multiatendimento Real"),
-          e("p",null,"Vários atendentes no mesmo número com histórico centralizado.")
-        ),
-
-        e("div",{className:"card"},
-          e("h3",null,"Setores & Filas"),
-          e("p",null,"Distribuição automática por departamento.")
+          e("h3",null,"Multiatendimento Ilimitado"),
+          e("p",null,"Vários atendentes no mesmo número com total controle.")
         ),
 
         e("div",{className:"card"},
           e("h3",null,"Automação Inteligente"),
-          e("p",null,"Chatbot, mensagens automáticas e respostas rápidas.")
+          e("p",null,"Chatbots, mensagens automáticas e funil de vendas.")
         ),
 
         e("div",{className:"card"},
-          e("h3",null,"Relatórios Avançados"),
-          e("p",null,"Métricas de desempenho e produtividade.")
+          e("h3",null,"Gestão por Setores"),
+          e("p",null,"Distribuição automática e filas organizadas.")
         )
 
       )
     ),
 
-    // COMO FUNCIONA
-    e("section",{className:"section dark-section"},
-      e("h2",null,"Como funciona?"),
+    // ESTATÍSTICAS
+    e("section",{className:"section"},
+      e("h2",null,"Resultados Reais"),
       e("div",{className:"grid"},
 
         e("div",{className:"card"},
-          e("h3",null,"1️⃣ Conecte"),
-          e("p",null,"Integre seu WhatsApp Business API.")
+          e("div",{className:"stats"},"+40%"),
+          e("p",null,"Redução no tempo de resposta")
         ),
 
         e("div",{className:"card"},
-          e("h3",null,"2️⃣ Configure"),
-          e("p",null,"Crie usuários e setores.")
+          e("div",{className:"stats"},"+65%"),
+          e("p",null,"Aumento na produtividade")
         ),
 
         e("div",{className:"card"},
-          e("h3",null,"3️⃣ Atenda"),
-          e("p",null,"Comece a vender e atender simultaneamente.")
+          e("div",{className:"stats"},"3x"),
+          e("p",null,"Mais conversões pelo WhatsApp")
         )
 
       )
     ),
 
-    // PLANOS
-    e("section",{className:"section", id:"pricing"},
+    // PRICING
+    e("section",{className:"pricing", id:"pricing"},
       e("h2",null,"Plano Profissional"),
-      e("div",{className:"pricing-card"},
+      e("div",{className:"price-box"},
         e("div",{className:"price"},"R$97/mês"),
         e("p",null,"Multiatendimento ilimitado"),
         e("p",null,"Relatórios completos"),
-        e("p",null,"Automação básica inclusa"),
-        e("a",{href:"#",className:"btn"},"Assinar agora")
+        e("p",null,"Automação inclusa"),
+        e("a",{href:"#",className:"btn"},"ASSINAR AGORA")
       )
     ),
 
@@ -215,12 +229,8 @@ function App(){
       "© "+new Date().getFullYear()+" AtendePro - Todos os direitos reservados."
     ),
 
-    // BOTÃO WHATSAPP
-    e("a",{
-      href:"https://wa.me/5519998194874",
-      className:"whatsapp-btn",
-      target:"_blank"
-    },"Falar no WhatsApp")
+    // WHATSAPP
+    e("a",{href:"https://wa.me/SEUNUMEROAQUI",className:"whatsapp",target:"_blank"},"Falar no WhatsApp")
   )
 }
 
