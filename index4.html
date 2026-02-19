@@ -1,45 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AtendePro - Multiatendimento WhatsApp</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AtendePro | Multiatendimento WhatsApp</title>
 
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
-  <style>
-    body { margin:0; font-family:Arial; }
-    .section { padding:80px 20px; text-align:center; }
-    .hero { background:#000; color:#fff; padding:100px 20px; }
-    .btn {
-      background:#00e676;
-      padding:15px 35px;
-      border-radius:10px;
-      font-weight:bold;
-      color:#000;
-      text-decoration:none;
-      display:inline-block;
-      margin-top:25px;
-    }
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:25px;
-      margin-top:40px;
-    }
-    .card {
-      background:#f5f5f5;
-      padding:25px;
-      border-radius:12px;
-    }
-    .footer {
-      background:#000;
-      color:#fff;
-      padding:30px;
-      margin-top:60px;
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f8f9fa;
+  color:#111;
+}
+
+.hero{
+  background-image:url('https://images.unsplash.com/photo-1556155092-490a1ba16284');
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  color:white;
+}
+
+.overlay{
+  background:linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.6));
+  padding:120px 20px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:52px;
+  margin:0;
+}
+
+.hero p{
+  font-size:22px;
+  max-width:750px;
+  margin:20px auto;
+}
+
+.btn{
+  background:#00e676;
+  padding:16px 40px;
+  border-radius:8px;
+  font-weight:bold;
+  color:black;
+  text-decoration:none;
+  display:inline-block;
+  margin-top:30px;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#00c853;
+  transform:scale(1.05);
+}
+
+.section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.section h2{
+  font-size:36px;
+  margin-bottom:40px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.card{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+}
+
+.dark-section{
+  background:#111;
+  color:white;
+}
+
+.pricing-card{
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.price{
+  font-size:40px;
+  font-weight:bold;
+  margin:20px 0;
+}
+
+.footer{
+  background:#000;
+  color:white;
+  padding:40px;
+  text-align:center;
+  margin-top:60px;
+}
+
+.whatsapp-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:15px 20px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+</style>
 </head>
 
 <body>
@@ -48,70 +135,93 @@
 <script>
 const e = React.createElement;
 
-function App() {
+function App(){
   return e("div", null,
 
     // HERO
-    e("section", { className: "hero" },
-      e("h1", null, "AtendePro"),
-      e("p", null, "Plataforma completa de multiatendimento via WhatsApp para empresas que querem organizar conversas e aumentar vendas."),
-      e("a", { href: "#beneficios", className: "btn" }, "Ver benefícios")
+    e("section",{className:"hero"},
+      e("div",{className:"overlay"},
+        e("h1",null,"AtendePro"),
+        e("p",null,"Transforme seu WhatsApp em uma central profissional de atendimento e vendas. Multiatendimento, automação e relatórios em um só lugar."),
+        e("a",{href:"#pricing",className:"btn"},"Começar agora")
+      )
     ),
 
     // BENEFÍCIOS
-    e("section", { className: "section", id: "beneficios" },
-      e("h2", null, "Por que escolher o AtendePro?"),
-      e("div", { className: "grid" },
+    e("section",{className:"section"},
+      e("h2",null,"Por que escolher o AtendePro?"),
+      e("div",{className:"grid"},
 
-        e("div", { className: "card" },
-          e("h3", null, "✔ Multiatendimento"),
-          e("p", null, "Atenda vários clientes ao mesmo tempo no mesmo número.")
+        e("div",{className:"card"},
+          e("h3",null,"Multiatendimento Real"),
+          e("p",null,"Vários atendentes no mesmo número com histórico centralizado.")
         ),
 
-        e("div", { className: "card" },
-          e("h3", null, "✔ Setores & Filas"),
-          e("p", null, "Distribuição automática para equipes e departamentos.")
+        e("div",{className:"card"},
+          e("h3",null,"Setores & Filas"),
+          e("p",null,"Distribuição automática por departamento.")
         ),
 
-        e("div", { className: "card" },
-          e("h3", null, "✔ Automação"),
-          e("p", null, "Chatbot, respostas rápidas e mensagens automáticas.")
+        e("div",{className:"card"},
+          e("h3",null,"Automação Inteligente"),
+          e("p",null,"Chatbot, mensagens automáticas e respostas rápidas.")
         ),
 
-        e("div", { className: "card" },
-          e("h3", null, "✔ Relatórios"),
-          e("p", null, "Métricas e acompanhamento em tempo real.")
+        e("div",{className:"card"},
+          e("h3",null,"Relatórios Avançados"),
+          e("p",null,"Métricas de desempenho e produtividade.")
         )
+
       )
     ),
 
     // COMO FUNCIONA
-    e("section", { className: "section" },
-      e("h2", null, "Como funciona?"),
-      e("div", { className: "grid" },
+    e("section",{className:"section dark-section"},
+      e("h2",null,"Como funciona?"),
+      e("div",{className:"grid"},
 
-        e("div", { className: "card" },
-          e("h3", null, "1️⃣ Conecte"),
-          e("p", null, "Integre seu WhatsApp Business API.")
+        e("div",{className:"card"},
+          e("h3",null,"1️⃣ Conecte"),
+          e("p",null,"Integre seu WhatsApp Business API.")
         ),
 
-        e("div", { className: "card" },
-          e("h3", null, "2️⃣ Configure"),
-          e("p", null, "Crie setores e usuários.")
+        e("div",{className:"card"},
+          e("h3",null,"2️⃣ Configure"),
+          e("p",null,"Crie usuários e setores.")
         ),
 
-        e("div", { className: "card" },
-          e("h3", null, "3️⃣ Atenda"),
-          e("p", null, "Comece a atender vários clientes simultaneamente.")
+        e("div",{className:"card"},
+          e("h3",null,"3️⃣ Atenda"),
+          e("p",null,"Comece a vender e atender simultaneamente.")
         )
+
+      )
+    ),
+
+    // PLANOS
+    e("section",{className:"section", id:"pricing"},
+      e("h2",null,"Plano Profissional"),
+      e("div",{className:"pricing-card"},
+        e("div",{className:"price"},"R$97/mês"),
+        e("p",null,"Multiatendimento ilimitado"),
+        e("p",null,"Relatórios completos"),
+        e("p",null,"Automação básica inclusa"),
+        e("a",{href:"#",className:"btn"},"Assinar agora")
       )
     ),
 
     // FOOTER
-    e("footer", { className: "footer" },
-      "© " + new Date().getFullYear() + " AtendePro - Todos os direitos reservados."
-    )
-  );
+    e("footer",{className:"footer"},
+      "© "+new Date().getFullYear()+" AtendePro - Todos os direitos reservados."
+    ),
+
+    // BOTÃO WHATSAPP
+    e("a",{
+      href:"https://wa.me/5519998194874",
+      className:"whatsapp-btn",
+      target:"_blank"
+    },"Falar no WhatsApp")
+  )
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(e(App));
