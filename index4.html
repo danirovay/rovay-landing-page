@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AtendePro | Central Profissional de WhatsApp</title>
+<title>AtendePro | Plataforma de Multiatendimento WhatsApp</title>
 
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -11,57 +11,86 @@
 <style>
 body{
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:'Segoe UI', sans-serif;
   background:#0f0f14;
   color:white;
-  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+/* NAVBAR */
+.nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  background:rgba(15,15,20,0.9);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.nav a{
+  color:white;
+  text-decoration:none;
+  margin:0 15px;
+  font-size:14px;
+  opacity:0.8;
+}
+
+.nav a:hover{
+  opacity:1;
+}
+
+.logo{
+  font-weight:bold;
+  font-size:20px;
+  background:linear-gradient(90deg,#00e676,#00e5ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.btn{
+  padding:12px 25px;
+  border-radius:8px;
+  background:linear-gradient(90deg,#00e676,#00e5ff);
+  color:black;
+  font-weight:bold;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
 }
 
 /* HERO */
 .hero{
+  padding-top:150px;
   min-height:100vh;
+  text-align:center;
   background: radial-gradient(circle at 20% 30%, #00e67622, transparent 40%),
               radial-gradient(circle at 80% 70%, #00e5ff22, transparent 40%),
               #0f0f14;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:40px;
 }
 
 .hero h1{
   font-size:64px;
-  margin:0;
   background:linear-gradient(90deg,#00e676,#00e5ff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 .hero p{
-  font-size:22px;
   max-width:750px;
-  margin:25px auto;
-  color:#ccc;
+  margin:20px auto;
+  color:#bbb;
+  font-size:20px;
 }
 
-.btn{
-  padding:18px 45px;
-  border-radius:12px;
-  background:linear-gradient(90deg,#00e676,#00e5ff);
-  color:black;
-  font-weight:bold;
-  text-decoration:none;
-  display:inline-block;
-  transition:0.3s;
-  box-shadow:0 10px 25px rgba(0,229,255,0.3);
-}
-
-.btn:hover{
-  transform:scale(1.08);
-}
-
-/* GLASS CARDS */
+/* SECTION */
 .section{
   padding:100px 20px;
   text-align:center;
@@ -85,65 +114,37 @@ body{
 }
 
 .card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  transform:translateY(-8px);
 }
 
-.stats{
-  font-size:48px;
-  font-weight:bold;
-  color:#00e676;
-}
-
-/* PRICING */
-.pricing{
-  background:linear-gradient(135deg,#00e67622,#00e5ff22);
-  padding:100px 20px;
-  text-align:center;
-}
-
-.price-box{
+/* FAQ */
+.faq-item{
+  max-width:800px;
+  margin:15px auto;
+  text-align:left;
   background:#111;
-  padding:60px;
-  border-radius:20px;
-  display:inline-block;
-  box-shadow:0 20px 60px rgba(0,0,0,0.6);
-}
-
-.price{
-  font-size:52px;
-  font-weight:bold;
-  margin:20px 0;
+  padding:20px;
+  border-radius:10px;
 }
 
 /* FOOTER */
 .footer{
   background:#000;
-  padding:50px;
+  padding:60px 20px;
   text-align:center;
-  margin-top:60px;
   color:#777;
 }
 
-/* WHATSAPP FLOAT */
 .whatsapp{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#25D366;
-  color:white;
   padding:16px 22px;
   border-radius:50px;
   font-weight:bold;
   text-decoration:none;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7);}
-  70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}
-  100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
+  color:white;
 }
 </style>
 </head>
@@ -157,71 +158,67 @@ const e = React.createElement;
 function App(){
   return e("div",null,
 
+    // NAVBAR
+    e("div",{className:"nav"},
+      e("div",{className:"logo"},"AtendePro"),
+      e("div",null,
+        e("a",{href:"#recursos"},"Recursos"),
+        e("a",{href:"#integracoes"},"Integrações"),
+        e("a",{href:"#precos"},"Preços"),
+        e("a",{href:"#faq"},"FAQ"),
+        e("a",{href:"#precos",className:"btn"},"Teste Grátis")
+      )
+    ),
+
     // HERO
     e("section",{className:"hero"},
-      e("div",null,
-        e("h1",null,"AtendePro"),
-        e("p",null,"Seu WhatsApp pode vender 3x mais. Transforme conversas em vendas com multiatendimento profissional, automação inteligente e métricas em tempo real."),
-        e("a",{href:"#pricing",className:"btn"},"QUERO VENDER MAIS")
-      )
+      e("h1",null,"Centralize e Escale Seu WhatsApp"),
+      e("p",null,"O AtendePro transforma seu WhatsApp em uma central profissional com multiatendimento, automação e relatórios completos."),
+      e("a",{href:"#precos",className:"btn"},"COMEÇAR AGORA")
     ),
 
-    // BENEFÍCIOS
-    e("section",{className:"section"},
-      e("h2",null,"Recursos Poderosos"),
+    // RECURSOS
+    e("section",{className:"section",id:"recursos"},
+      e("h2",null,"Recursos Avançados"),
       e("div",{className:"grid"},
-
-        e("div",{className:"card"},
-          e("h3",null,"Multiatendimento Ilimitado"),
-          e("p",null,"Vários atendentes no mesmo número com total controle.")
-        ),
-
-        e("div",{className:"card"},
-          e("h3",null,"Automação Inteligente"),
-          e("p",null,"Chatbots, mensagens automáticas e funil de vendas.")
-        ),
-
-        e("div",{className:"card"},
-          e("h3",null,"Gestão por Setores"),
-          e("p",null,"Distribuição automática e filas organizadas.")
-        )
-
+        e("div",{className:"card"},e("h3",null,"Multiatendimento"),e("p",null,"Vários atendentes no mesmo número.")),
+        e("div",{className:"card"},e("h3",null,"Chatbot"),e("p",null,"Automação e funis inteligentes.")),
+        e("div",{className:"card"},e("h3",null,"Relatórios"),e("p",null,"Métricas completas em tempo real.")),
+        e("div",{className:"card"},e("h3",null,"Gestão por Setores"),e("p",null,"Distribuição automática de conversas.")),
+        e("div",{className:"card"},e("h3",null,"Histórico Completo"),e("p",null,"Todas as conversas armazenadas.")),
+        e("div",{className:"card"},e("h3",null,"Segurança"),e("p",null,"Controle de acesso e permissões."))
       )
     ),
 
-    // ESTATÍSTICAS
-    e("section",{className:"section"},
-      e("h2",null,"Resultados Reais"),
+    // INTEGRAÇÕES
+    e("section",{className:"section",id:"integracoes"},
+      e("h2",null,"Integrações"),
       e("div",{className:"grid"},
-
-        e("div",{className:"card"},
-          e("div",{className:"stats"},"+40%"),
-          e("p",null,"Redução no tempo de resposta")
-        ),
-
-        e("div",{className:"card"},
-          e("div",{className:"stats"},"+65%"),
-          e("p",null,"Aumento na produtividade")
-        ),
-
-        e("div",{className:"card"},
-          e("div",{className:"stats"},"3x"),
-          e("p",null,"Mais conversões pelo WhatsApp")
-        )
-
+        e("div",{className:"card"},e("h3",null,"WhatsApp Business API")),
+        e("div",{className:"card"},e("h3",null,"CRM")),
+        e("div",{className:"card"},e("h3",null,"ERP")),
+        e("div",{className:"card"},e("h3",null,"Zapier / Webhooks"))
       )
     ),
 
-    // PRICING
-    e("section",{className:"pricing", id:"pricing"},
+    // PREÇOS
+    e("section",{className:"section",id:"precos"},
       e("h2",null,"Plano Profissional"),
-      e("div",{className:"price-box"},
-        e("div",{className:"price"},"R$97/mês"),
+      e("div",{className:"card"},
+        e("h3",null,"R$97/mês"),
         e("p",null,"Multiatendimento ilimitado"),
         e("p",null,"Relatórios completos"),
-        e("p",null,"Automação inclusa"),
+        e("p",null,"Suporte prioritário"),
         e("a",{href:"#",className:"btn"},"ASSINAR AGORA")
       )
+    ),
+
+    // FAQ
+    e("section",{className:"section",id:"faq"},
+      e("h2",null,"Perguntas Frequentes"),
+      e("div",{className:"faq-item"},e("h4",null,"Precisa da API oficial?"),e("p",null,"Sim, trabalhamos com integração profissional.")),
+      e("div",{className:"faq-item"},e("h4",null,"Posso testar antes?"),e("p",null,"Oferecemos período de teste gratuito.")),
+      e("div",{className:"faq-item"},e("h4",null,"Quantos atendentes posso ter?"),e("p",null,"Ilimitados no plano profissional."))
     ),
 
     // FOOTER
