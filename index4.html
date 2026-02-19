@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AtendePro - Multiatendimento WhatsApp</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <style>
+    body { margin:0; font-family:Arial; }
+    .section { padding:80px 20px; text-align:center; }
+    .hero { background:#000; color:#fff; padding:100px 20px; }
+    .btn {
+      background:#00e676;
+      padding:15px 35px;
+      border-radius:10px;
+      font-weight:bold;
+      color:#000;
+      text-decoration:none;
+      display:inline-block;
+      margin-top:25px;
+    }
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      margin-top:40px;
+    }
+    .card {
+      background:#f5f5f5;
+      padding:25px;
+      border-radius:12px;
+    }
+    .footer {
+      background:#000;
+      color:#fff;
+      padding:30px;
+      margin-top:60px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script>
+const e = React.createElement;
+
+function App() {
+  return e("div", null,
+
+    // HERO
+    e("section", { className: "hero" },
+      e("h1", null, "AtendePro"),
+      e("p", null, "Plataforma completa de multiatendimento via WhatsApp para empresas que querem organizar conversas e aumentar vendas."),
+      e("a", { href: "#beneficios", className: "btn" }, "Ver benefícios")
+    ),
+
+    // BENEFÍCIOS
+    e("section", { className: "section", id: "beneficios" },
+      e("h2", null, "Por que escolher o AtendePro?"),
+      e("div", { className: "grid" },
+
+        e("div", { className: "card" },
+          e("h3", null, "✔ Multiatendimento"),
+          e("p", null, "Atenda vários clientes ao mesmo tempo no mesmo número.")
+        ),
+
+        e("div", { className: "card" },
+          e("h3", null, "✔ Setores & Filas"),
+          e("p", null, "Distribuição automática para equipes e departamentos.")
+        ),
+
+        e("div", { className: "card" },
+          e("h3", null, "✔ Automação"),
+          e("p", null, "Chatbot, respostas rápidas e mensagens automáticas.")
+        ),
+
+        e("div", { className: "card" },
+          e("h3", null, "✔ Relatórios"),
+          e("p", null, "Métricas e acompanhamento em tempo real.")
+        )
+      )
+    ),
+
+    // COMO FUNCIONA
+    e("section", { className: "section" },
+      e("h2", null, "Como funciona?"),
+      e("div", { className: "grid" },
+
+        e("div", { className: "card" },
+          e("h3", null, "1️⃣ Conecte"),
+          e("p", null, "Integre seu WhatsApp Business API.")
+        ),
+
+        e("div", { className: "card" },
+          e("h3", null, "2️⃣ Configure"),
+          e("p", null, "Crie setores e usuários.")
+        ),
+
+        e("div", { className: "card" },
+          e("h3", null, "3️⃣ Atenda"),
+          e("p", null, "Comece a atender vários clientes simultaneamente.")
+        )
+      )
+    ),
+
+    // FOOTER
+    e("footer", { className: "footer" },
+      "© " + new Date().getFullYear() + " AtendePro - Todos os direitos reservados."
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(e(App));
+</script>
+
+</body>
+</html>
