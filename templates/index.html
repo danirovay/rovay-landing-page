@@ -3,45 +3,48 @@
 <head>
     <title>Click to Call</title>
     <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            margin-top: 100px;
-        }
-        input {
-            padding: 10px;
-            font-size: 18px;
-            width: 250px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin: 10px;
-            cursor: pointer;
-        }
-        .call {
-            background-color: green;
-            color: white;
-        }
-        .hangup {
-            background-color: red;
-            color: white;
-        }
+        body { font-family: Arial; text-align: center; margin-top: 80px; }
+        input { padding: 10px; font-size: 18px; width: 250px; }
+        button { padding: 10px 20px; font-size: 18px; margin: 10px; cursor: pointer; }
+        .call { background: green; color: white; }
+        .hangup { background: red; color: white; }
+        #status { margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <h1>Click to Call - GRP2612W</h1>
+<h1>Click to Call</h1>
 
-    <form method="POST" action="/call">
-        <input type="text" name="number" placeholder="Digite o número" required>
-        <br>
-        <button class="call" type="submit">Ligar</button>
-    </form>
+<input type="text" id="number" placeholder="Digite o número">
+<br>
+<button class="call" onclick="makeCall()">Ligar</button>
+<button class="hangup" onclick="hangup()">Desligar</button>
 
-    <form method="POST" action="/hangup">
-        <button class="hangup" type="submit">Desligar</button>
-    </form>
+<div id="status"></div>
+
+<script>
+function makeCall() {
+    let number = document.getElementById("number").value;
+
+    fetch("/call", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "number=" + number
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("status").innerText = "Ligando...";
+    });
+}
+
+function hangup() {
+    fetch("/hangup", { method: "POST" })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("status").innerText = "Ligação encerrada.";
+    });
+}
+</script>
 
 </body>
 </html>
