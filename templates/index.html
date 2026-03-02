@@ -1,49 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Click to Call</title>
+    <meta charset="UTF-8">
+    <title>Discador Interno</title>
+
     <style>
-        body { font-family: Arial; text-align: center; margin-top: 80px; }
-        input { padding: 10px; font-size: 18px; width: 250px; }
-        button { padding: 10px 20px; font-size: 18px; margin: 10px; cursor: pointer; }
-        .call { background: green; color: white; }
-        .hangup { background: red; color: white; }
-        #status { margin-top: 20px; font-weight: bold; }
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 18px;
+            width: 250px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .call {
+            background-color: green;
+            color: white;
+        }
+
+        .hangup {
+            background-color: red;
+            color: white;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-<h1>Click to Call</h1>
+<h1>Discador GRP</h1>
 
-<input type="text" id="number" placeholder="Digite o número">
+<input type="text" id="numero" placeholder="Digite o número">
+
 <br>
-<button class="call" onclick="makeCall()">Ligar</button>
-<button class="hangup" onclick="hangup()">Desligar</button>
+
+<button class="call" onclick="ligar()">Ligar</button>
+<button class="hangup" onclick="desligar()">Desligar</button>
 
 <div id="status"></div>
 
 <script>
-function makeCall() {
-    let number = document.getElementById("number").value;
 
-    fetch("/call", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: "number=" + number
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("status").innerText = "Ligando...";
-    });
+function ligar() {
+    let numero = document.getElementById("numero").value;
+
+    if (!numero) {
+        alert("Digite um número");
+        return;
+    }
+
+    document.getElementById("status").innerText = "Ligando...";
+
+    fetch("/call?number=" + numero)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("status").innerText = "Chamada enviada!";
+        })
+        .catch(error => {
+            document.getElementById("status").innerText = "Erro ao ligar";
+        });
 }
 
-function hangup() {
-    fetch("/hangup", { method: "POST" })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("status").innerText = "Ligação encerrada.";
-    });
+function desligar() {
+    fetch("/hangup")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("status").innerText = "Ligação encerrada!";
+        })
+        .catch(error => {
+            document.getElementById("status").innerText = "Erro ao desligar";
+        });
 }
+
 </script>
 
 </body>

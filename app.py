@@ -1,52 +1,64 @@
 from flask import Flask, render_template, request, jsonify
 import requests
-from requests.auth import HTTPBasicAuth
 
 app = Flask(__name__)
 
 PHONE_IP = "192.168.4.78"
-BASE_URL = f"http://{PHONE_IP}"   # FORÇANDO HTTP
 USERNAME = "admin"
 PASSWORD = "majopar"
 
 @app.route("/")
-def index():
+def home():
     return render_template("index.html")
 
-@app.route("/call", methods=["POST"])
+@app.route("/call")
 def call():
-    number = request.form["number"]
-    url = f"{BASE_URL}/cgi-bin/api-make_call?phonenumber={number}"
+    numero = request.args.get("number")
 
-    try:
-        r = requests.get(
-            url,
-            auth=HTTPBasicAuth(USERNAME, PASSWORD),
-            timeout=5
-        )
-        return jsonify({
-            "status": r.status_code,
-            "response": r.text
-        })
-    except Exception as e:
-        return jsonify({"error": str(e)})
+    session = requests.Session()
 
-@app.route("/hangup", methods=["POST"])
+    # 1️⃣ Fazer login web
+    login_url = f"http://{PHONE_IP}/cgi-bin/dologin"
+    login_data = {
+        "username": USERNAME,
+        "password": PASSWORD
+    }
+
+    login_response = session.post(login_url, data=login_data)
+
+    print("LOGIN STATUS:", login_response.status_code)
+
+    # 2️⃣ Fazer chamada usando mesma sessão
+    call_url = f"http://{PHONE_IP}/cgi-bin/api-make_call?phonenumber={numero}"
+    call_response = session.get(call_url)
+
+    print("CALL STATUS:", call_response.status_code)
+    print("CALL RESPONSE:", call_response.text)
+
+    return jsonify({
+        "login_status": login_response.status_code,
+        "call_status": call_response.status_code,
+        "call_response": call_response.text
+    })
+
+@app.route("/hangup")
 def hangup():
-    url = f"{BASE_URL}/cgi-bin/api-hangup_call"
+    session = requests.Session()
 
-    try:
-        r = requests.get(
-            url,
-            auth=HTTPBasicAuth(USERNAME, PASSWORD),
-            timeout=5
-        )
-        return jsonify({
-            "status": r.status_code,
-            "response": r.text
-        })
-    except Exception as e:
-        return jsonify({"error": str(e)})
+    # login se você ainda estiver usando sessão
+    session.post(
+        f"http://{PHONE_IP}/cgi-bin/dologin",
+        data={"username": USERNAME, "password": PASSWORD}
+    )
+
+    # tente o endpoint mais comum primeiro
+    hangup_url = f"http://{PHONE_IP}/cgi-bin/api-hangup"
+    r = session.get(hangup_url)
+
+    print("HANGUP STATUS:", r.status_code)
+    print("HANGUP RESPONSE:", r.text)
+
+    return f"Hangup status: {r.status_code}"
 
 if __name__ == "__main__":
     app.run(debug=True)
