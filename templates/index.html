@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Click to Call</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 250px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .call {
+            background-color: green;
+            color: white;
+        }
+        .hangup {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Click to Call - GRP2612W</h1>
+
+    <form method="POST" action="/call">
+        <input type="text" name="number" placeholder="Digite o número" required>
+        <br>
+        <button class="call" type="submit">Ligar</button>
+    </form>
+
+    <form method="POST" action="/hangup">
+        <button class="hangup" type="submit">Desligar</button>
+    </form>
+
+</body>
+</html>
